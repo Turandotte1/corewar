@@ -38,3 +38,8 @@ t_op    op_tab[17] =
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 	{0, 0, {0}, 0, 0, 0, 0, 0}
 };
+
+/*
+ * nom, nombre de parametre, tableau de type, operateur code, ? , display name,
+ * OPC, nombre d'octet parametre direct : 0 cad 2 octets 1 cad 4 octets
+ */
