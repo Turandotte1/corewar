@@ -11,27 +11,35 @@
 
 typedef struct		s_label
 {
-	char			*name;
-	int				address;
-	struct s_label	*next;
+	char				*name;
+	int					address;
+	struct s_label		*next;
 }					t_label;
 
 typedef struct		s_param
 {
-	int				type;
-	int				value;
-	char 			*raw_value;
-	int				bytes;
+	int					type;
+	int					value;
+	char 				*init_value;
+	int					bytes;
 }					t_param;
 
 typedef struct	s_instruct
 {
-	char 			*name;
-	int				opcode;
-	int				address;
-//	t_param			params;
+	char 				*name;
+	int					opcode;
+	int					address;
+	t_param				params;
 	struct s_instruct	*next;
 }				t_instruct;
 
+typedef struct	s_champ
+{
+	char				*name;
+	char				*comment;
+	t_label				labels;
+	t_instruct			instructs;
 
-#endif //COREWAR_ASM_H
+}				t_champ;
+
+#endif
