@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 14:28:31 by glegendr          #+#    #+#             */
-/*   Updated: 2018/04/03 19:06:12 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/04/20 16:18:23 by mipham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <unistd.h>
 # include <string.h>
 # include "libmem.h"
+# define SUCCESS 1
+# define ERROR -1
+# define BUFF_SIZE 42
+# define FD_MAX 10240
 
 typedef struct		s_list
 {
@@ -24,6 +28,19 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_gnl
+{
+	char 			*str;
+	int				fd;
+	int				r_stt;
+	struct s_gnl	*next;
+}					t_gnl;
+
+/*
+** GNL
+*/
+int					get_next_line(const int fd, char **line);
 
 /*
 ** del

@@ -66,6 +66,7 @@ SRCNAME= ft_isprint \
 		 ft_strnstr  \
 		 ft_sqrt     \
 		 ft_putstarstr\
+		 get_next_line\
 
 OBJDIR=obj/
 CLEANOBJDIR=OBJDIR
