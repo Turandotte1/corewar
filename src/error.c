@@ -12,6 +12,9 @@ void	asm_error(const char *str)
 	exit(EXIT_FAILURE);
 }
 
+
+
+
 void	print_detailed_error(t_champ *champ, const char *av1)
 {
 	(void)champ;
