@@ -4,7 +4,12 @@
 
 #ifndef ASM_H
 #define ASM_H
+# include "../libft/inc/libft.h"
+# include "op.h"
 
+# define FC(x, y)			ft_putstr_color(x , y );
+
+# define RET(x, y)	{FC("ERR: ",COL_RED);FC( x ,COL_LIGHT_RED);return( y );}
 /*
  * je stocke mes labels dans une liste, address est un flag qui se suivent
  */

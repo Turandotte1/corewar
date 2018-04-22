@@ -16,6 +16,16 @@
 
 #include "../includes/asm.h"
 
+int main(int ac, char **av)
+{
+	t_champ		*champ;
+
+
+	if(!(champ = (t_champ*)ft_memmalloc(sizeof(t_champ))))
+		return (EXIT_FAILURE);
+
+	return (0);
+}
 /*
- * check les parametres avec
- */
+**check les parametres
+*/

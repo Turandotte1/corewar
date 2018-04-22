@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <string.h>
 # include "libmem.h"
+# include "macro.h"
 # define SUCCESS 1
 # define ERROR -1
 # define BUFF_SIZE 42
