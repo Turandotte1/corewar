@@ -5,7 +5,6 @@
 #ifndef MACRO_H
 # define MACRO_H
 
-
 /*
 ** ERROR_PRINTING_MODE:
 ** 0 (STD_MODE): standard mode
