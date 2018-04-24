@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/23 12:05:11 by mipham            #+#    #+#             */
+/*   Updated: 2018/04/23 12:05:36 by mipham           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 //
 // Created by pelluro on 23/04/18.
 //
@@ -11,9 +23,6 @@ void	asm_error(const char *str)
 	ft_putstr_color(str, COL_LIGHT_RED);
 	exit(EXIT_FAILURE);
 }
-
-
-
 
 void	print_detailed_error(t_champ *champ, const char *av1)
 {
