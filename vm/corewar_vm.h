@@ -6,7 +6,14 @@
 #include <vector.h>
 #include <op.h>
 
+/*
+**---------------------------------les structures se cachent ici------------------------------------
+*/
 
+typedef struct 						s_vm
+{
+	char							arena[MEM_SIZE];		
+}									t_vm;
 
 typedef struct 						s_oper
 {
@@ -41,3 +48,5 @@ typedef struct 						s_oper
 //		- on run les operations en verifiant combien de processus on a par cycle
 //		- si on doit decrementer CYCLE_DELTA, on sort du boucle
 //		- des qu'on a pas de live d'un jouer
+
+#endif 
