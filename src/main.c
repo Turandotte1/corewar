@@ -16,6 +16,35 @@
 
 #include "../includes/asm.h"
 
+
+char	*ft_check_file(char *s, int *len)
+{
+	char		*buf;
+	struct stat	fstat;
+	int			fd;
+	int			ret;
+
+	if (!s || !len)
+		return (ft_error_n(2, "RFLsn", FFL, "missing path or adress for len"));
+	*len = 0;
+	errno = 0;
+	if (stat(s, &fstat) < 0)
+		return (ft_error_n(2, "RFLssnEn", FFL, "stat error on : ", s, errno));
+	errno = 0;
+	if (!(buf = (char*)malloc(fstat.st_size + 1)))
+		return (ft_error_n(2, "RFLsnEn", FFL, "malloc error :", errno));
+	errno = 0;
+	if ((fd = open(s, O_RDONLY)) < 0)
+		return (ft_error_n(2, "RFLsnEn", FFL, "open error :", errno));
+	if ((ret = read(fd, buf, fstat.st_size)) <= 0)
+		return (ft_error_n(2, "RFLsnEn", FFL, "read error :", errno));
+	*len = ret;
+	buf[ret] = '\0';
+	close(fd);
+	return (buf);
+}
+
+
 int main(int ac, char **av)
 {
 	t_champ		*champ;
@@ -26,7 +55,7 @@ int main(int ac, char **av)
 		return (EXIT_FAILURE);
 	if (ac = 2 && ft_strcmp(&av[1][ft_strlen(av[1]) - 2], ".s") == 0))
 	{
-		content = ft_read_file(&av[1], &fd);
+		read_file(champ);
 
 	}
 
