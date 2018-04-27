@@ -31,3 +31,17 @@ void	print_detailed_error(t_champ *champ, const char *av1)
 	ft_putstr_color(av1, COL_LIGHT_YELLOW);
 	ft_putstr_color(".\n", COL_LIGHT_RED);
 }
+
+void	close_asm(t_champ *champ, char *s)
+{
+	free_champ(champ);
+	if (s)
+		asm_error(s);
+}
+
+void	free_champ(t_champ *champ)
+{
+	free(champ->name);
+	free(champ->comment);
+
+}
