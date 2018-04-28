@@ -14,9 +14,10 @@
 // Created by pelluro on 23/04/18.
 //
 
-#include <stdlib.h>
-#include "asm.h"
-#include "libft.h"
+#include "../includes/asm.h"
+/*
+**ft_error a coder avec la sortie d'erreur
+*/
 
 void	asm_error(const char *str)
 {
