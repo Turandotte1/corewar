@@ -6,29 +6,29 @@
 /*
 **
 */
-static void	write_instruct(t_instruct *instr, char *buf, int *ibuf)
+static void	write_instruct(t_instruct *instr, char *buf, int *len)
 {
 	char	conf;
 	int		i;
 
 	if (DBUG)
 		print_dbug(instr);
-	ft_memcpy(buf + *ibuf, &(instr->opcode), 1);
-	*ibuf += 1;
+	ft_memcpy(buf + *len, &(instr->opcode), 1);
+	*len += 1;
 	if (g_op_tab[instr->opcode].has_opc)
 	{
 		conf = get_opc(instr);
-		ft_memcpy(buf + *ibuf, &conf, 1);
-		*ibuf += 1;
+		ft_memcpy(buf + *len, &conf, 1);
+		*len += 1;
 	}
 	i = 0;
 	while (i < MAX_ARGS_NUMBER)
 	{
 		if (instr->params[i].type != 0)
 		{
-			ft_memcpy_rev(buf + *ibuf,
+			ft_memcpy_rev(buf + *len,
 				&(instr->params[i].value), instr->params[i].nb_bytes - 1);
-			*ibuf += instr->params[i].nb_bytes;
+			*len += instr->params[i].nb_bytes;
 		}
 		++i;
 	}
@@ -49,15 +49,15 @@ static void	write_prog(t_champ *champ, char *buf, int *ibuf)
 static char	wrt_file(int fd, t_champ *champ)
 {
 	char		*buf;
-	int			ibuf;
+	int			len;
 	long int	val;
 	int			fd_n_x;
 
 	val = COREWAR_EXEC_MAGIC;
 	if (!(buf = (char*)ft_memalloc(sizeof(char) * BUFF_SIZE_2_16)))
-		return (ft_error_c(2, "RFLsn", FFL, "Error Malloc"));
+		return (ft_error(2,"Error Malloc"));
 	ft_memcpy_rev(buf, &val, 3);
-	ibuf = 4;
+	len = 4;
 	ft_putbuf_fd_np(fd, champ->name, buf, &ibuf);
 	fd_n_x = ((PROG_NAME_LENGTH - ft_strlen(champ->name)) << 16) | fd;
 	ft_putbuf_fd_loop_char_np(fd_n_x, '\0', buf, &ibuf);

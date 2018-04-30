@@ -16,7 +16,6 @@
 
 #include "../includes/asm.h"
 
-
 char	*ft_check_file(char *s, int *len)
 {
 	char		*buf;
@@ -56,7 +55,7 @@ int main(int ac, char **av)
 		if (!content)
 			close_asm(champ, "Exiting: can't read file\n");
 		parse_file(content, champ);
-		if (!(compile(champ, argv[1])))
+		if (!(compile(champ, av[1])))
 		{
 			free(content);
 			close_asm(champ, "Error creating .cor file\n");
