@@ -59,6 +59,7 @@ t_list				*fd_select(t_list **list, int fd);
 
 void				*ft_memcpy(void *restrict s1, const void *restrict s2,
 		size_t n);
+void *ft_memcpy_rev(void *dst, const void *src, size_t n);
 void				*ft_memccpy(void *restrict d, const void *restrict s,
 		int c, size_t n);
 void				ft_bzero(void *s, size_t n);

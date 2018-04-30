@@ -49,7 +49,7 @@ int main(int ac, char **av)
 
 	if(!(champ = (t_champ*)ft_memmalloc(sizeof(t_champ))))
 		return (EXIT_FAILURE);
-	if (ac = 2 && ft_strcmp(&av[1][ft_strlen(av[1]) - 2], ".s") == 0))
+	if (ac == 2 && ft_strcmp(&av[1][ft_strlen(av[1]) - 2], ".s") == 0))
 	{
 		content = ft_check_file(champ);
 		if (!content)

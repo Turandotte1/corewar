@@ -16,7 +16,11 @@
 
 #ifndef ASM_H
 #define ASM_H
-# include "../libft/inc/libft.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <fcntl.h>
+# include "../libft/libft_all.h"
 # include "op.h"
 
 # define FC(x, y)			ft_putstr_color(x , y );

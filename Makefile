@@ -13,14 +13,20 @@
 NAME		=	asm
 
 SRC 		=	src/main.c	\
-				src/ft_color.c \
+				src/get_instruct.c \
 				src/convert.c	\
+				src/get_label.c\
 				src/get_param_value.c	\
 				src/error.c	\
+				src/method.c \
+				src/method2.c \
+				src/op.c \
+				src/parse1.c \
+				src/ parse2.c
 
 OBJ			=	$(SRC:.c=.o)
 
-INC			=	-I ../includes -I ../libft/includes
+INC			=	-I ../includes -I ../libft
 LINK		=	-L../libft -lft
 
 FLAGS		=	$(CFLAGS)
