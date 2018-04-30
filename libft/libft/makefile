@@ -41,6 +41,7 @@ SRCC = ft_putchar.c ft_putchar_fd.c ft_putstr_fd.c ft_putstr.c ft_strlen.c \
 		ft_putwchar_fd.c ft_putwchar.c ft_nstrlen.c ft_max.c ft_min.c\
 		ft_split_whitespace.c ft_sort_integer_table.c ft_is_sorted.c\
 		ft_haschar.c ft_atoll.c ft_atou.c ft_isspace.c ft_tabnew.c\
+		ft_get_line.c ft_str_is_digits.c\
 
 
 CC = gcc

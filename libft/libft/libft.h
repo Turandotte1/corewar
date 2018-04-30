@@ -116,6 +116,9 @@ char				*ft_utoa(unsigned int nbr, char const *s);
 char				*ft_strtrim(char const *s);
 char				*ft_strndup(const char *s, size_t n);
 char				*gnl_read(char **buff, int fd, char *str);
+char	*ft_get_line(char *s, int *i);
+char	*ft_cut_first_line(char *str);
+char	*ft_point_to_next_line(char *str);
 
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_atoi(const char *str);
@@ -141,6 +144,7 @@ int					get_next_line(const int fd, char **line);
 int					ft_is_sorted(int *tab, int size);
 int					ft_haschar(const char *s, int c);
 int					*ft_tabnew(size_t size);
+int		ft_str_is_digits(char *str);
 
 size_t				ft_strlcat(char *restrict dest, const char *restrict src,
 		size_t len);
