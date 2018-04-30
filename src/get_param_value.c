@@ -106,7 +106,7 @@ int		get_param(t_champ *c, t_instruct *inst, char *line)
 	nb_bytes = 0;
 	while (split[i] && i < MAX_ARGS_NUMBER)
 	{
-		if (!(inst->params[i].init_value = ft_strdup(ft_strtrim_both(split[i]))))
+		if (!(inst->params[i].init_value = ft_strdup(ft_strtrim(split[i]))))
 			close_asm(c, "Malloc error\n");
 		free(split[i]);
 		get_param_type(c, &inst->params[i]);
