@@ -5,15 +5,16 @@ RED = \033[38;5;124m
 GREY =\033[38;5;253m
 
 NAME1 = corewar
+NAME2 = asm
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -g3
 
-SRC_NAME1 = lem_in.c verify.c room_parsing.c path_parsing.c \
-solve.c ants.c error.c other_messages.c no_leaks.c
+SRC_NAME1 = 
+SRC_NAME2 = 
 
-SRC_PATH1 = ./Lem_in
-SRC_PATH2= ./Visu_hex
+SRC_PATH1 = ./vm
+SRC_PATH2= ./asm
 
 SRC1 = $(addprefix $(SRC_PATH1)/,$(SRC_NAME1))
 SRC2 = $(addprefix $(SRC_PATH2)/,$(SRC_NAME2))
@@ -23,11 +24,11 @@ OBJ_PATH = ./Objs
 OBJ1 = $(addprefix $(OBJ_PATH)/,$(SRC_NAME1:.c=.o))
 OBJ2 = $(addprefix $(OBJ_PATH)/,$(SRC_NAME2:.c=.o))
 
-INC1 = ./Includes/lem_in.h 
-INC2 = ./Includes/visu_hex.h
+#INC1 = ./dep
+#INC2 = ./dep
 
 NCURSES	= -lpanel -lcurses -lcdk
-MY_LIB = ./Libft/libft.a
+#MY_LIB = ./dep/libft.a
 
 all: makelibs $(NAME1) $(NAME2)
 
