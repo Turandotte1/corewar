@@ -22,6 +22,7 @@
 #include <fcntl.h>
 # include "../libft/libft_all.h"
 # include "op.h"
+# include "asm_struct.h"
 
 # define FC(x, y)			ft_putstr_color(x , y );
 
