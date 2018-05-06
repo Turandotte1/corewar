@@ -24,8 +24,7 @@
 # define ERROR -1
 # define BUFF_SIZE 42
 # define FD_MAX 10240
-# define INT_MAX 2147483647
-# define INT_MIN -2147483648
+# define BUFF_SIZE_2_16 65536
 # define C_NONE         "\033[0m"
 # define C_BOLD         "\033[1m"
 # define C_BLACK        "\033[30m"
@@ -90,6 +89,8 @@ void				ft_putwchar(wchar_t chr);
 void				ft_putwchar_fd(wchar_t chr, int fd);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
+void	ft_putbuf_fd_np(int fd, char *src, char *dst, int *i);
+void	ft_putbuf_fd_loop_char_np(int fd_n_x, char c, char *dst, int *i);
 void				ft_strrev(char *s);
 void				ft_sort_integer_table(int *tab, int size);
 

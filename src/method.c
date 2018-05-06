@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   method.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/20 17:07:10 by mipham            #+#    #+#             */
+/*   Updated: 2018/04/24 16:40:37 by mipham           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 //
 // Created by Minh PHAM on 4/20/18.
 //
@@ -37,4 +49,24 @@ char	*trim_comment(char *line)
 		i++;
 	}
 	return (line);
+}
+
+char	*get_name_or_comment(t_champ *c, char **content, char *str)
+{
+	char	*result;
+	int		i;
+
+	result = NULL;
+	i = 0;
+	*content = skip_comment_and_whitespace((*content));
+	if (ft_strncmp(*content, str, ft_strlen(str)) == 0)
+	{
+		*content = ft_strchr(*content, '"') + 1;
+		while ((*content)[i] && (*content)[i] != '"')
+			i++;
+		if (!(result = ft_strndup(*content, i)))
+			close_asm(c, "Malloc error\n");
+		*content = ft_point_to_next_line(&(*content)[i]);
+	}
+	return (result);
 }

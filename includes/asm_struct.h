@@ -31,7 +31,7 @@ typedef struct	s_instruct
 	char 				*name;
 	int					opcode;
 	int					address;
-	t_param				params;
+	t_param				params[MAX_ARGS_NUMBER];
 	struct s_instruct	*next;
 }				t_instruct;
 
@@ -39,9 +39,8 @@ typedef struct	s_champ
 {
 	char				*name;
 	char				*comment;
-	t_label				labels;
-	t_instruct			instructs;
-
-}				t_champ;
+	t_label				*labels;
+	t_instruct			*instructs;
+}								t_champ;
 
 #endif

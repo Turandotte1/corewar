@@ -10,14 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//
-// Created by pelluro on 23/04/18.
-//
-
 #include "../includes/asm.h"
-/*
-**ft_error a coder avec la sortie d'erreur
-*/
 
 void	asm_error(const char *str)
 {
@@ -32,16 +25,26 @@ void	print_detailed_error(const char *av1)
 	ft_putstr_color(".\n", COL_LIGHT_RED);
 }
 
-void	close_asm(t_champ *champ, char *s)
-{
-	free_champ(champ);
-	if (s)
-		asm_error(s);
-}
-
 void	free_champ(t_champ *champ)
 {
 	free(champ->name);
 	free(champ->comment);
+	free_labels(champ->labels);
+	free_instructs(champ->instructs);
+	free(champ);
+}
 
+void	close_asm(t_champ *champ, char *s)
+{
+	char *c;
+	free_champ(champ);
+	if (s)
+		ft_putstr_fd(s, 2);
+	exit(0);
+}
+
+char *ft_error(int fd, char *s)
+{
+	ft_putstr_fd(s, fd);
+	return (NULL);
 }

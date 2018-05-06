@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/20 17:07:10 by mipham            #+#    #+#             */
+/*   Updated: 2018/04/24 16:40:37 by mipham           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/asm.h"
 
 char	*save_label_name(t_champ *champ, char *line, int nb_bytes)
@@ -21,28 +33,6 @@ char	*save_label_name(t_champ *champ, char *line, int nb_bytes)
 			line = line + j + 1;
 			break ;
 		}
-		i++;
-	}
-	return (line);
-}
-
-char	*skip_comment_and_whitespace(char *str)
-{
-	str = ft_strtrim_both(str);
-	while (str[0] == COMMENT_CHAR || str[0] == '\n' || str[0] == ';')
-		str = ft_point_to_next_line(str);
-	return (str);
-}
-
-char	*trim_comment(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == COMMENT_CHAR || line[i] == ';')
-			line[i] = '\0';
 		i++;
 	}
 	return (line);

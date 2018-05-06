@@ -26,4 +26,6 @@
 
 # define FC(x, y)			ft_putstr_color(x , y );
 
+char *ft_error(int fd, char *s);
+
 #endif

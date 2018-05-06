@@ -10,10 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//
-// Created by Minh PHAM on 4/20/18.
-//
-
 #include "../includes/asm.h"
 
 char	*ft_check_file(char *s, int *len)
@@ -45,13 +41,13 @@ int main(int ac, char **av)
 {
 	t_champ			*champ;
 	char				*content;
-	int					fd;
+	int					len;
 
 	if (!(champ = (t_champ*)ft_memalloc(sizeof(t_champ))))
 		return (EXIT_FAILURE);
 	if (ac == 2 && ft_strcmp(&av[1][ft_strlen(av[1]) - 2], ".s") == 0)
 	{
-		content = ft_check_file(champ);
+		content = ft_check_file(av[1], &len);
 		if (!content)
 			close_asm(champ, "Exiting: can't read file\n");
 		parse_file(content, champ);
