@@ -1,16 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/04/27 19:26:24 by glegendr         ###   ########.fr       */
+/*   Created: 2018/05/02 17:03:40 by glegendr          #+#    #+#             */
+/*   Updated: 2018/05/08 19:08:26 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar_vm.h"
+
+void		into_code(t_vec *code, t_vec *vec, header_t *head)
+{
+	int		i;
+	char	*tmp;
+
+	i = 2192;
+	if ((tmp = (char *)malloc(sizeof(char) * (head->prog_size + 1))) == NULL)
+		error("Malloc Error");
+	while (i < v_size(vec))
+	{
+		tmp[i - 2192] = *(char *)v_get(vec, i);
+		++i;
+	}
+	tmp[i] = '\0';
+	v_push(code, tmp);
+}
 
 t_vec		read_ins(int fd)
 {
@@ -40,10 +57,10 @@ void		give_magic_number(t_vec *vec, header_t *head)
 	head->magic = 0xea83f3;
 }
 
-void					give_name(t_flag *f, int name)
+void		give_name(t_flag *f, int name)
 {
-	int 				i;
-	int 				dif;
+	int				i;
+	int				dif;
 
 	i = 0;
 	if (v_size(&f->n) == 0)
@@ -63,7 +80,25 @@ void					give_name(t_flag *f, int name)
 	v_push_int(&f->n, name);
 }
 
-void					pars(int fd, t_vec *queue, t_vec *names)
+void		filter_vec(t_vec *vec, t_vec *code)
+{
+	t_vec	tmp;
+	int		i;
+
+	i = 2192;
+	tmp = v_new(sizeof(int));
+	if (v_size(vec) < i)
+		return ;
+	while (i < v_size(vec))
+	{
+		v_push_int(&tmp, *(char *)v_get(vec, i));
+		++i;
+	}
+	v_push(code, &tmp);
+	v_del(vec);
+}
+
+void		pars(int fd, t_vec *queue, t_vec *names, t_vec *code)
 {
 	t_vec		vec;
 	int			i;
@@ -88,4 +123,5 @@ void					pars(int fd, t_vec *queue, t_vec *names)
 		error("size is too big");
 	give_actions(&vec, queue);
 	v_push(names, &head);
+	filter_vec(&vec, code);
 }

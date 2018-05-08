@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/04/27 19:26:24 by glegendr         ###   ########.fr       */
+/*   Created: 2018/05/02 17:03:47 by glegendr          #+#    #+#             */
+/*   Updated: 2018/05/08 19:09:39 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar_vm.h"
 
-int							next_nb(char *s)
+int			next_nb(char *s)
 {
-	int 					dif;
-	int 					i;
+	int					dif;
+	int					i;
 
 	dif = 0;
 	i = 0;
@@ -26,9 +26,9 @@ int							next_nb(char *s)
 	return (ft_atoi(s));
 }
 
-int							*make_ret(int flag, int nb)
+int			*make_ret(int flag, int nb)
 {
-	int 					*ret ;
+	int					*ret;
 
 	if ((ret = (int *)malloc(sizeof(int) * 2)) == NULL)
 		error("malloc Error");
@@ -37,10 +37,10 @@ int							*make_ret(int flag, int nb)
 	return (ret);
 }
 
-int							*is_a_flag(char **argv, int *i, int argc)
+int			*is_a_flag(char **argv, int *i, int argc)
 {
-	int 					flag;
-	int 					nb;
+	int					flag;
+	int					nb;
 
 	nb = 0;
 	if (ft_strcmp(argv[*i], "-n") && ft_strcmp(argv[*i], "-v") &&
@@ -63,13 +63,11 @@ int							*is_a_flag(char **argv, int *i, int argc)
 	return (make_ret(flag, nb));
 }
 
-void						into_struct(int *tab, t_flag *flag)
+void		into_struct(int *tab, t_flag *flag)
 {
-	int 					f;
-	int 					nb;
+	int					f;
+	int					nb;
 
-	if (v_raw(&flag->n) == NULL)
-		flag->n = v_new(sizeof(int));
 	f = tab[0];
 	nb = tab[1];
 	free(tab);
@@ -86,31 +84,46 @@ void						into_struct(int *tab, t_flag *flag)
 		give_name(flag, nb);
 }
 
-int 						parse_it(t_vm *vm, int argc, char **argv)
+void		ini_flag(t_flag *flag, t_vec *code,
+		t_vec *queue, t_vec *names)
+{
+	flag->v = 0;
+	flag->dump = -1;
+	flag->dump_nb = -1;
+	flag->n = v_new(sizeof(int));
+	*code = v_new(sizeof(t_vec));
+	*queue = v_new(sizeof(t_vec));
+	*names = v_new(sizeof(header_t));
+}
+
+int			parse_it(t_vm *vm,
+		t_flag flags, int argc, char **argv)
 {
 	int						i;
 	int						fd;
 	int						player;
 	t_vec					queue;
 	t_vec					names;
-	
-	flags.n = v_new(sizeof(int));
-	queue = v_new(sizeof(t_vec));
-	names = v_new(sizeof(header_t));
+	t_vec					code;
+
+	ini_flag(&flags, &code, &queue, &names);
 	player = 0;
-	while ((i = 1) && i < argc)
+	i = 1;
+	while (i < argc)
 	{
 		if ((fd = open(argv[i], O_RDONLY)) == -1)
 			into_struct(is_a_flag(argv, &i, argc), &flags);
 		else
 		{
-			pars(fd, &queue, &names);
-			++player;
-			give_dispo_name(&flags, player);
+			pars(fd, &queue, &names, &code);
+			give_dispo_name(&flags, ++player);
 		}
 		++i;
 	}
 	if (player == 0 || v_size(&flags.n) != player)
 		usage();
-	print(0, queue, names, flags);
+	if (player > 4)
+		error("too many champions");
+	into_vm(vm, &flags, &code);
+	return (0);
 }

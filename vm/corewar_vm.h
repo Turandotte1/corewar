@@ -13,9 +13,21 @@
 **---------------------------------les structures se cachent ici------------------------------------
 */
 
+//op.h
+# define PROG_NAME_LENGTH (128)
+# define COMMENT_LENGTH (2048)
+# define COREWAR_EXEC_MAGIC 0xea83f3
+# define MEM_SIZE (4 * 1024)
+# define IDX_MOD (MEM_SIZE / 8)
+# define CHAMP_MAX_SIZE (MEM_SIZE / 6)
+# define REG_NUMBER      16
+
 typedef struct						s_flag
 {
-	
+	t_vec							n;
+	int								v;
+	int								dump;
+	int								dump_nb;
 }									t_flag;
 
 typedef struct 						s_oper
@@ -30,12 +42,11 @@ typedef struct 						s_oper
 
 typedef struct 						s_vm
 {
-	char							arena[MEM_SIZE];
+	char							*arena;
 	t_vec							n;
 	int								v;
 	int								dump;
 	int								dump_nb;
-	
 }									t_vm;
 
 /*
@@ -54,13 +65,6 @@ typedef struct 						s_vm
 **    ID respectifs des champs :D
 */
 
-//op.h
-# define PROG_NAME_LENGTH (128)
-# define COMMENT_LENGTH (2048)
-# define COREWAR_EXEC_MAGIC 0xea83f3
-# define MEM_SIZE (4 * 1024)
-# define IDX_MOD (MEM_SIZE / 8)
-# define CHAMP_MAX_SIZE (MEM_SIZE / 6)
 
 // les actions
 typedef struct		s_act
@@ -97,16 +101,28 @@ int		f_fork(t_act *act, t_vec *vec, int i);
 int		f_aff(t_act *act, t_vec *vec, int i);
 // et ca bah c'est l'erreur
 int		error(char *s);
-
+void	pars(int fd, t_vec *queue, t_vec *names, t_vec *code);
+t_act	ini_struct(void);
+int		give_parameters(t_act *act, t_vec *vec, int i);
+void	give_size(t_vec *vec, int *i, header_t *head);
+void	give_comment(t_vec *vec, int *i,header_t *head);
+void	give_actions(t_vec *vec, t_vec *queue);
+void	give_dispo_name(t_flag *flags, int player);
+void	give_name(t_flag *f, int name);
+void	print(int i, t_vec queue, t_vec names, t_flag flags);
+void	usage(void);
+int		parse_it(t_vm *vm, t_flag d, int argc, char **argv);
+t_vec	v_to_hexa(t_vec *vec);
+void	into_vm(t_vm *vm, t_flag *f, t_vec *v);
 /*Pour les operation
 	on lit l'opcode, on recupere la valeur d'attente (int waiting je l'ai appelle), on decremente la valeur d'attente avec le cycle jusqu'a 0,
 	on calcule la nouvelle position de pc, on check ocp
 
 ///// on parse les argc
 
-/*
+*
 **-------------OPTIONS A GERER-----------------------------
-		-n 
+		-n nom
 		-dump nbr_cycles
 		-v (si jamais on le fait);
 */
