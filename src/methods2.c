@@ -25,8 +25,8 @@ void	print_dbug(t_instruct *instr)
 		ft_printf("\t type %d | value : %x | raw_val: %s | n_byte %d\n",
 			instr->params[i].type,
 			instr->params[i].value,
-			instr->params[i].raw_value,
-			instr->params[i].nb_bytes);
+			instr->params[i].init_value,
+			instr->params[i].bytes);
 		++i;
 	}
 }
@@ -65,7 +65,7 @@ int		get_progsize(t_champ *champ)
 	while (instr)
 	{
 		size += 1 + params_size(instr);
-		if (g_op_tab[instr->opcode].has_opc)
+		if (g_op_tab[instr->opcode].opcode)
 			++size;
 		instr = instr->next;
 	}

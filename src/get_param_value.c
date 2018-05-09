@@ -14,7 +14,7 @@
 // Created by Minh PHAM on 4/24/18.
 //
 
-#include "../includes/asm_struct.h"
+#include "../includes/asm.h"
 
 int		check_params(t_instruct *inst)
 {
@@ -30,7 +30,7 @@ int		check_params(t_instruct *inst)
 	i = 0;
 	while (i < MAX_ARGS_NUMBER && inst->params[i].init_value)
 	{
-		if (!(inst->params[i].type & op.params_types[i]))
+		if (!(inst->params[i].type & op.arg_type[i]))
 			return (0);
 		i++;
 	}
@@ -93,17 +93,17 @@ int		get_nb_bytes(t_instruct *instruct)
 	while ((i < MAX_ARGS_NUMBER) && params[i].type)
 	{
 		if (params[i].type == T_REG)
-			params[i].nb_bytes = 1;
+			params[i].bytes = 1;
 		else if (params[i].type == T_IND)
-			params[i].nb_bytes = 2;
+			params[i].bytes = 2;
 		else if (params[i].type == T_DIR)
 		{
-			if (g_op_tab[op].dir_two_bytes)
-				params[i].nb_bytes = 2;
+			if (g_op_tab[op].has_idx)
+				params[i].bytes = 2;
 			else
-				params[i].nb_bytes = 4;
+				params[i].bytes = 4;
 		}
-		nb_bytes += params[i++].nb_bytes;
+		nb_bytes += params[i++].bytes;
 	}
 	return (nb_bytes);
 }

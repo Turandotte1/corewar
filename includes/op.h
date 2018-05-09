@@ -27,6 +27,9 @@
 # define DIR_CODE				2
 # define IND_CODE				3
 
+# define OCP_REG				0b01
+# define OCP_DIR				0b10
+# define OCP_IND				0b11
 
 #define MAX_ARGS_NUMBER			4
 #define MAX_PLAYERS				4

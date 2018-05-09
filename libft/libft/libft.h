@@ -168,6 +168,7 @@ int					ft_is_sorted(int *tab, int size);
 int					ft_haschar(const char *s, int c);
 int					*ft_tabnew(size_t size);
 int		ft_str_is_digits(char *str);
+int		ft_strchr_i(char *s, char c);
 
 size_t				ft_strlcat(char *restrict dest, const char *restrict src,
 		size_t len);

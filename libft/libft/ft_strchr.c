@@ -25,3 +25,21 @@ char	*ft_strchr(const char *s, int c)
 		return (src + i);
 	return (0);
 }
+
+int		ft_strchr_i(char *s, char c)
+{
+	int i;
+
+	if (!s)
+		return (-1);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (i);
+		++i;
+	}
+	if (s[i] == c)
+		return (i);
+	return (-1);
+}
