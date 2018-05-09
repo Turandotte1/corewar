@@ -20,7 +20,7 @@ void	asm_error(const char *str)
 
 void	print_detailed_error(const char *av1)
 {
-	ft_putstr("Couldn't convert ", COL_LIGHT_RED);
+	ft_putstr_color("Couldn't convert ", COL_LIGHT_RED);
 	ft_putstr_color(av1, COL_LIGHT_YELLOW);
 	ft_putstr_color(".\n", COL_LIGHT_RED);
 }

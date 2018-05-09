@@ -25,16 +25,32 @@
 # define BUFF_SIZE 42
 # define FD_MAX 10240
 # define BUFF_SIZE_2_16 65536
-# define C_NONE         "\033[0m"
-# define C_BOLD         "\033[1m"
-# define C_BLACK        "\033[30m"
-# define C_RED          "\033[31m"
-# define C_GREEN        "\033[32m"
-# define C_BROWN        "\033[33m"
-# define C_BLUE         "\033[34m"
-# define C_MAGENTA      "\033[35m"
-# define C_CYAN         "\033[36m"
-# define C_GRAY         "\033[37m"
+
+# define COL_RESET				"\033[0m"
+# define COL_UNDERLINED			"\033[4m"
+# define COL_REVERSE			"\033[7m"
+# define COL_BLACK				"\033[22;30m"
+# define COL_RED				"\033[22;31m"
+# define COL_GREEN				"\033[22;32m"
+# define COL_YELLOW				"\033[22;33m"
+# define COL_BLUE				"\033[22;34m"
+# define COL_MAGENTA			"\033[22;35m"
+# define COL_CYAN				"\033[22;36m"
+# define COL_WHITE				"\033[1;37m"
+# define COL_GRAY				"\033[1;30m"
+# define COL_LIGHT_GRAY			"\033[22;37m"
+# define COL_LIGHT_RED			"\033[1;31m"
+# define COL_LIGHT_GREEN		"\033[1;32m"
+# define COL_LIGHT_YELLOW		"\033[1;33m"
+# define COL_LIGHT_BLUE			"\033[1;34m"
+# define COL_LIGHT_MAGENTA		"\033[1;35m"
+# define COL_LIGHT_CYAN			"\033[1;36m"
+# define COL_BACK_RED			"\033[41m"
+# define COL_BACK_GREEN			"\033[42m"
+# define COL_BACK_YELLOW		"\033[43m"
+# define COL_BACK_BLUE			"\033[44m"
+# define COL_BACK_MAGENTA		"\033[45m"
+# define COL_BACK_CYAN			"\033[46m"
 
 typedef struct		s_list
 {
@@ -89,10 +105,15 @@ void				ft_putwchar(wchar_t chr);
 void				ft_putwchar_fd(wchar_t chr, int fd);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);
-void	ft_putbuf_fd_np(int fd, char *src, char *dst, int *i);
-void	ft_putbuf_fd_loop_char_np(int fd_n_x, char c, char *dst, int *i);
+void				ft_putbuf_fd_np(int fd, char *src, char *dst, int *i);
+void				ft_putbuf_fd_loop_char_np(int fd_n_x, char c,
+			char *dst, int *i);
 void				ft_strrev(char *s);
 void				ft_sort_integer_table(int *tab, int size);
+void				ft_putstr_color(char const *s, const char *color);
+void				ft_putstr_color_fd(char const *s, const char *color, int fd);
+void				ft_color_switch_fd(const char *color, int fd);
+void				ft_color_reset_fd(int fd);
 
 char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
@@ -120,6 +141,7 @@ char				*gnl_read(char **buff, int fd, char *str);
 char	*ft_get_line(char *s, int *i);
 char	*ft_cut_first_line(char *str);
 char	*ft_point_to_next_line(char *str);
+char	*ft_skip_whitespace(char *str);
 
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_atoi(const char *str);

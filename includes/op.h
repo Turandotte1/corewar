@@ -17,6 +17,7 @@
 #ifndef OP_H
 # define OP_H
 
+#define DBUG						0
 #define IND_SIZE				2
 #define REG_SIZE				4
 #define DIR_SIZE				REG_SIZE
@@ -88,5 +89,7 @@ typedef struct		header_s
 	unsigned int		prog_size;
 	char				comment[COMMENT_LENGTH + 1];
 }					header_t;
+
+extern t_op			g_op_tab[17];
 
 #endif

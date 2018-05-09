@@ -24,8 +24,3 @@ void	ft_putnbr(int n)
 {
 	ft_putnbr_fd(n, 1);
 }
-
-void	ft_puttab(char const **ss)
-{
-	ft_puttab_fd(ss, 1);
-}
