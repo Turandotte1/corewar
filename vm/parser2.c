@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:40 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/08 19:08:26 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/05/10 18:53:38 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ t_vec		read_ins(int fd)
 
 	vec = v_new(sizeof(char));
 	while ((ret = read(fd, tmp, BUFF_SIZE)) > 0)
+	{
 		v_append_raw(&vec, tmp, ret);
+		if (v_size(&vec) > 15000)
+			error("The size is to big to be a champion");
+	}
 	vec = v_to_hexa(&vec);
 	if (ret == -1)
 		error("imcomplet Read");
@@ -47,13 +51,13 @@ t_vec		read_ins(int fd)
 void		give_magic_number(t_vec *vec, header_t *head)
 {
 	if (v_size(vec) < 7)
-		error("Magic number is not the good one");
+		error("Bad Header");
 	if (*(int *)v_get(vec, 1) != 0xea)
-		error("Magic number is not the good one");
+		error("Bad Header");
 	if (*(int *)v_get(vec, 2) != 0x83)
-		error("Magic number is not the good one");
+		error("Bad Header");
 	if (*(int *)v_get(vec, 3) != 0xf3)
-		error("Magic number is not the good one");
+		error("Bad Header");
 	head->magic = 0xea83f3;
 }
 
