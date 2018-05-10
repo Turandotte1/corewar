@@ -20,6 +20,7 @@
 # include <stdint.h>
 # include <ctype.h>
 # include <stdlib.h>
+# include <errno.h>
 # define SUCCESS 1
 # define ERROR -1
 # define BUFF_SIZE 42
@@ -51,6 +52,20 @@
 # define COL_BACK_BLUE			"\033[44m"
 # define COL_BACK_MAGENTA		"\033[45m"
 # define COL_BACK_CYAN			"\033[46m"
+
+# define FI_ 	__FILE__
+# define FU_ 	__FUNCTION__
+# define LI_ 	__LINE__
+# define ER 		errno
+# define FFL 		FI_, FU_, LI_
+
+# define FAIL 0
+# define SUCCESS 1
+
+# define E_MLC		"Could not allocate memory for : "
+# define E_OPF		"Could not open file : "
+# define E_RDF		"Could not read file or file is empty : "
+# define MDI		"more details in : "
 
 typedef struct		s_list
 {
@@ -169,6 +184,11 @@ int					ft_haschar(const char *s, int c);
 int					*ft_tabnew(size_t size);
 int		ft_str_is_digits(char *str);
 int		ft_strchr_i(char *s, char c);
+
+int		ft_error_d(int fd, const char *s, ...);
+char	ft_error_c(int fd, const char *s, ...);
+void	*ft_error_n(int fd, const char *s, ...);
+void	ft_error_v(int fd, const char *s, ...);
 
 size_t				ft_strlcat(char *restrict dest, const char *restrict src,
 		size_t len);

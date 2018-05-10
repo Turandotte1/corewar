@@ -37,21 +37,22 @@ char	*ft_check_file(char *s, int *len)
 }
 
 
-int main(int ac, char **av)
+int	main(int ac, char **argv)
 {
-	t_champ			*champ;
-	char				*content;
-	int					len;
+	char	*content;
+	int		len;
+	t_champ	*champ;
 
+	content = NULL;
 	if (!(champ = (t_champ*)ft_memalloc(sizeof(t_champ))))
-		return (EXIT_FAILURE);
-	if (ac == 2 && ft_strcmp(&av[1][ft_strlen(av[1]) - 2], ".s") == 0)
+		return (ft_error_d(2, "RFLsn", FFL, E_MLC));
+	if (ac == 2 && (ft_strcmp(&argv[1][ft_strlen(argv[1]) - 2], ".s") == 0))
 	{
-		content = ft_check_file(av[1], &len);
+		content = ft_check_file(argv[1], &len);
 		if (!content)
 			close_asm(champ, "Exiting: can't read file\n");
 		parse_file(content, champ);
-		if (!(compile(champ, av[1])))
+		if (!(compile(champ, argv[1])))
 		{
 			free(content);
 			close_asm(champ, "Error creating .cor file\n");

@@ -88,19 +88,22 @@ char		compile(t_champ *champ, char *path)
 	char	*npath;
 	char	*tmp;
 
+	errno = 0;
 	if (!(tmp = ft_strndup(path, ft_strlen(path) - 2)))
-		return (ft_error(2,"Error Malloc"));
-	if (!(npath = ft_strjoin(tmp, ".cor")))
+		return (ft_error_c(2, "RFLsnE", FFL, "Error Malloc", ER));
+	errno = 0;
+	if (!(npath = ft_strjoin_np(tmp, ".cor")))
 	{
 		free(tmp);
-		return (ft_error(2, "Error Malloc"));
+		return (ft_error_c(2, "RFLsnE", FFL, "Error Malloc", ER));
 	}
 	free(tmp);
+	errno = 0;
 //	ft_rm(npath);
 	if ((fd = open(npath, O_WRONLY | O_CREAT, S_IRWXU | S_IRGRP | S_IROTH)) < 0)
 	{
 		free(npath);
-		ft_error(2,"open error :");
+		ft_error_d(2, "RFLsnEn", FFL, "open error :", errno);
 	}
 	ft_printf("Writing output program to %s\n", npath);
 	free(npath);
