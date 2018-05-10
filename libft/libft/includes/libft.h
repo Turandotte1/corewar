@@ -21,8 +21,10 @@
 # include <ctype.h>
 # include <stdlib.h>
 # include <errno.h>
+
 # define SUCCESS 1
 # define ERROR -1
+
 # define BUFF_SIZE 42
 # define FD_MAX 10240
 # define BUFF_SIZE_2_16 65536

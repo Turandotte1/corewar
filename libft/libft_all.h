@@ -13,7 +13,7 @@
 #ifndef LIBFT_ALL_H
 # define LIBFT_ALL_H
 
-# include "libft/libft.h"
+# include "libft/includes/libft.h"
 # include "ft_printf/include/ft_printf.h"
 
 #endif
