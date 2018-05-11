@@ -21,6 +21,8 @@
 # include <ctype.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <sys/stat.h>
+# include "ft_prtl.h"
 
 # define SUCCESS 1
 # define ERROR -1
@@ -153,12 +155,19 @@ char				**ft_split_whitespaces(char *s);
 char				*ft_itoa(int nbr);
 char				*ft_utoa(unsigned int nbr, char const *s);
 char				*ft_strtrim(char const *s);
+char				*ft_strtrim_front(char *s);
+char				*ft_strtrim_back(char *s);
+char				*ft_strtrim_both(char *s);
+
 char				*ft_strndup(const char *s, size_t n);
 char				*gnl_read(char **buff, int fd, char *str);
-char	*ft_get_line(char *s, int *i);
-char	*ft_cut_first_line(char *str);
-char	*ft_point_to_next_line(char *str);
-char	*ft_skip_whitespace(char *str);
+char				*ft_get_line(char *s, int *i);
+char				*ft_cut_first_line(char *str);
+char				*ft_point_to_next_line(char *str);
+char				*ft_skip_whitespace(char *str);
+char				*ft_strjoin_np(char *s1, char *s2);
+
+char				ft_rm(char *path);
 
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_atoi(const char *str);
@@ -184,13 +193,14 @@ int					get_next_line(const int fd, char **line);
 int					ft_is_sorted(int *tab, int size);
 int					ft_haschar(const char *s, int c);
 int					*ft_tabnew(size_t size);
-int		ft_str_is_digits(char *str);
-int		ft_strchr_i(char *s, char c);
+int					ft_str_is_digits(char *str);
+int					ft_strchr_i(char *s, char c);
 
-int		ft_error_d(int fd, const char *s, ...);
-char	ft_error_c(int fd, const char *s, ...);
-void	*ft_error_n(int fd, const char *s, ...);
-void	ft_error_v(int fd, const char *s, ...);
+int					ft_error_d(int fd, const char *s, ...);
+char				ft_error_c(int fd, const char *s, ...);
+void				*ft_error_n(int fd, const char *s, ...);
+void				ft_error_v(int fd, const char *s, ...);
+
 
 size_t				ft_strlcat(char *restrict dest, const char *restrict src,
 		size_t len);

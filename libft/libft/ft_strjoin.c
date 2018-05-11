@@ -33,3 +33,31 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	}
 	return (0);
 }
+
+char	*ft_strjoin_np(char *s1, char *s2)
+{
+	int		l;
+	int		i;
+	char	*str;
+
+	i = 0;
+	while (s1[i])
+		++i;
+	l = 0;
+	while (s2[l])
+		++l;
+	if (!(str = (char*)malloc(i + l + 1)))
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		++i;
+	}
+	l = -1;
+	str += i;
+	while (s2[++l])
+		str[l] = s2[l];
+	str[l] = 0;
+	return (str - i);
+}

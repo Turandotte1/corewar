@@ -12,6 +12,9 @@
 
 NAME		=	asm
 
+
+#SRC := $(shell cd src ; find . -type f -name '*.c' | sed 's/^..//'  |  tr '\n' ' ')
+#
 SRC 		=	src/main.c	\
 				src/get_instruct.c \
 				src/convert.c	\
@@ -22,18 +25,18 @@ SRC 		=	src/main.c	\
 				src/method2.c \
 				src/op.c \
 				src/parse1.c \
-				src/ parse2.c
+				src/parse2.c \
 
 OBJ			=	$(SRC:.c=.o)
 
-INC			=	-I ../includes -I ../libft
-LINK		=	-L../libft -lft
+INC			=	-I ./includes -I ./libft
+LINK		=	-L./libft -lft_all
 
 FLAGS		=	$(CFLAGS)
 CFLAGS		=	-Wall -Wextra -Werror -g3
 #P			=	-pedantic
 #EXTRAFLAGS	=	--analyze -Weverything -Wno-missing-prototypes	\
-				-Qunused-arguments
+#				-Qunused-arguments
 
 CC			=	$(CLANG)
 GCC			=	/usr/local/bin/gcc
@@ -43,14 +46,14 @@ RM			=	/bin/rm -fv
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJ)
-				make -C ../libft
+				make -C ./libft
 				$(CC) $(FLAGS) $(INC) $(LINK) $(OBJ) -o $(NAME)
 clean		:
-				make -C ../libft clean
+				make -C ./libft clean
 				$(RM) $(OBJ)
 
 fclean		:	clean
-				make -C ../libft fclean
+				make -C ./libft fclean
 				$(RM) $(NAME)
 
 re			:	fclean all

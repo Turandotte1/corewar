@@ -14,6 +14,7 @@
 # define LIBFT_ALL_H
 
 # include "libft/includes/libft.h"
+# include "libft/includes/ft_prtl.h"
 # include "ft_printf/include/ft_printf.h"
 
 #endif

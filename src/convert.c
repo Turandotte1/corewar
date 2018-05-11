@@ -63,7 +63,7 @@ static char	write_file(int fd, t_champ *champ)
 
 	val = COREWAR_EXEC_MAGIC;
 	if (!(buf = (char*)ft_memalloc(sizeof(char) * BUFF_SIZE_2_16)))
-		return (NULL);
+		return (0);
 	ft_memcpy_rev(buf, &val, 3);
 	len = 4;
 	ft_putbuf_fd_np(fd, champ->name, buf, &len);
@@ -99,7 +99,7 @@ char		compile(t_champ *champ, char *path)
 	}
 	free(tmp);
 	errno = 0;
-//	ft_rm(npath);
+	ft_rm(npath);
 	if ((fd = open(npath, O_WRONLY | O_CREAT, S_IRWXU | S_IRGRP | S_IROTH)) < 0)
 	{
 		free(npath);

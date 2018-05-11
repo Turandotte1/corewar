@@ -36,15 +36,8 @@ void	free_champ(t_champ *champ)
 
 void	close_asm(t_champ *champ, char *s)
 {
-	char *c;
 	free_champ(champ);
 	if (s)
 		ft_putstr_fd(s, 2);
 	exit(0);
-}
-
-char *ft_error(int fd, char *s)
-{
-	ft_putstr_fd(s, fd);
-	return (NULL);
 }
