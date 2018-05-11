@@ -19,6 +19,7 @@ OBJS = $(SRCS:.c=.o)
 PRINTF_DIR=ft_printf/
 PRINTF_LIB=ft_printf/libftprintf.a
 LIBFT_DIR=libft/
+LIBFT_LIB=libft/libft.a
 
 PREFIX = @printf "["$(GREEN)"$(NAME)"$(NC)"]"$(LBLUE)" - "$(NC)
 

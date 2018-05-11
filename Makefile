@@ -13,7 +13,7 @@
 NAME		=	asm
 
 
-#SRC := $(shell cd src ; find . -type f -name '*.c' | sed 's/^..//'  |  tr '\n' ' ')
+SRC := $(shell cd src ; find . -type f -name '*.c' | sed 's/^..//'  |  tr '\n' ' ')
 #
 SRC 		=	src/main.c	\
 				src/get_instruct.c \

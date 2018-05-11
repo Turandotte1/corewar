@@ -45,7 +45,7 @@ int		ft_pars_argm(t_pm_env *e, int i, const char *s)
 
 void	ft_prtl(const char *s, va_list *ap, int fd)
 {
-	static t_ptfm		tab[NB_ARG] = {NULL, '\0'};
+	static t_ptfm		tab[NB_ARG] = {{NULL, '\0'}};
 	int					i;
 	t_pm_env			e;
 
