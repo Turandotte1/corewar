@@ -47,6 +47,9 @@ SRCC = ft_putchar.c ft_putchar_fd.c ft_putstr_fd.c ft_putstr.c ft_strlen.c \
 	  ft_color.c \
 	  prtl_cn0rrff.c \
 	  prtl_llccssierror.c \
+	  prtl_sfduee.c \
+	  prtl_tl.c \
+
 
 
 
