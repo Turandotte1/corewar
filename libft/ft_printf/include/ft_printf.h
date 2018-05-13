@@ -21,7 +21,7 @@
 # include <unistd.h>
 # include <wchar.h>
 # include <stdlib.h>
-
+# include "../../libft/includes/libft.h"
 typedef struct		s_arg
 {
 	int				force_prefix : 1;
@@ -43,27 +43,6 @@ typedef struct		s_arg
 		z
 	}				length;
 }					t_arg;
-
-void				ft_bzero(void *s, size_t n);
-int					ft_isdigit(int c);
-int					ft_max(int x, int y);
-void				*ft_memalloc(size_t size);
-void				*ft_memset(void *s, int c, size_t n);
-size_t				ft_nstrlen(const char *str, size_t maxlen);
-void				ft_putchar_fd(char c, int fd);
-void				ft_putchar(char c);
-void				ft_putnbrbase_fd(uintmax_t nbr, char *base, int fd);
-void				ft_putnbrbase(uintmax_t nbr, char *base);
-void				ft_putnstr_fd(char const *str, size_t len, int fd);
-void				ft_putnstr(char const *str, size_t str_len);
-void				ft_putnwstr(const wchar_t *str, size_t len);
-void				ft_putstr(char const *s);
-void				ft_putwchar_fd(wchar_t chr, int fd);
-void				ft_putwchar(wchar_t chr);
-char				*ft_strchr(const char *s, int c);
-size_t				ft_strlen(const char *str);
-char				*ft_strndup(const char *s1, size_t n);
-int					ft_tolower(int c);
 
 ssize_t				ft_handle_escape(char **format, va_list *args, t_arg *arg);
 ssize_t				ft_handle_str(char **format, va_list *args, t_arg *arg);

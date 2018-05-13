@@ -13,7 +13,7 @@
 NAME		=	asm
 
 
-SRC := $(shell cd src ; find . -type f -name '*.c' | sed 's/^..//'  |  tr '\n' ' ')
+#SRC := $(shell cd src ; find . -type f -name '*.c' | sed 's/^..//'  |  tr '\n' ' ')
 #
 SRC 		=	src/main.c	\
 				src/get_instruct.c \
@@ -33,7 +33,7 @@ INC			=	-I ./includes -I ./libft
 LINK		=	-L./libft -lft_all
 
 FLAGS		=	$(CFLAGS)
-CFLAGS		=	-Wall -Wextra -Werror -g3
+CFLAGS		=	-Wall -Wextra -Werror
 #P			=	-pedantic
 #EXTRAFLAGS	=	--analyze -Weverything -Wno-missing-prototypes	\
 #				-Qunused-arguments
@@ -58,8 +58,8 @@ fclean		:	clean
 
 re			:	fclean all
 
-extra       :   FLAGS += $(EXTRAFLAGS)
-extra       :   re
+#extra       :   FLAGS += $(EXTRAFLAGS)
+#extra       :   re
 
 %.o			:	%.c
 				$(CC) $(FLAGS) $(INC) -c $< -o $@

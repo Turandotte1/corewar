@@ -37,6 +37,13 @@ all: $(NAME)
 $(NAME): $(PRINTF_LIB)
 	$(PREFIX)
 	cp $(PRINTF_LIB) $(NAME)
+$(NAME): $(LIBFT_LIB)
+	$(PREFIX)
+	cp $(LIBFT_LIB) $(NAME)
+
+#%.o: %.c
+#	$(PREFIX)
+#	$(CC) $(CFLAGS) -I $(PRINTF_DIR) -I $(LIBFT_DIR) -o $@ -c $<
 
 $(PRINTF_LIB):
 	@make -C $(PRINTF_DIR) all

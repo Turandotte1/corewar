@@ -120,6 +120,7 @@ void				ft_putnbrbase_fd(uintmax_t nbr, char *base, int fd);
 void				ft_putnbrbase(uintmax_t nbr, char *base);
 void				ft_putnstr_fd(char const *str, size_t len, int fd);
 void				ft_putnstr(char const *str, size_t str_len);
+void				ft_putnwstr(const wchar_t *str, size_t len);
 void				ft_putwchar(wchar_t chr);
 void				ft_putwchar_fd(wchar_t chr, int fd);
 void				ft_putchar(char c);

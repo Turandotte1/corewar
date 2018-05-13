@@ -14,14 +14,11 @@ NAME = libftprintf.a
 RM = rm -rf
 FLAGS = -Wall -Wextra -Werror
 LDFLAGS = -I./include/
+LIB = libft
+LIBPATH = libft/libft.a
 SRC = \
 		ft_check.c ft_display.c ft_handle1.c\
 	  ft_handle2.c ft_handle3.c ft_handle4.c ft_isutils.c ft_handle_all.c\
-	  ft_bzero.c ft_isdigit.c ft_max.c ft_memalloc.c\
-	  ft_memset.c ft_nstrlen.c ft_putchar.c ft_putchar_fd.c\
-	  ft_putnbrbase_fd.c ft_putnbrbase.c ft_putnstr.c ft_putstr.c\
-	  ft_putnwstr.c ft_putwchar_fd.c ft_putwchar.c ft_strchr.c\
-	  ft_strlen.c ft_tolower.c ft_putnstr_fd.c \
 
 OBJ = $(SRC:.c=.o)
 		SRCDIR	= ./src/
