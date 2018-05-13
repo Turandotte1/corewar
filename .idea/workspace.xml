@@ -15,6 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b57af9bf-1450-46dd-a50f-d554eda08e1a" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/libft/libft/prtl_cn0rrff.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/libft/libft/prtl_llccssierror.c" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/libft/libft/makefile" afterPath="$PROJECT_DIR$/libft/libft/makefile" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -62,11 +65,31 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="makefile" pinned="false" current-in-tab="true">
+              <file leaf-file-name="makefile" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/libft/libft/makefile">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="747">
-                      <caret line="46" column="18" lean-forward="false" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+                    <state relative-caret-position="781">
+                      <caret line="48" column="27" lean-forward="false" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="prtl_llccssierror.c" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/libft/libft/prtl_llccssierror.c">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="867">
+                      <caret line="51" column="10" lean-forward="true" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="prtl_cn0rrff.c" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/libft/libft/prtl_cn0rrff.c">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="833">
+                      <caret line="49" column="1" lean-forward="true" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
                       <folding />
                     </state>
                   </provider>
@@ -107,16 +130,6 @@
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="799">
                       <caret line="47" column="23" lean-forward="false" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="ft_color.c" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/libft/libft/ft_color.c">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="595">
-                      <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
                       <folding />
                     </state>
                   </provider>
@@ -336,7 +349,9 @@
         <option value="$PROJECT_DIR$/libft/libft/includes/libft.h" />
         <option value="$PROJECT_DIR$/Makefile" />
         <option value="$PROJECT_DIR$/libft/libft/ft_init_tabm.c" />
+        <option value="$PROJECT_DIR$/libft/libft/prtl_cn0rrff.c" />
         <option value="$PROJECT_DIR$/libft/libft/makefile" />
+        <option value="$PROJECT_DIR$/libft/libft/prtl_llccssierror.c" />
       </list>
     </option>
   </component>
@@ -529,12 +544,12 @@
       <workItem from="1526038193001" duration="2005000" />
       <workItem from="1526041135930" duration="1026000" />
       <workItem from="1526047884231" duration="1978000" />
-      <workItem from="1526225972022" duration="2416000" />
+      <workItem from="1526225972022" duration="2816000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30748000" />
+    <option name="totallyTimeSpent" value="31148000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1440" extended-state="6" />
@@ -579,22 +594,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/libft/libft/ft_strncmp.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libft/libft/ft_memdel.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libft/libft/ft_memset.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -969,10 +968,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/libft/libft/prtl_cn0rrff.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="1" lean-forward="true" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/libft/libft/makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="747">
-          <caret line="46" column="18" lean-forward="false" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+        <state relative-caret-position="781">
+          <caret line="48" column="27" lean-forward="false" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libft/libft/prtl_llccssierror.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="10" lean-forward="true" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
           <folding />
         </state>
       </provider>

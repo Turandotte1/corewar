@@ -45,6 +45,9 @@ SRCC = ft_putchar.c ft_putchar_fd.c ft_putstr_fd.c ft_putstr.c ft_strlen.c \
 	  ft_get_line.c ft_str_isdigit.c ft_remove.c\
 	  ft_skip_whitespace.c ft_error.c ft_prtl.c\
 	  ft_color.c \
+	  prtl_cn0rrff.c \
+	  prtl_llccssierror.c \
+
 
 
 CC = gcc
