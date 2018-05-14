@@ -14,12 +14,12 @@
 NAME = libft_all.a
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
-OBJS = $(SRCS:.c=.o)
+#OBJS = $(SRCS:.c=.o)
 
 PRINTF_DIR=ft_printf/
 PRINTF_LIB=ft_printf/libftprintf.a
-LIBFT_DIR=libft/
-LIBFT_LIB=libft/libft.a
+LIBFT_DIR=libft2/
+LIBFT_LIB=libft2/libft.a
 
 PREFIX = @printf "["$(GREEN)"$(NAME)"$(NC)"]"$(LBLUE)" - "$(NC)
 
@@ -34,11 +34,9 @@ YELLOW='\033[1;33m'
 
 all: $(NAME)
 
-$(NAME): $(PRINTF_LIB)
+$(NAME): $(PRINTF_LIB) $(LIBFT_LIB)
 	$(PREFIX)
 	cp $(PRINTF_LIB) $(NAME)
-$(NAME): $(LIBFT_LIB)
-	$(PREFIX)
 	cp $(LIBFT_LIB) $(NAME)
 
 #%.o: %.c
@@ -47,10 +45,14 @@ $(NAME): $(LIBFT_LIB)
 
 $(PRINTF_LIB):
 	@make -C $(PRINTF_DIR) all
+$(LIBFT_LIB):
+	@make -C $(LIBFT_DIR) all
 
 clean:
 	@make -C $(PRINTF_DIR) clean
 	$(PREFIX)
+	rm -f $(OBJS)
+	@make -C $(LIBFT_DIR) clean
 	rm -f $(OBJS)
 
 fclean:
@@ -59,6 +61,7 @@ fclean:
 	rm -f $(OBJS)
 	$(PREFIX)
 	rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
 
 re:
 	@make fclean

@@ -10,56 +10,83 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	asm
+NAME	=  asm
+
+CC			= gcc
+FLAGS		= -Wall -Werror -Wextra -g -MMD
+SRC			= convert.c 		\
+			error.c		\
+			get_instruct.c		\
+ 			get_label.c			\
+			get_param_value.c		\
+			main.c			\
+			method.c			\
+			method2.c \
+			op.c \
+			parse1.c	\
+			parse2.c	\
+
+DIR_INC 	= includes/
+INCS 		= asm.h \
+			op.h \
+			asm_struct.h
+
+INC = $(addprefix $(DIR_INC), $(INCS))
+
+DIR_LIBFT = ./libft/
+DIR_H_LIBFT = ./libft/includes/
+LIBFT_A = ./libft/libft_all
+
+OBJDIR		= obj
+OBJ	= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
+SRD = $(addprefix $(OBJDIR)/,$(SRC:.c=.d))
+VPATH:=src/:${VPATH}
+
+# PROGRESS BAR
+T = $(words $(OBJ))
+N = 0
+C = $(words $N)$(eval N := x $N)
+ECHO = "[`expr $C  '*' 100 / $T`%]"
+
+#Colors
+_GREY=\x1b[30m
+_RED=\x1b[31m
+_GREEN=\x1b[32m
+_YELLOW=\x1b[33m
+_BLUE=\x1b[34m
+_PURPLE=\x1b[35m
+_CYAN=\x1b[36m
+_WHITE=\x1b[37m
+_END=\x1b[0m
+
+all: $(NAME)
+
+$(NAME): lib $(OBJ)
+	@$(CC) $(FLAGS) $(OBJ) -o $@ -I $(DIR_INC) -L $(DIR_LIBFT) -lft
+	@echo "\nAsm compilation : $(_CYAN)done$(_END)"
+
+$(OBJDIR)/%.o: %.c
+	@mkdir -p obj
+	@printf "%-60b\r" "$(ECHO) $(_CYAN) Compiling $@ $(_END)"
+	@$(CC) $(FLAGS) -c $< -o $@ -I $(DIR_INC) -I $(DIR_H_LIBFT)
+
+lib:
+	@make -C $(DIR_LIBFT)
+
+clean:
+	@$(RM) -rf $(OBJDIR)
+	@make clean -C $(DIR_LIBFT)
+	@echo "$(_RED)clean asm:$(_END) done"
+
+fclean: clean
+	@$(RM) -f $(NAME)
+	@make fclean -C $(DIR_LIBFT)
+	@echo "$(_RED)fclean asm:$(_END) done"
+
+re:
+	@make fclean
+	@make
 
 
-#SRC := $(shell cd src ; find . -type f -name '*.c' | sed 's/^..//'  |  tr '\n' ' ')
-#
-SRC 		=	src/main.c	\
-				src/get_instruct.c \
-				src/convert.c	\
-				src/get_label.c\
-				src/get_param_value.c	\
-				src/error.c	\
-				src/method.c \
-				src/method2.c \
-				src/op.c \
-				src/parse1.c \
-				src/parse2.c \
-
-OBJ			=	$(SRC:.c=.o)
-
-INC			=	-I ./includes -I ./libft
-LINK		=	-L./libft -lft_all
-
-FLAGS		=	$(CFLAGS)
-CFLAGS		=	-Wall -Wextra -Werror
-#P			=	-pedantic
-#EXTRAFLAGS	=	--analyze -Weverything -Wno-missing-prototypes	\
-#				-Qunused-arguments
-
-CC			=	$(CLANG)
-GCC			=	/usr/local/bin/gcc
-CLANG		=	/usr/bin/clang
-RM			=	/bin/rm -fv
-
-all			:	$(NAME)
-
-$(NAME)		:	$(OBJ)
-				make -C ./libft
-				$(CC) $(FLAGS) $(INC) $(LINK) $(OBJ) -o $(NAME)
-clean		:
-				make -C ./libft clean
-				$(RM) $(OBJ)
-
-fclean		:	clean
-				make -C ./libft fclean
-				$(RM) $(NAME)
-
-re			:	fclean all
-
-#extra       :   FLAGS += $(EXTRAFLAGS)
-#extra       :   re
-
-%.o			:	%.c
-				$(CC) $(FLAGS) $(INC) -c $< -o $@
+.PHONY: all clean fclean re
+-include $(OBJ:.o=.d)

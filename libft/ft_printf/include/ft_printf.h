@@ -21,7 +21,7 @@
 # include <unistd.h>
 # include <wchar.h>
 # include <stdlib.h>
-# include "../../libft/includes/libft.h"
+# include "../../libft2/includes/libft.h"
 typedef struct		s_arg
 {
 	int				force_prefix : 1;

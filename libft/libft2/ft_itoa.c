@@ -60,3 +60,44 @@ char			*ft_itoa(int nbr)
 	else
 		return (ft_itoa_core(nbr, puissance, 0));
 }
+
+static void	ft_comp_ldtoa(long int nb, char l, char *str)
+{
+	if (nb == LLONG_MIN)
+	{
+		str[l - 1] = '8';
+		ft_comp_ldtoa(nb / 10, l - 1, str);
+	}
+	else
+	{
+		if (nb < 0)
+		{
+			nb *= -1;
+			str[0] = '-';
+		}
+		if (nb > 9)
+			ft_comp_ldtoa(nb / 10, l - 1, str);
+		str[l - 1] = (nb % 10) + '0';
+	}
+}
+
+/*
+**	ft_ldtoa	-> libft/string/ft_itoa2.c
+**		convertie un long int en string
+*/
+
+char		*ft_ldtoa(long int n)
+{
+	char		l;
+	char		*str;
+	long int	nb;
+
+	nb = n;
+	l = (n < 0) ? 2 : 1;
+	while (n /= 10)
+		++l;
+	if (!(str = ft_strnew(l)))
+		return (NULL);
+	ft_comp_ldtoa(nb, l, str);
+	return (str);
+}

@@ -20,6 +20,7 @@
 # include <stdint.h>
 # include <ctype.h>
 # include <stdlib.h>
+# include <limits.h>
 # include <errno.h>
 # include <sys/stat.h>
 # include "ft_prtl.h"
@@ -153,8 +154,13 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				**ft_strsplit(const char *s, char c);
 char				**ft_split_whitespaces(char *s);
+
 char				*ft_itoa(int nbr);
 char				*ft_utoa(unsigned int nbr, char const *s);
+char				*ft_scitoa(double nb, char pre);
+char				*ft_ldtoa(long int n);
+char				*ft_lutoa(size_t n);
+
 char				*ft_strtrim(char const *s);
 char				*ft_strtrim_front(char *s);
 char				*ft_strtrim_back(char *s);
@@ -173,6 +179,8 @@ char				ft_rm(char *path);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_atoi(const char *str);
 int					ft_atoi_base(char *str, char *base);
+
+
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_strequ(char const *s1, char const *s2);
