@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/03 19:56:01 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/05/15 20:14:56 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int						main(int argc, char **argv)
 		usage();
 	ft_bzero(&vm, sizeof(t_vm));
 	parse_it(&vm, flag, argc, argv);
+	/*Print + test de leacks*/
+	printf("%s\n", vm.arena);
+	free(vm.arena);
+	v_del(&vm.n);
+	/************************/
 //	run_it(&vm);
 	//on n'oublie de rien free !!
 	return (0);

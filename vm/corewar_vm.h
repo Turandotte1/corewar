@@ -111,7 +111,7 @@ void	give_dispo_name(t_flag *flags, int player);
 void	give_name(t_flag *f, int name);
 void	print(int i, t_vec queue, t_vec names, t_flag flags);
 void	usage(void);
-int		parse_it(t_vm *vm, t_flag d, int argc, char **argv);
+void	parse_it(t_vm *vm, t_flag d, int argc, char **argv);
 t_vec	v_to_hexa(t_vec *vec);
 void	into_vm(t_vm *vm, t_flag *f, t_vec *v);
 /*Pour les operation

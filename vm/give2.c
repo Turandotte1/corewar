@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/02 17:00:49 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/08 19:05:11 by glegendr         ###   ########.fr       */
+/*   Created: 2018/05/15 20:45:12 by glegendr          #+#    #+#             */
+/*   Updated: 2018/05/15 20:45:14 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,24 @@ char		*vec_to_char(t_vec *map)
 	return (arena);
 }
 
-void		complete_vm(t_vm *vm, t_vec *map, t_flag *flag)
+void		complete_vm(t_vm *vm, t_vec *map, t_flag *flag, t_vec *code)
 {
+	int i;
+
+	i = 0;
 	vm->arena = vec_to_char(map);
-	vm->n = flag->n;
+	vm->n = v_copy(&flag->n);
 	vm->v = flag->v;
 	vm->dump = flag->dump;
 	vm->dump_nb = flag->dump_nb;
 	v_del(&flag->n);
 	v_del(map);
+	while (i < v_size(code))
+	{
+		v_del((t_vec *)v_get(code, i));
+		++i;
+	}
+	v_del(code);
 }
 
 void		into_vm(t_vm *vm, t_flag *flag, t_vec *code)
@@ -117,8 +126,5 @@ void		into_vm(t_vm *vm, t_flag *flag, t_vec *code)
 		while (v_size(&map) + 3 < get_next_position(v_size(code), i))
 			v_append_raw(&map, "00 ", 3);
 	}
-	complete_vm(vm, &map, flag);
-	printf("%s\n", vm->arena);
-	printf("visu:  %i\n", vm->v);
-	printf("dumps: %i %i\n", vm->dump, vm->dump_nb);
+	complete_vm(vm, &map, flag, code);
 }

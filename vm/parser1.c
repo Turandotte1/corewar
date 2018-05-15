@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:47 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/10 18:49:11 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/05/15 20:31:36 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,21 @@ void		ini_flag(t_flag *flag, t_vec *code,
 	*names = v_new(sizeof(header_t));
 }
 
-int			parse_it(t_vm *vm,
+void		del_queue(t_vec *vec, t_vec *names)
+{
+	int i;
+
+	i = 0;
+	while (i < v_size(vec))
+	{
+		v_del((t_vec *)v_get(vec, i));
+		++i;
+	}
+	v_del(vec);
+	v_del(names);
+}
+
+void		parse_it(t_vm *vm,
 		t_flag flags, int argc, char **argv)
 {
 	int						i;
@@ -125,5 +139,5 @@ int			parse_it(t_vm *vm,
 	if (player > 4)
 		error("too many champions");
 	into_vm(vm, &flags, &code);
-	return (0);
+	del_queue(&queue, &names);
 }
