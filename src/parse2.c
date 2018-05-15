@@ -66,11 +66,13 @@ void	parse_body(char *content, t_champ *champ)
 		content = skip_comment_and_whitespace(content);
 		line = trim_comment(ft_cut_first_line(content));
 		if (ft_strchr(line, '.'))
+		{
 			close_asm(champ, "Error: unknown command\n");
+		}
 		content = ft_point_to_next_line(content);
 		nb_bytes = get_instruct(champ, line, nb_bytes);
-		if (nb_bytes > CHAMP_MAX_SIZE)
-			close_asm(champ, "Error: champ is too large\n");
+//		if (nb_bytes > CHAMP_MAX_SIZE)
+//			close_asm(champ, "Error: champ is too large\n");
 		free(line);
 	}
 	parse_params(champ);

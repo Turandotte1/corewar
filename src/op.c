@@ -44,3 +44,4 @@ t_op    g_op_tab[17] =
  * nom, nombre de parametre, tableau de type, operateur code, nb_cycles, display name,
  * OPC, nombre d'octet parametre direct : 0 cad 2 octets 1 cad 4 octets
  */
+

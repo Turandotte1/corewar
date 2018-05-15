@@ -34,10 +34,10 @@ void	free_champ(t_champ *champ)
 	free(champ);
 }
 
-void	close_asm(t_champ *champ, char *s)
+void	close_asm(t_champ *champ, char *str)
 {
 	free_champ(champ);
-	if (s)
-		ft_putstr_fd(s, 2);
+	if (str)
+		ft_error_v(2, "s", str);
 	exit(0);
 }

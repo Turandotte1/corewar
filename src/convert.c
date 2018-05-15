@@ -99,7 +99,7 @@ char		compile(t_champ *champ, char *path)
 	}
 	free(tmp);
 	errno = 0;
-//	ft_rm(npath);
+	ft_rm(npath);
 	if ((fd = open(npath, O_WRONLY | O_CREAT, S_IRWXU | S_IRGRP | S_IROTH)) < 0)
 	{
 		free(npath);

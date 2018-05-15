@@ -13,7 +13,7 @@
 #include "../includes/asm.h"
 
 /*
-**	ft_open_file -> libft/main/ft_open_file.c
+**	ft_check_file -> libft/main/ft_open_file.c
 **		renvoit le contenu d'un fichier dont le path est passé en param
 **		enregistre dan len la size de la chaine renvoyé
 **	stat -> sys/stat.h

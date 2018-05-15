@@ -34,7 +34,6 @@ void	asm_error(const char *str);
 void	print_detailed_error(const char *av1);
 void	free_champ(t_champ *champ);
 void	close_asm(t_champ *champ, char *s);
-char	*ft_error(int fd, char *s);
 
 /*
 ** get_instruct.c

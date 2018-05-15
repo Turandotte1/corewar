@@ -13,7 +13,7 @@ file(GLOB head "includes/*.h")
 
 
 file(GLOB sources0 "src/*.c")
-file(GLOB sources1 "libft/libft/*.c")
+file(GLOB sources1 "libft/libft2/*.c")
 file(GLOB sources2 "libft/ft_printf/src/*.c")
 file(GLOB sources3 "src/sources/src/**/**/**/*.c")
 file(GLOB sources4 "src/sources/src/**/**/**/**/*.c")
