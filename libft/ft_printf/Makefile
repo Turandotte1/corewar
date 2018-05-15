@@ -6,7 +6,7 @@
 #    By: mipham <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/15 11:00:27 by mipham            #+#    #+#              #
-#    Updated: 2017/12/19 17:30:02 by mipham           ###   ########.fr        #
+#    Updated: 2018/05/15 13:07:46 by mipham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ RM = rm -rf
 FLAGS = -Wall -Wextra -Werror
 LDFLAGS = -I./include/
 LIB = libft
-LIBPATH = libft/libft.a
+LIBPATH = ../libft2/libft.a
 SRC = \
 		ft_check.c ft_display.c ft_handle1.c\
 	  ft_handle2.c ft_handle3.c ft_handle4.c ft_isutils.c ft_handle_all.c\
@@ -32,6 +32,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 		@echo "\n\t \033[32mIndexing lib ..\033[0m\n"
+		@cp $(LIBPATH) $(NAME)
 		@ar rc $(NAME) $(OBJS)
 		@ranlib $(NAME)
 		@echo "libftprintf.a create."

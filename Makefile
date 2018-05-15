@@ -6,7 +6,7 @@
 #    By: mipham <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:08:53 by mipham            #+#    #+#              #
-#    Updated: 2018/04/23 12:35:02 by mipham           ###   ########.fr        #
+#    Updated: 2018/05/15 12:54:28 by mipham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ _END=\x1b[0m
 all: $(NAME)
 
 $(NAME): lib $(OBJ)
-	@$(CC) $(FLAGS) $(OBJ) -o $@ -I $(DIR_INC) -L $(DIR_LIBFT) -lft
+	@$(CC) $(FLAGS) $(OBJ) -o $@ -I $(DIR_INC) -L $(DIR_LIBFT) -lft_all
 	@echo "\nAsm compilation : $(_CYAN)done$(_END)"
 
 $(OBJDIR)/%.o: %.c

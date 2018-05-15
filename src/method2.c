@@ -17,8 +17,7 @@ void	print_dbug(t_instruct *instr)
 	int i;
 
 	i = 0;
-	ft_printf("name %s | opcode : %x | addr: %x\n", instr->name,
-		instr->opcode,
+	ft_printf("name %s | opcode : %x | addr: %x\n", instr->name, instr->opcode,
 		instr->address);
 	while (i < MAX_ARGS_NUMBER)
 	{

@@ -6,7 +6,7 @@
 #    By: mipham <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/27 18:28:29 by mipham            #+#    #+#              #
-#    Updated: 2018/04/27 19:22:44 by mipham           ###   ########.fr        #
+#    Updated: 2018/05/15 13:09:04 by mipham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,10 +34,10 @@ YELLOW='\033[1;33m'
 
 all: $(NAME)
 
-$(NAME): $(PRINTF_LIB) $(LIBFT_LIB)
+$(NAME): $(LIBFT_LIB) $(PRINTF_LIB) 
 	$(PREFIX)
+	#cp $(LIBFT_LIB) $(NAME)
 	cp $(PRINTF_LIB) $(NAME)
-	cp $(LIBFT_LIB) $(NAME)
 
 #%.o: %.c
 #	$(PREFIX)
