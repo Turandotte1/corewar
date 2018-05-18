@@ -23,6 +23,8 @@
 # include <limits.h>
 # include <errno.h>
 # include <sys/stat.h>
+# include <sys/types.h>
+# include <fcntl.h>
 # include "ft_prtl.h"
 
 # define SUCCESS 1
@@ -210,7 +212,7 @@ char				ft_error_c(int fd, const char *s, ...);
 void				*ft_error_n(int fd, const char *s, ...);
 void				ft_error_v(int fd, const char *s, ...);
 
-
+char				*ft_check_file(char *s, int *len);
 size_t				ft_strlcat(char *restrict dest, const char *restrict src,
 		size_t len);
 size_t				ft_strlen_skip_white(const char *s);

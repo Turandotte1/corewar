@@ -79,7 +79,7 @@ void		free_instructs(t_instruct *instructs)
 		i = 0;
 		while (i < MAX_ARGS_NUMBER)
 		{
-			free(tmp_instruct->params[i].init_value);
+			free(tmp_instruct->params[i].init_val);
 			i++;
 		}
 		free(tmp_instruct->name);

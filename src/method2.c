@@ -24,7 +24,7 @@ void	print_dbug(t_instruct *instr)
 		ft_printf("\t type %d | value : %x | raw_val: %s | n_byte %d\n",
 			instr->params[i].type,
 			instr->params[i].value,
-			instr->params[i].init_value,
+			instr->params[i].init_val,
 			instr->params[i].bytes);
 		++i;
 	}

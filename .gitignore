@@ -56,3 +56,4 @@ dkms.conf
 clion-log.txt
 CMakeFiles/
 cmake-build-debug/
+.idea

@@ -30,7 +30,7 @@ typedef struct s_param
 {
 	int type;
 	int value;
-	char *init_value;
+	char *init_val;
 	int bytes;
 } t_param;
 

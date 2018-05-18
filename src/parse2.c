@@ -47,7 +47,7 @@ void	parse_params(t_champ *champ)
 	while (inst)
 	{
 		i = 0;
-		while (i < MAX_ARGS_NUMBER && inst->params[i].init_value)
+		while (i < MAX_ARGS_NUMBER && inst->params[i].init_val)
 			param_value(&inst->params[i++], inst->address, champ);
 		if (!(check_params(inst)))
 			close_asm(champ, "Error: wrong parameters for instruction\n");
@@ -69,8 +69,8 @@ void	parse_body(char *content, t_champ *champ)
 			close_asm(champ, "Error: unknown command\n");
 		content = ft_point_to_next_line(content);
 		nb_bytes = get_instruct(champ, line, nb_bytes);
-		if (nb_bytes > CHAMP_MAX_SIZE)
-			close_asm(champ, "Error: champ is too large\n");
+//		if (nb_bytes > CHAMP_MAX_SIZE)
+//			close_asm(champ, "Error: champ is too large\n");
 		free(line);
 	}
 	parse_params(champ);
