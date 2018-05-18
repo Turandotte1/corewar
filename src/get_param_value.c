@@ -10,10 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//
-// Created by Minh PHAM on 4/24/18.
-//
-
 #include "../includes/asm.h"
 
 int		check_params(t_instruct *inst)

@@ -13,7 +13,7 @@
 #include "../includes/asm.h"
 
 /*
-**	ft_check_file -> libft/main/ft_open_file.c
+**	ft_check_file
 **		renvoit le contenu d'un fichier dont le path est passé en param
 **		enregistre dan len la size de la chaine renvoyé
 **	stat -> sys/stat.h
@@ -31,8 +31,7 @@
 **	close  -->  unistd.h
 **		Fermer un descripteur de fichier
 */
-
- char	*ft_check_file(char *s, int *len)
+char	*ft_check_file(char *s, int *len)
 {
 	char		*buf;
 	struct stat	fstat;
@@ -59,7 +58,7 @@
 	return (buf);
 }
 
-int	main(int ac, char **argv)
+int		main(int ac, char **argv)
 {
 	char	*content;
 	int		len;
@@ -86,6 +85,3 @@ int	main(int ac, char **argv)
 		close_asm(champ, "Usage: ./asm <file.s>\n");
 	return (0);
 }
-/*
-**check les parametres
-*/

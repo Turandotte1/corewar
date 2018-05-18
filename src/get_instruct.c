@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//
-// Created by Minh PHAM on 4/20/18.
-//
 #include "../includes/asm.h"
 
 t_instruct	*new_instruct(void)

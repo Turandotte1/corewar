@@ -6,14 +6,12 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:07:10 by mipham            #+#    #+#             */
-/*   Updated: 2018/04/24 16:40:37 by mipham           ###   ########.fr       */
+/*   Updated: 2018/05/18 13:55:29 by mipham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
-/*
-**
-*/
+
 static void	write_instruct(t_instruct *instr, char *buf, int *len)
 {
 	char	conf;

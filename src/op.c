@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/asm.h"
 
-t_op    g_op_tab[17] =
+t_op		g_op_tab[17] =
 {
 	{0, 0, {0}, 0, 0, 0, 0, 0},
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
@@ -39,9 +38,8 @@ t_op    g_op_tab[17] =
 	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1},
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0}
 };
-
 /*
- * nom, nombre de parametre, tableau de type, operateur code, nb_cycles, display name,
- * OPC, nombre d'octet parametre direct : 0 cad 2 octets 1 cad 4 octets
- */
-
+** nom, nombre de parametre, tableau de type, operateur code, nb_cycles,
+** display name,
+** OPC, nombre d'octet parametre direct : 0 cad 2 octets 1 cad 4 octets
+*/
