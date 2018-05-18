@@ -14,22 +14,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b57af9bf-1450-46dd-a50f-d554eda08e1a" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/libft/libft2/ft_check_file.c" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/includes/asm_struct.h" afterPath="$PROJECT_DIR$/includes/asm_struct.h" />
-      <change beforePath="$PROJECT_DIR$/libft/libft2/includes/libft.h" afterPath="$PROJECT_DIR$/libft/libft2/includes/libft.h" />
-      <change beforePath="$PROJECT_DIR$/libft/libft2/makefile" afterPath="$PROJECT_DIR$/libft/libft2/makefile" />
-      <change beforePath="$PROJECT_DIR$/src/get_instruct.c" afterPath="$PROJECT_DIR$/src/get_instruct.c" />
-      <change beforePath="$PROJECT_DIR$/src/get_label.c" afterPath="$PROJECT_DIR$/src/get_label.c" />
-      <change beforePath="$PROJECT_DIR$/src/get_param_value.c" afterPath="$PROJECT_DIR$/src/get_param_value.c" />
-      <change beforePath="$PROJECT_DIR$/src/main.c" afterPath="$PROJECT_DIR$/src/main.c" />
-      <change beforePath="$PROJECT_DIR$/src/method2.c" afterPath="$PROJECT_DIR$/src/method2.c" />
-      <change beforePath="$PROJECT_DIR$/src/op.c" afterPath="$PROJECT_DIR$/src/op.c" />
-      <change beforePath="$PROJECT_DIR$/src/parse2.c" afterPath="$PROJECT_DIR$/src/parse2.c" />
-      <change beforePath="$PROJECT_DIR$/tableau asm CoreWar.pdf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/toto" afterPath="" />
-    </list>
+    <list default="true" id="b57af9bf-1450-46dd-a50f-d554eda08e1a" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -579,12 +564,12 @@
       <workItem from="1526466819466" duration="134000" />
       <workItem from="1526486722115" duration="1133000" />
       <workItem from="1526566778303" duration="544000" />
-      <workItem from="1526639858065" duration="3123000" />
+      <workItem from="1526639858065" duration="3187000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41187000" />
+    <option name="totallyTimeSpent" value="41251000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1440" extended-state="6" />
