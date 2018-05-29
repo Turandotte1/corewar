@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:40 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/29 22:15:49 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/05/29 23:19:29 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void					filter_vec(t_vec *vec, t_vec *code, t_vm *vm, int player)
 	v_del(vec);
 }
 
-static t_vec				read_ins(int fd, t_vec *copy)
+static t_vec				read_ins(int fd)
 {
 	int			ret;
 	char		tmp[BUFF_SIZE + 1];
@@ -66,7 +66,6 @@ static t_vec				read_ins(int fd, t_vec *copy)
 		if (v_size(&vec) > 15000)
 			error("The size is to big to be a champion");
 	}
-	*copy = v_copy(&vec);
 	vec = v_to_hexa(&vec);
 	if (ret == -1)
 		error("imcomplet Read");
@@ -78,9 +77,8 @@ void						parse_champion(int fd, t_vec *queue, t_vec *names, t_vec *code, t_vm *
 	int						i;
 	t_vec					vec;
 	header_t				head;
-	t_vec					copy;
 
-	vec = read_ins(fd, &copy);
+	vec = read_ins(fd);
 	give_magic_number(&vec, &head);
 	i = 4;
 	while (ft_isprint(*(int *)v_get(&vec, i)) && i < v_size(&vec))
