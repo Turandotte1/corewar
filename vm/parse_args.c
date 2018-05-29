@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:47 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/15 20:31:36 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/05/29 22:15:14 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,7 @@ static int				flag_or_champ(t_vm *vm, int argc, char **argv, t_flag *flags, t_pa
 			into_struct(is_a_flag(argv, &i, argc), flags);
 		else
 		{
-			vm->champ[player].ch = vec_to_char(&parsing->code);
-			printf(" CHAMP in args %s\n", vm->champ[player].ch);
-			vm->champ[player].len = v_size(&parsing->code);
-			parse_champion(fd, &parsing->queue, &parsing->names, &parsing->code);
+			parse_champion(fd, &parsing->queue, &parsing->names, &parsing->code, vm, player);
 			give_dispo_name(flags, ++player);
 		}
 		++i;
@@ -108,7 +105,7 @@ void						parse_args(t_vm *vm, t_flag flags, int argc, char **argv)
 	int						player;
 	t_parsing				parsing;
 	t_oper 					*ops;
-	
+
 	i = 0;
 	ft_bzero(&parsing, sizeof(t_parsing));
 	player = flag_or_champ(vm, argc, argv, &flags, &parsing);
@@ -116,14 +113,12 @@ void						parse_args(t_vm *vm, t_flag flags, int argc, char **argv)
 		usage();
 	if (player > 4)
 		error("too many champions");
-	vm->ops = (t_oper *)malloc(sizeof(t_oper) * player);
-	vm->champ = (t_champion *)malloc(sizeof(t_champion) * player);
 	vm->champs = player;
-	while (i < player)
-	{
-		ops = &vm->ops[i++];
-		ft_bzero(ops, sizeof(t_oper));
-	}
+//	while (i < player)
+//	{
+//		ops = &vm->ops[i++];
+//		ft_bzero(ops, sizeof(t_oper));
+//	}
 	into_vm(vm, &flags, &parsing.code);
 	del_queue(&parsing.queue, &parsing.names);
 }

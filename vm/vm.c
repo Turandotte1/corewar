@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/15 20:14:56 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/05/29 22:25:39 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@ int						main(int argc, char **argv)
 		usage();
 	ft_bzero(&vm, sizeof(t_vm));
 	ft_bzero(&flag, sizeof(t_flag));
+	vm.champ = malloc(sizeof(t_champion) * argc);
 	parse_args(&vm, flag, argc, argv);
+	int i = 0;
+//	while (i < vm.champ[0].len)
+//		write(1, &vm.champ[0].ch[i++], 1);
+//	ft_bzero(vm.arena, 4096);
+	ft_putchar('\n');
+	while (1);
 	war_start(&vm);
 
 //	printf("%s\n", vm.arena);

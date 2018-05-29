@@ -37,11 +37,11 @@ static void			complete_vm(t_vm *vm, t_vec *map, t_flag *flag, t_vec *code)
 	v_del(code);
 }
 
-/*static int			get_next_position(int player, int ci)
+static int			get_next_position(int player, int ci)
 {
-//		return (((MEM_SIZE * 3) - noc) / noc * ci + (ci + 1));
-		return (MEM_SIZE / player * ci);
-}*/
+		return ((MEM_SIZE - player) / player * ci + (ci + 1));
+	//	return (MEM_SIZE / player * ci);
+}
 
 void				into_vm(t_vm *vm, t_flag *flag, t_vec *code)
 {
@@ -59,17 +59,13 @@ void				into_vm(t_vm *vm, t_flag *flag, t_vec *code)
 		y = 0;
 		while (y < v_size(&tmp))
 		{
-			lala = ft_itoa_base((*(int *)v_get(&tmp, y++) & 0xff), 16, 'x');
-			if (ft_strlen(lala) == 1)
-				v_push(&map, "0");
-			v_append_raw(&map, lala, ft_strlen(lala));
-//			v_push(&map, " ");
-			free(lala);
+			v_push_int(&map, *(char *)v_get(&tmp, y));
+			++y;
 		}
 //		vm->champ[i].ch = vec_to_char(&map);
-		map = v_new(sizeof(char));
-//		while (v_size(&map) < get_next_position(vm->champs, i))
-//			v_append_raw(&map, "00", 1);
+//		map = v_new(sizeof(char));
+		while (v_size(&map) < get_next_position(v_size(code), i))
+			v_push_int(&map, (char)0);
 		//lseek possibly ? 
 	}
 	complete_vm(vm, &map, flag, code);

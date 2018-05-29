@@ -155,7 +155,7 @@ void								parse_args(t_vm *vm, t_flag flags, int argc, char **argv);
 **----------------------------------Champion's parsing----------------------------------------
 */ 
 
-void								parse_champion(int fd, t_vec *queue, t_vec *names, t_vec *code);
+void								parse_champion(int fd, t_vec *queue, t_vec *names, t_vec *code, t_vm *vm, int champ);
 void								give_name(t_flag *f, int name);
 void								give_dispo_name(t_flag *flag, int player);
 void								give_magic_number(t_vec *vec, header_t *head);
