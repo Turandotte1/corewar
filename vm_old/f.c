@@ -6,11 +6,11 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 13:13:05 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/03 19:57:56 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/04/26 19:52:32 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "tmp.h"
 
 int			f_live(t_act *act, t_vec *vec, int i)
 {

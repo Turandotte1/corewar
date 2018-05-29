@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstarstr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/15 20:14:56 by glegendr         ###   ########.fr       */
+/*   Created: 2017/11/23 10:59:07 by glegendr          #+#    #+#             */
+/*   Updated: 2017/11/23 11:07:42 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "libft.h"
 
-
-
-int						main(int argc, char **argv)
+void	ft_putstarstr(char **tab)
 {
-	t_vm				vm;
-	t_flag				flag;
+	int i;
+	int y;
 
-	if (argc == 1)
-		usage();
-	ft_bzero(&vm, sizeof(t_vm));
-	ft_bzero(&flag, sizeof(t_flag));
-	parse_args(&vm, flag, argc, argv);
-	war_start(&vm);
-
-//	printf("%s\n", vm.arena);
-	//on n'oublie de rien free !!
-	free(vm.arena);
-	v_del(&vm.n);
-	return (0);
+	y = 0;
+	while (tab[y])
+	{
+		i = 0;
+		while (tab[y][i])
+		{
+			write(1, &tab[y][i], 1);
+			++i;
+		}
+		write(1, "\n", 1);
+		++y;
+	}
 }

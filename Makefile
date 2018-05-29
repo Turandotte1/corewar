@@ -5,16 +5,13 @@ RED = \033[38;5;124m
 GREY =\033[38;5;253m
 
 NAME1 = corewar
-NAME2 = asm
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -g3
 
-SRC_NAME1 = 
-SRC_NAME2 = 
+SRC_NAME1 = vm.c parse_args.c parse_champion.c give1.c give2.c into_vm.c free.c init.c error_helpers.c run.c f.c
 
 SRC_PATH1 = ./vm
-SRC_PATH2= ./asm
 
 SRC1 = $(addprefix $(SRC_PATH1)/,$(SRC_NAME1))
 SRC2 = $(addprefix $(SRC_PATH2)/,$(SRC_NAME2))
@@ -24,16 +21,19 @@ OBJ_PATH = ./Objs
 OBJ1 = $(addprefix $(OBJ_PATH)/,$(SRC_NAME1:.c=.o))
 OBJ2 = $(addprefix $(OBJ_PATH)/,$(SRC_NAME2:.c=.o))
 
-#INC1 = ./dep
-#INC2 = ./dep
+INC1 = ./dep/vm.h
+INC2 = ./Includes/visu_hex.h
 
+MY_LIB = ./dep/libft/libft.a ./dep/libvec/libvec.a ./dep/libmem/libmem.a 
 NCURSES	= -lpanel -lcurses -lcdk
-#MY_LIB = ./dep/libft.a
 
 all: makelibs $(NAME1) $(NAME2)
 
 makelibs:
-	@make all -C Libft
+	@make all -C ./dep/libft
+	@make all -C ./dep/libvec
+	@make all -C ./dep/libmem
+
 
 $(NAME1): $(OBJ1)
 	@tput el
@@ -87,15 +87,18 @@ $(OBJ_PATH)/%.o: $(SRC_PATH2)/%.c
 	@tput rc
 
 clean:
-	@make -C Libft clean
+	@make clean -C ./dep/libft
+	@make clean -C ./dep/libvec
+	@make clean -C ./dep/libmem
 	@rm -rf $(OBJ_PATH)
 
 fclean: clean
-	@make -C Libft fclean
+	@make fclean -C ./dep/libft
+	@make fclean -C ./dep/libvec
+	@make fclean -C ./dep/libmem
 	@rm -rf $(NAME1)
 	@rm -rf $(NAME2)
 	@echo "$(CYAN)Cleaning $(NAME1): $(GREEN)Done $(NC)"
-	@echo "$(CYAN)Cleaning $(NAME2): $(GREEN)Done $(NC)"
 
 re : fclean all
 

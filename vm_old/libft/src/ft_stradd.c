@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_stradd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/15 20:14:56 by glegendr         ###   ########.fr       */
+/*   Created: 2018/01/15 17:44:46 by glegendr          #+#    #+#             */
+/*   Updated: 2018/01/25 21:59:58 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "libft.h"
 
-
-
-int						main(int argc, char **argv)
+void			ft_stradd(char **s, char c)
 {
-	t_vm				vm;
-	t_flag				flag;
+	size_t size;
 
-	if (argc == 1)
-		usage();
-	ft_bzero(&vm, sizeof(t_vm));
-	ft_bzero(&flag, sizeof(t_flag));
-	parse_args(&vm, flag, argc, argv);
-	war_start(&vm);
-
-//	printf("%s\n", vm.arena);
-	//on n'oublie de rien free !!
-	free(vm.arena);
-	v_del(&vm.n);
-	return (0);
+	if (*s != NULL)
+	{
+		size = ft_strlen(*s);
+		*s = ft_realloc(*s, size, size + 1);
+		(*s)[size] = c;
+		(*s)[size + 1] = '\0';
+	}
+	else
+	{
+		*s = ft_strnew(1);
+		(*s)[0] = c;
+	}
 }

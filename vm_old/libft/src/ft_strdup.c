@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/15 20:14:56 by glegendr         ###   ########.fr       */
+/*   Created: 2017/11/09 18:35:43 by glegendr          #+#    #+#             */
+/*   Updated: 2017/11/16 16:47:50 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "libft.h"
 
-
-
-int						main(int argc, char **argv)
+char	*ft_strdup(const char *src)
 {
-	t_vm				vm;
-	t_flag				flag;
+	int		i;
+	char	*dup;
 
-	if (argc == 1)
-		usage();
-	ft_bzero(&vm, sizeof(t_vm));
-	ft_bzero(&flag, sizeof(t_flag));
-	parse_args(&vm, flag, argc, argv);
-	war_start(&vm);
-
-//	printf("%s\n", vm.arena);
-	//on n'oublie de rien free !!
-	free(vm.arena);
-	v_del(&vm.n);
-	return (0);
+	i = 0;
+	while (src[i] != 0)
+		i++;
+	if ((dup = malloc(sizeof(char) * (i + 1))) == 0)
+		return (0);
+	i = 0;
+	while (src[i] != 0)
+	{
+		dup[i] = src[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }

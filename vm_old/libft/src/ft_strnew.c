@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/15 20:14:56 by glegendr         ###   ########.fr       */
+/*   Created: 2017/11/14 13:12:30 by glegendr          #+#    #+#             */
+/*   Updated: 2017/11/20 17:41:24 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "libft.h"
 
-
-
-int						main(int argc, char **argv)
+char	*ft_strnew(size_t size)
 {
-	t_vm				vm;
-	t_flag				flag;
+	size_t	i;
+	char	*s;
 
-	if (argc == 1)
-		usage();
-	ft_bzero(&vm, sizeof(t_vm));
-	ft_bzero(&flag, sizeof(t_flag));
-	parse_args(&vm, flag, argc, argv);
-	war_start(&vm);
-
-//	printf("%s\n", vm.arena);
-	//on n'oublie de rien free !!
-	free(vm.arena);
-	v_del(&vm.n);
-	return (0);
+	i = 0;
+	if ((s = (char *)malloc(sizeof(*s) * (size + 1))) == 0)
+		return (0);
+	while (i <= size)
+	{
+		s[i] = '\0';
+		++i;
+	}
+	s[i] = '\0';
+	return (s);
 }

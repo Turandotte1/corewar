@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/15 20:14:56 by glegendr         ###   ########.fr       */
+/*   Created: 2017/11/09 16:31:22 by glegendr          #+#    #+#             */
+/*   Updated: 2017/11/23 12:40:09 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "libft.h"
 
-
-
-int						main(int argc, char **argv)
+static int		ft_calc(int nb, int i)
 {
-	t_vm				vm;
-	t_flag				flag;
+	if (i * i < nb)
+		return (ft_calc(nb, i + 1));
+	else if (i * i == nb)
+		return (i);
+	else
+		return (0);
+}
 
-	if (argc == 1)
-		usage();
-	ft_bzero(&vm, sizeof(t_vm));
-	ft_bzero(&flag, sizeof(t_flag));
-	parse_args(&vm, flag, argc, argv);
-	war_start(&vm);
+int				ft_sqrt(int nb)
+{
+	int i;
 
-//	printf("%s\n", vm.arena);
-	//on n'oublie de rien free !!
-	free(vm.arena);
-	v_del(&vm.n);
-	return (0);
+	i = 0;
+	if (nb <= 0)
+		return (0);
+	return (ft_calc(nb, i));
 }

@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/15 20:14:56 by glegendr         ###   ########.fr       */
+/*   Created: 2017/11/15 13:02:39 by glegendr          #+#    #+#             */
+/*   Updated: 2017/11/21 14:25:24 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "libft.h"
 
-
-
-int						main(int argc, char **argv)
+size_t		ft_strlcat(char *dst, const char *src, size_t size)
 {
-	t_vm				vm;
-	t_flag				flag;
+	size_t i;
+	size_t y;
+	size_t lens;
+	size_t lend;
 
-	if (argc == 1)
-		usage();
-	ft_bzero(&vm, sizeof(t_vm));
-	ft_bzero(&flag, sizeof(t_flag));
-	parse_args(&vm, flag, argc, argv);
-	war_start(&vm);
-
-//	printf("%s\n", vm.arena);
-	//on n'oublie de rien free !!
-	free(vm.arena);
-	v_del(&vm.n);
-	return (0);
+	i = 0;
+	y = 0;
+	lens = ft_strlen(src);
+	lend = ft_strlen(dst);
+	if (size <= lend)
+		return (lens + size);
+	while (dst[i] && i < (size - 1))
+		i++;
+	while (src[y] && i < (size - 1))
+		dst[i++] = src[y++];
+	dst[i] = '\0';
+	return (lend + lens);
 }
