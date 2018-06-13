@@ -63,7 +63,7 @@ int		get_progsize(t_champ *champ)
 	instr = champ->instructs;
 	while (instr)
 	{
-		size += 1 + params_size(instr);
+		size += params_size(instr);
 		if (g_op_tab[instr->opcode].opcode)
 			++size;
 		instr = instr->next;
