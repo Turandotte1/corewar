@@ -1,5 +1,12 @@
 #include "vm.h"
 
+
+/*
+** nom, nombre de parametre, tableau de type, operateur code, nb_cycles,
+** display name,
+** OPC, nombre d'octet parametre direct : 0 cad 2 octets 1 cad 4 octets
+*/
+
 t_task				g_tab[OP_COUNT + 1] =
 {
 	{ "live", 1, { T_DIR }, 1, 10, "alive", 0, 0 },

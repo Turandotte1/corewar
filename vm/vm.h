@@ -1,11 +1,11 @@
-#ifndef COREWAR_H
+#ifndef VM_H
 
-# define COREWAR_H
+# define VM_H
 
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../dep/libft/inc/libft.h"
+#include "../dep/libft/libft.h"
 #include "../dep/libvec/inc/vector.h"
 #include "../dep/libmem/inc/libmem.h"
 

@@ -1,99 +1,66 @@
-.PHONY: all clean fclean re
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/04/18 20:14:44 by mrychkov          #+#    #+#              #
+#    Updated: 2018/03/13 12:58:25 by mrychkov         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME=libft.a
-CC=gcc
-CFLAG=
-CFLAG+= -Werror
-CFLAG+= -Wextra
-CFLAG+= -Wall
-SRCNAME= ft_isprint \
-		 ft_recursive_factorial \
-		 ft_stradd\
-		 ft_isnegative\
-		 ft_putendl \
-		 ft_strcmp  \
-		 ft_strlen  \
-		 ft_strrchr \
-		 ft_itoa    \
-		 ft_itoa_base\
-		 ft_uitoa_base\
-		 ft_putendl_fd \
-		 ft_strcpy   \
-		 ft_strmap   \
-		 ft_strsplit \
-		 ft_lstadd   \
-		 ft_putnbr   \
-		 ft_strdel   \
-		 ft_strmapi  \
-		 ft_strstr   \
-		 ft_atoi     \
-		 ft_lstdel   \
-		 ft_putnbr_fd\
-		 ft_abs      \
-		 ft_strdup   \
-		 ft_strncat  \
-		 ft_isspace  \
-		 ft_strsub   \
-		 ft_bzero    \
-		 ft_lstdelone\
-		 ft_putstr   \
-		 ft_strequ   \
-		 ft_strncmp  \
-		 ft_strtrim  \
-		 ft_isalnum  \
-		 ft_lstiter  \
-		 ft_putstr_fd\
-		 ft_striter  \
-		 ft_strncpy  \
-		 ft_tolower  \
-		 tab_join    \
-		 ft_isalpha  \
-		 ft_lstmap   \
-		 ft_strcat   \
-		 ft_striteri \
-		 ft_strnequ  \
-		 ft_toupper  \
-		 ft_isascii  \
-		 ft_lstnew   \
-		 ft_putchar  \
-		 ft_strchr   \
-		 ft_strjoin  \
-		 ft_strnew   \
-		 ft_isdigit  \
-		 ft_putchar_fd\
-		 ft_strclr   \
-		 ft_strlcat  \
-		 ft_strnstr  \
-		 ft_sqrt     \
-		 ft_putstarstr\
+NO_COLOR = \033[0m
+WAIT_COLOR = \033[1;33m
+OK_COLOR = \033[1;32m
+CLEAN_COLOR = \033[1;36m
 
-OBJDIR=obj/
-CLEANOBJDIR=OBJDIR
-CLEANOBJ=OBJ
-SRCDIR=src/
+NAME = libft.a
 
-SRC= $(addprefix $(SRCDIR), $(addsuffix .c, $(SRCNAME)))
+SRC = ft_atoi.c ft_atoi_max.c ft_bzero.c ft_doublelink.c ft_doublelink_creat.c \
+ft_doublelinkdel.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
+ft_toupper.c ft_tolower.c ft_tolower_str.c ft_memccpy.c ft_memcpy.c ft_memchr.c \
+ft_memcmp.c ft_memmove.c ft_memset.c ft_strcat.c ft_strchr.c ft_strcpy.c \
+ft_strdup.c ft_strlcat.c ft_strlen.c ft_strncat.c ft_strncpy.c ft_strnstr.c \
+ft_strrchr.c ft_strstr.c ft_strncmp.c ft_strcmp.c ft_memalloc.c ft_putchar.c \
+ft_putchar_fd.c ft_putstr.c ft_putstr_fd.c ft_strnew.c ft_putnbr.c ft_putnbr_fd.c \
+ft_putendl.c ft_putendl_fd.c ft_memdel.c ft_strdel.c ft_full_char.c ft_strclr.c ft_striter.c \
+ft_striteri.c ft_strmap.c ft_strmapi.c ft_strsub.c ft_strequ.c ft_strnequ.c \
+ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_itoa.c ft_lstdelone.c ft_lstdel.c \
+ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_isspace.c ft_int_size.c \
+ft_strrev.c ft_wclen.c ft_wstrlen.c ft_malloc_error.c get_next_line.c \
+ft_printf.c ft_printf_itoa.c ft_printf_args_parsing.c ft_printf_init.c \
+ft_printf_num_conv.c ft_printf_print.c ft_printf_print_utils.c \
+ft_printf_putbuffer.c ft_printf_recast.c ft_printf_spec_conv.c \
+ft_printf_str_conv.c 
 
-OBJ= $(addprefix $(OBJDIR), $(addsuffix .o, $(SRCNAME)))
+SRC_DIR = ./
+OBJ_DIR = ./objs
+INC_DIR = ./
+CFLAGS = -Wall -Wextra -Werror
 
-INCDIR= inc/
+SRC_PATH = $(addprefix $(SRC_DIR)/,$(SRC))
+OBJ_PATH = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
-all: $(NAME)
+.PHONY: all clean norme fclean re
 
-$(OBJDIR)%.o: $(SRCDIR)%.c
-	@$(CC) $(CFLAG) -c $< -o $@ -I $(INCDIR)
-	@(echo "_ \033[032m$@\033[00m")
+all: $(NAME) $(OBJ_PATH)
 
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
-	
-$(NAME): $(OBJDIR) $(OBJ)
-	@ar -rc  $(NAME) $(OBJ)
-	@(echo "[ \033[35m$(NAME)\033[00m ]")
+$(NAME): $(OBJ_PATH)
+	@ar rc $@ $(OBJ_PATH)
+	@ranlib $@
+	@echo "$(CLEAN_COLOR)Compiliation de libft: $(OK_COLOR)OK $(OK_COLOR)"
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c	
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -I $(INC_DIR) -o $@ -c $<
+
+norme:
+	@norminette $(SRC_PATH) $(INC_DIR)
 
 clean:
-	@rm -rf $(OBJ) $(OBJDIR)
-
+	@rm -rf $(OBJ_DIR)
+	
 fclean: clean
 	@rm -rf $(NAME)
 
