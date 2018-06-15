@@ -53,6 +53,7 @@ void				into_vm(t_vm *vm, t_flag *flag, t_vec *code)
 	while (i < v_size(code))
 	{
 		vm->champ[i].position = get_next_position(v_size(code), i);
+		vm->champ[i].champ_id = *(int *)v_get(&flag->n, i);
 		tmp = *(t_vec *)v_get(code, i++);
 		y = 0;
 		while (y < v_size(&tmp))

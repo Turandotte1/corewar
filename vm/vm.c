@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/29 22:36:15 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/06/15 17:58:18 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,5 @@ int							main(int argc, char **argv)
 //	print_memory(vm.arena, MEM_SIZE);
 	war_start(&vm);
 	free(vm.arena);
-	v_del(&vm.n);
 	return (0);
 }

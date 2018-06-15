@@ -72,7 +72,7 @@ clean:
 	@make clean -C ./dep/libvec
 	@make clean -C ./dep/libmem
 	@rm -rf $(OBJ_PATH1)
-	@rm -rf $(OBJ_PATH2)
+#	@rm -rf $(OBJ_PATH2)
 
 fclean: clean
 	@make fclean -C ./dep/libft

@@ -167,6 +167,7 @@ typedef struct 						s_champion
 	int 							len;
 	int 							position;
 	int 							live_made;
+	int 							champ_id;
 }									t_champion;
 
 typedef struct 						s_vm
@@ -174,7 +175,6 @@ typedef struct 						s_vm
 	t_oper 							*ops;
 	t_cycle							cycle;
 	t_champion 						*champ;
-	t_vec							n;
 	int								v;
 	int								dump;
 	int								dump_nb;
@@ -297,6 +297,7 @@ char								read_byte(char *addr);
 t_reg								*get_register(t_reg *registers, int idx);
 void								read_range(char *dst, char *pc, size_t range);
 void								store_register(char *dst, char *src, size_t type_size);
+void								print_memory(const void *addr, size_t size);
 
 
 /*Pour les operation

@@ -1,5 +1,11 @@
 #include "vm.h"
 
+static void				dump_memory(t_vm *vm)
+{
+	print_memory(vm->arena, 4096);
+	exit(0);
+}
+
 static void				count_lives(t_vm *vm, size_t *hm_live, size_t *hm_die)
 {
 	int					i;
@@ -68,7 +74,7 @@ static void				showmust_go_on(t_vm *vm)
 int						someone_is_alive(t_vm *vm)
 {
 	if (vm->dump > 0 && vm->hm_cycles >= vm->dump_nb)
-		printf("dumping memory here\n");
+		dump_memory(vm);
 	vm->hm_cycles++;
 	showmust_go_on(vm);
 	if (vm->hm_cycles >= vm->cycle.check)
