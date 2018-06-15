@@ -4,15 +4,15 @@ GREEN = \033[38;5;119m
 RED = \033[38;5;124m
 GREY =\033[38;5;253m
 
-NAME1 = corewar
+NAME1 = vm
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -g3
 
-SRC_NAME1 = vm.c parse_args.c parse_champion.c give1.c give2.c into_vm.c free.c init.c error_helpers.c run.c f.c print_memory.c \
-op.c ops1.c ops2.c ops3.c ops_handler.c
+SRC_NAME1 = 
 
-SRC_PATH1 = ./vm
+SRC_PATH1 = ./Lem_in
+SRC_PATH2= ./Visu_hex
 
 SRC1 = $(addprefix $(SRC_PATH1)/,$(SRC_NAME1))
 SRC2 = $(addprefix $(SRC_PATH2)/,$(SRC_NAME2))
@@ -22,19 +22,16 @@ OBJ_PATH = ./Objs
 OBJ1 = $(addprefix $(OBJ_PATH)/,$(SRC_NAME1:.c=.o))
 OBJ2 = $(addprefix $(OBJ_PATH)/,$(SRC_NAME2:.c=.o))
 
-INC1 = ./dep/vm.h
+INC1 = ./Includes/lem_in.h 
 INC2 = ./Includes/visu_hex.h
 
-MY_LIB = ./dep/libft/libft.a ./dep/libvec/libvec.a ./dep/libmem/libmem.a 
 NCURSES	= -lpanel -lcurses -lcdk
+MY_LIB = ./Libft/libft.a
 
 all: makelibs $(NAME1) $(NAME2)
 
 makelibs:
-	@make all -C ./dep/libft
-	@make all -C ./dep/libvec
-	@make all -C ./dep/libmem
-
+	@make all -C Libft
 
 $(NAME1): $(OBJ1)
 	@tput el
@@ -88,18 +85,15 @@ $(OBJ_PATH)/%.o: $(SRC_PATH2)/%.c
 	@tput rc
 
 clean:
-	@make clean -C ./dep/libft
-	@make clean -C ./dep/libvec
-	@make clean -C ./dep/libmem
+	@make -C Libft clean
 	@rm -rf $(OBJ_PATH)
 
 fclean: clean
-	@make fclean -C ./dep/libft
-	@make fclean -C ./dep/libvec
-	@make fclean -C ./dep/libmem
+	@make -C Libft fclean
 	@rm -rf $(NAME1)
 	@rm -rf $(NAME2)
 	@echo "$(CYAN)Cleaning $(NAME1): $(GREEN)Done $(NC)"
+	@echo "$(CYAN)Cleaning $(NAME2): $(GREEN)Done $(NC)"
 
 re : fclean all
 

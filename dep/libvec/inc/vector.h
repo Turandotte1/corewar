@@ -40,7 +40,7 @@ void			st_push(t_string *string, char elem);
 void			st_push_first(t_string *string, char elem);
 char			*st_raw(t_string *string);
 
-t_vec			v_copy(t_vec *vec);
+t_vec			v_copy(t_vec *cpy, t_vec *vec);
 /*
 ** Swap 2 params of vec.
 **

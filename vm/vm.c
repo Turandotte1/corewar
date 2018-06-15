@@ -13,7 +13,7 @@
 #include "vm.h"
 
 
-void				print_memory(void *mqp, int size);
+void					print_memory(void *mqp, int size);
 
 int						main(int argc, char **argv)
 {
@@ -26,17 +26,8 @@ int						main(int argc, char **argv)
 	ft_bzero(&flag, sizeof(t_flag));
 	vm.champ = malloc(sizeof(t_champion) * argc);
 	parse_args(&vm, flag, argc, argv);
-	int i = 0;
-//	while (i < vm.champ[0].len)
-//		write(1, &vm.champ[0].ch[i++], 1);
-//	ft_bzero(vm.arena, 4096);
-//	ft_putchar('\n');
-	print_memory(vm.arena, 4096);
-	while (1);
+//	print_memory(vm.arena, MEM_SIZE);
 	war_start(&vm);
-
-//	printf("%s\n", vm.arena);
-	//on n'oublie de rien free !!
 	free(vm.arena);
 	v_del(&vm.n);
 	return (0);

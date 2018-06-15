@@ -15,11 +15,12 @@
 t_vec		v_copy(t_vec *cpy, t_vec *vec)
 {
 	cpy = malloc(sizeof(*vec));//v_new(vec->private_elem_size);
-	memcpy(vec, cpy, sizeof(*vec));
+	ft_memcpy(vec, cpy, sizeof(*vec));
 	/*printf("%p\n", &cpy);
 	cpy.private_elem_nb = vec->private_elem_nb;
 	cpy.private_elem_cap = vec->private_elem_cap;
 	ft_memcpy(cpy.private_content, vec->private_content,
 			vec->private_elem_nb * vec->private_elem_size);
-	return (cpy);*/
+	*/
+	return (*cpy);
 }

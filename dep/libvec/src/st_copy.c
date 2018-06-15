@@ -16,6 +16,6 @@ t_string	st_copy(t_string *string)
 {
 	t_string stringcpy;
 
-	stringcpy.vec = v_copy(&string->vec);
+	stringcpy.vec = v_copy(&string->vec, &string->vec);
 	return (stringcpy);
 }

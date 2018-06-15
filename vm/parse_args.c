@@ -104,7 +104,7 @@ void						parse_args(t_vm *vm, t_flag flags, int argc, char **argv)
 	int 					i;
 	int						player;
 	t_parsing				parsing;
-	t_oper 					*ops;
+//	t_oper 					*ops;
 
 	i = 0;
 	ft_bzero(&parsing, sizeof(t_parsing));
