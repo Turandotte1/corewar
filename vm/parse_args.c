@@ -12,10 +12,36 @@
 
 #include "vm.h"
 
-static int				next_nb(char *s)
+static void					give_dispo_name(t_flag *flag, int player)
 {
-	int					dif;
-	int					i;
+	int 					i;
+	int 					name;
+	int 					dif;
+
+	name = 1;
+	i = 0;
+	if (player == v_size(&flag->n))
+		return ;
+	if (v_raw(&flag->n) == NULL)
+	{
+		flag->n = v_new(sizeof(int));
+		v_push_int(&flag->n, 1);
+		return ;
+	}
+	while (i < v_size(&flag->n))
+	{
+		dif = *(int *)v_get(&flag->n, i);
+		if (dif >= name)
+			name = dif + 1;
+		++i;
+	}
+	v_push_int(&flag->n, name);
+}
+
+static int					next_nb(char *s)
+{
+	int						dif;
+	int						i;
 
 	dif = 0;
 	i = 0;
@@ -76,7 +102,8 @@ static void				into_struct(int *tab, t_flag *flag)
 		give_name(flag, nb);
 }
 
-static int				flag_or_champ(t_vm *vm, int argc, char **argv, t_flag *flags, t_parsing *parsing)
+int						flag_or_champ(t_vm *vm, int argc, char **argv, 
+										t_flag *flags, t_parsing *parsing)
 {
 	int					i;
 	int					fd;
@@ -97,28 +124,4 @@ static int				flag_or_champ(t_vm *vm, int argc, char **argv, t_flag *flags, t_pa
 		++i;
 	}
 	return (player);
-}
-
-void						parse_args(t_vm *vm, t_flag flags, int argc, char **argv)
-{
-	int 					i;
-	int						player;
-	t_parsing				parsing;
-//	t_oper 					*ops;
-
-	i = 0;
-	ft_bzero(&parsing, sizeof(t_parsing));
-	player = flag_or_champ(vm, argc, argv, &flags, &parsing);
-	if (player == 0 || v_size(&flags.n) != player)
-		usage();
-	if (player > 4)
-		error("too many champions");
-	vm->champs = player;
-//	while (i < player)
-//	{
-//		ops = &vm->ops[i++];
-//		ft_bzero(ops, sizeof(t_oper));
-//	}
-	into_vm(vm, &flags, &parsing.code);
-	del_queue(&parsing.queue, &parsing.names);
 }

@@ -66,7 +66,7 @@
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
-# define OP_COUNT 16
+# define OPS 16
 
 /*
 **---------------------------------les structures se cachent ici------------------------------------
@@ -132,7 +132,6 @@ typedef struct 						s_task
 	const char						*description;
 	int								ocp;
 	int								dir_short;
-	
 }									t_task;
 
 typedef struct 						s_oper
@@ -182,10 +181,11 @@ typedef struct 						s_vm
 	int 							champs;
 	int 							hm_process;
 	int 							hm_cycles;
+	int 							error;
 	char							*arena;
 }									t_vm;
 
-extern t_task						g_tab[OP_COUNT + 1];
+extern t_task						g_tab[OPS + 1];
 
 /*
 **----------------------------------Init functions--------------------------------------------
@@ -213,32 +213,32 @@ int									error(char *s);
 */
 
 void								parse_args(t_vm *vm, t_flag flags, int argc, char **argv);
-
-/*
-**----------------------------------Champion's parsing----------------------------------------
-*/ 
-
-void								parse_champion(int fd, t_vec *queue, t_vec *names, t_vec *code, t_vm *vm, int champ);
-void								give_name(t_flag *f, int name);
-void								give_dispo_name(t_flag *flag, int player);
-void								give_magic_number(t_vec *vec, header_t *head);
-void								give_size(t_vec *vec, int *i, header_t *head);
-void								give_comment(t_vec *vec, int *i, header_t *head);
-void								give_actions(t_vec *vec, t_vec *queue);
-
-int									f_live(t_act *act, t_vec *vec, int i);
-int									f_ld(t_act *act, t_vec *vec, int i);
-int									f_st(t_act *act, t_vec *vec, int i);
-int									f_add(t_act *act, t_vec *vec, int i);
-int									f_sub(t_act *act, t_vec *vec, int i);
-int									f_and_second_part(t_act *act, t_vec *vec, int i, int id);
-int									f_and(t_act *act, t_vec *vec, int i);
+int									flag_or_champ(t_vm *vm, int argc, char **argv, 
+														t_flag *flags, t_parsing *parsing);
 int									f_zjmp(t_act *act, t_vec *vec, int i);
 int									f_ldi(t_act *act, t_vec *vec, int i);
 int									f_sti(t_act *act, t_vec *vec, int i);
 int									f_fork(t_act *act, t_vec *vec, int i);
 int									f_aff(t_act *act, t_vec *vec, int i);
+int									f_add(t_act *act, t_vec *vec, int i);
+int									f_sub(t_act *act, t_vec *vec, int i);
+int									f_and_second_part(t_act *act, t_vec *vec, int i, int id);
+int									f_and(t_act *act, t_vec *vec, int i);
+int									f_st(t_act *act, t_vec *vec, int i);
+int									f_live(t_act *act, t_vec *vec, int i);
+int									f_ld(t_act *act, t_vec *vec, int i);
 
+/*
+**----------------------------------Champion's parsing----------------------------------------
+*/ 
+
+
+void								parse_champion(int fd, t_vec *queue, t_vec *names, t_vec *code, t_vm *vm, int champ);
+void								give_name(t_flag *f, int name);
+void								give_magic_number(t_vec *vec, header_t *head);
+void								give_size(t_vec *vec, int *i, header_t *head);
+void								give_comment(t_vec *vec, int *i, header_t *head);
+void								give_actions(t_vec *vec, t_vec *queue);
 char								*vec_to_char(t_vec *map);
 
 /*
@@ -248,33 +248,55 @@ char								*vec_to_char(t_vec *map);
 void								into_vm(t_vm *vm, t_flag *flag, t_vec *code);
 
 /*
-**-----------------------------------Start  vm-------------------------------------------------
+**-----------------------------------Play-----------------------------------------------------
 */
 
 void								war_start(t_vm *vm);
-void								live(t_oper *proc, t_params args[3]);
-void								add(t_oper *p, t_params args[3]);
-void								aff(t_oper *p, t_params args[3]);
-void								and(t_oper *p, t_params args[3]);
-void								fork_o(t_oper *p, t_params args[3]);
-void								ld(t_oper *p, t_params args[3]);
-void								ldi(t_oper *p, t_params args[3]);
-void								lfork(t_oper *p, t_params args[3]);
-void								lld(t_oper *p, t_params args[3]);
-void								lldi(t_oper *p, t_params args[3]);
-void								or(t_oper *p, t_params args[3]);
-void								st(t_oper *p, t_params args[3]);
-void								sti(t_oper *p, t_params args[3]);
-void								sub(t_oper *p, t_params args[3]);
-void								xor(t_oper *p, t_params args[3]);
-void								zjmp(t_oper *p, t_params args[3]);
-
-
+int									someone_is_alive(t_vm *vm);
+int									which_operation(t_vm *vm, t_oper *p);
+size_t								analyze_param(t_oper *p, int opcode, t_params args[3]);
+int									play(void (*func)(t_vm *, t_oper *, t_params[3]), 
+																	t_oper *p, t_vm *vm);
+char								*move_players(t_vm *vm, t_oper *p, int offset);
 int									get_value(t_oper *proc, t_params *arg, int idx, int long_op);
+
+
+/*
+**----------------------------------Operations------------------------------------------------
+*/
+
+void								add(t_vm *vm, t_oper *p, t_params args[3]);
+void								live(t_vm *vm, t_oper *p, t_params args[3]);
+void								aff(t_vm *vm, t_oper *p, t_params args[3]);
+void								and(t_vm *vm, t_oper *p, t_params args[3]);
+void								fork_o(t_vm *vm, t_oper *p, t_params args[3]);
+void								ld(t_vm *vm, t_oper *p, t_params args[3]);
+void								ldi(t_vm *vm, t_oper *p, t_params args[3]);
+void								lfork(t_vm *vm, t_oper *p, t_params args[3]);
+void								lld(t_vm *vm, t_oper *p, t_params args[3]);
+void								lldi(t_vm *vm, t_oper *p, t_params args[3]);
+void								or(t_vm *vm, t_oper *p, t_params args[3]);
+void								st(t_vm *vm, t_oper *p, t_params args[3]);
+void								sti(t_vm *vm, t_oper *p, t_params args[3]);
+void								sub(t_vm *vm, t_oper *p, t_params args[3]);
+void								xor(t_vm *vm, t_oper *p, t_params args[3]);
+void								zjmp(t_vm *vm, t_oper *p, t_params args[3]);
+
+/*
+**----------------------------------Process handlers----------------------------------------
+*/
+
+t_oper								*make_process(t_vm *vm, char *pc, t_oper *parent_t);
+void								kill_processes(t_vm *vm, size_t count);
+
+/*
+**----------------------------------Memory helpers------------------------------------------
+*/
+
+char								read_byte(char *addr);
 t_reg								*get_register(t_reg *registers, int idx);
 void								read_range(char *dst, char *pc, size_t range);
 void								store_register(char *dst, char *src, size_t type_size);
-
 
 
 /*Pour les operation

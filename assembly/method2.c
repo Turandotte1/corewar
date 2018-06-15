@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "../dep/includes/asm.h"
 
 void	print_dbug(t_instruct *instr)
 {

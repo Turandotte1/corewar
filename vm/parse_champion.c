@@ -72,7 +72,8 @@ static t_vec				read_ins(int fd)
 	return (vec);
 }
 
-void						parse_champion(int fd, t_vec *queue, t_vec *names, t_vec *code, t_vm *vm, int player)
+void						parse_champion(int fd, t_vec *queue, t_vec *names, 
+										t_vec *code, t_vm *vm, int player)
 {
 	int						i;
 	t_vec					vec;

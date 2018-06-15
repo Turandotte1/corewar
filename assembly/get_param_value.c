@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "../dep/includes/asm.h"
 
 int		check_params(t_instruct *inst)
 {

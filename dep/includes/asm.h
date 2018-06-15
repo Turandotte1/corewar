@@ -16,7 +16,7 @@
 # include <sys/stat.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "../libft/libft_all.h"
+# include "../libft/libft.h"
 # include "op.h"
 # include "asm_struct.h"
 

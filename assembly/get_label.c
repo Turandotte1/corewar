@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "../dep/includes/asm.h"
 
 t_label	*new_label(void)
 {

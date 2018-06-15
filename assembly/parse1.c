@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "../dep/includes/asm.h"
 
 void	parse_file(char *content, t_champ *champ)
 {

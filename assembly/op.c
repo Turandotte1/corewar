@@ -15,7 +15,7 @@
 ** display name,
 ** OPC, nombre d'octet parametre direct : 0 cad 2 octets 1 cad 4 octets
 */
-#include "../includes/asm.h"
+#include "../dep/includes/asm.h"
 
 t_op		g_op_tab[17] =
 {

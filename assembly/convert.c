@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "../dep/includes/asm.h"
 
-static void	write_instruct(t_instruct *instr, char *buf, int *len)
+static void			write_instruct(t_instruct *instr, char *buf, int *len)
 {
 	char	conf;
 	int		i;
@@ -40,9 +40,9 @@ static void	write_instruct(t_instruct *instr, char *buf, int *len)
 	}
 }
 
-static void	write_prog(t_champ *champ, char *buf, int *ibuf)
+static void			write_prog(t_champ *champ, char *buf, int *ibuf)
 {
-	t_instruct *instr;
+	t_instruct 		*instr;
 
 	instr = champ->instructs;
 	while (instr)
@@ -52,12 +52,12 @@ static void	write_prog(t_champ *champ, char *buf, int *ibuf)
 	}
 }
 
-static char	write_file(int fd, t_champ *champ)
+static char			write_file(int fd, t_champ *champ)
 {
-	char		*buf;
-	int			len;
-	long int	val;
-	int			fd_n_x;
+	char			*buf;
+	int				len;
+	long int		val;
+	int				fd_n_x;
 
 	val = COREWAR_EXEC_MAGIC;
 	if (!(buf = (char*)ft_memalloc(sizeof(char) * BUFF_SIZE_2_16)))
@@ -80,7 +80,7 @@ static char	write_file(int fd, t_champ *champ)
 	return (SUCCESS);
 }
 
-char		compile(t_champ *champ, char *path)
+char				compile(t_champ *champ, char *path)
 {
 	int		fd;
 	char	*npath;

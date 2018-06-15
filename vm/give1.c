@@ -28,37 +28,11 @@ void					give_name(t_flag *f, int name)
 		dif = *(int *)v_get(&f->n, i++);
 		if (name == dif)
 		{
-			printf("Error: same ID for 2 differents champions\n");
+			ft_printf("Error: same ID for 2 differents champions\n");
 			exit(1);
 		}
 	}
 	v_push_int(&f->n, name);
-}
-
-void					give_dispo_name(t_flag *flag, int player)
-{
-	int 				i;
-	int 				name;
-	int 				dif;
-
-	name = 1;
-	i = 0;
-	if (player == v_size(&flag->n))
-		return ;
-	if (v_raw(&flag->n) == NULL)
-	{
-		flag->n = v_new(sizeof(int));
-		v_push_int(&flag->n, 1);
-		return ;
-	}
-	while (i < v_size(&flag->n))
-	{
-		dif = *(int *)v_get(&flag->n, i);
-		if (dif >= name)
-			name = dif + 1;
-		++i;
-	}
-	v_push_int(&flag->n, name);
 }
 
 void					give_magic_number(t_vec *vec, header_t *head)
