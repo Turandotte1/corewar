@@ -2,8 +2,8 @@
 
 char				*vec_to_char(t_vec *map)
 {
-	char 			*arena;
-	int 			i;
+	char			*arena;
+	int				i;
 
 	i = 0;
 	if ((arena = (char *)malloc(sizeof(char) * (v_size(map) + 1))) == NULL)
@@ -19,7 +19,7 @@ char				*vec_to_char(t_vec *map)
 
 static void			complete_vm(t_vm *vm, t_vec *map, t_flag *flag, t_vec *code)
 {
-	int 			i;
+	int				i;
 
 	i = 0;
 	vm->arena = vec_to_char(map);
@@ -43,11 +43,11 @@ static int			get_next_position(int player, int ci)
 
 void				into_vm(t_vm *vm, t_flag *flag, t_vec *code)
 {
-	int 			i;
-	int 			y;
-	t_vec 			map;
-	t_vec 			tmp;
-	
+	int				i;
+	int				y;
+	t_vec			map;
+	t_vec			tmp;
+
 	map = v_new(sizeof(char));
 	i = 0;
 	while (i < v_size(code))

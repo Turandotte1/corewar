@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 20:45:12 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/15 20:45:14 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/06/18 20:38:31 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void					give_actions(t_vec *vec, t_vec *queue)
 	int					i;
 	t_vec				tmp;
 	t_act				act;
-	
+
 	i = 2192;
 	tmp = v_new(sizeof(t_act));
 	while (i < v_size(vec))

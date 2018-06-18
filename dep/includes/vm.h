@@ -213,8 +213,8 @@ int									error(char *s);
 **----------------------------------Args parsing---------------------------------------------
 */
 
-void								parse_args(t_vm *vm, t_flag flags, int argc, char **argv);
-int									flag_or_champ(t_vm *vm, int argc, char **argv, 
+void								parse_args(t_vm *vm, t_flag flags, char **argv);
+int									flag_or_champ(t_vm *vm, char **argv, 
 														t_flag *flags, t_parsing *parsing);
 int									f_zjmp(t_act *act, t_vec *vec, int i);
 int									f_ldi(t_act *act, t_vec *vec, int i);

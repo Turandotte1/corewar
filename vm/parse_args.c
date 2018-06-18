@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:47 by glegendr          #+#    #+#             */
-/*   Updated: 2018/06/15 17:04:53 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/06/18 20:39:04 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void					give_dispo_name(t_flag *flag, int player)
 {
-	int 					i;
-	int 					name;
-	int 					dif;
+	int					i;
+	int					name;
+	int					dif;
 
 	name = 1;
 	i = 0;
@@ -52,7 +52,7 @@ static int					next_nb(char *s)
 	return (ft_atoi(s));
 }
 
-static int				*is_a_flag(char **argv, int *i, int argc)
+static int					*is_a_flag(char **argv, int *i, int argc)
 {
 	int					*ret;
 	int					flag;
@@ -73,7 +73,7 @@ static int				*is_a_flag(char **argv, int *i, int argc)
 	if (flag == 3 || flag == 1)
 		if ((nb = next_nb(argv[*i + 1])) < 0)
 			error("value is too big or under 0");
-		*i += 1;
+	*i += 1;
 	if ((ret = (int *)malloc(sizeof(int) * 2)) == NULL)
 		error("malloc Error");
 	ret[0] = flag;
@@ -81,7 +81,7 @@ static int				*is_a_flag(char **argv, int *i, int argc)
 	return (ret);
 }
 
-static void				into_struct(int *tab, t_flag *flag)
+static void					into_struct(int *tab, t_flag *flag)
 {
 	int					f;
 	int					nb;
@@ -102,13 +102,18 @@ static void				into_struct(int *tab, t_flag *flag)
 		give_name(flag, nb);
 }
 
-int						flag_or_champ(t_vm *vm, int argc, char **argv, 
-										t_flag *flags, t_parsing *parsing)
+int							flag_or_champ(t_vm *vm, char **argv,
+		t_flag *flags, t_parsing *parsing)
 {
 	int					i;
 	int					fd;
-	int 				player;
-	
+	int					player;
+	int					argc;
+
+	i = 0;
+	while (argv[i] != NULL)
+		++i;
+	argc = i;
 	i = 1;
 	player = 0;
 	init_flag(flags, &parsing->code, &parsing->queue, &parsing->names);
@@ -118,7 +123,8 @@ int						flag_or_champ(t_vm *vm, int argc, char **argv,
 			into_struct(is_a_flag(argv, &i, argc), flags);
 		else
 		{
-			parse_champion(fd, &parsing->queue, &parsing->names, &parsing->code, vm, player);
+			parse_champion(fd, &parsing->queue, &parsing->names,
+					&parsing->code, vm, player);
 			give_dispo_name(flags, ++player);
 		}
 		++i;
