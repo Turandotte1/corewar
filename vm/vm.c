@@ -60,11 +60,9 @@ void						war_start(t_vm *vm)
 
 void						parse_args(t_vm *vm, t_flag flags, char **argv)
 {
-	int						i;
 	int						player;
 	t_parsing				parsing;
 
-	i = 0;
 	ft_bzero(&parsing, sizeof(t_parsing));
 	player = flag_or_champ(vm, argv, &flags, &parsing);
 	if (player == 0 || v_size(&flags.n) != player)
