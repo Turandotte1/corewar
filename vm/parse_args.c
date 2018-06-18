@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 static void					give_dispo_name(t_flag *flag, int player)
 {

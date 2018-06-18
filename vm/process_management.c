@@ -1,4 +1,4 @@
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 static void					resize(t_oper *new, t_oper *old, size_t old_size)
 {
@@ -44,6 +44,7 @@ char					*move_players(t_vm *vm, t_oper *p, int offset)
 		pc = mem + (pc - (mem + MEM_SIZE)) % MEM_SIZE;
 	p->pc = pc;
 	opcode = read_byte(pc);
+	opcode = opcode;
 	return (pc);
 }
 

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 void					give_name(t_flag *f, int name)
 {

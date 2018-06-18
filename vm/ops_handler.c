@@ -1,4 +1,4 @@
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 int							get_value(t_oper *p, t_params *args, int idx, int long_op)
 {

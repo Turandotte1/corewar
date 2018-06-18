@@ -5,9 +5,10 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../dep/libft/libft.h"
-#include "../dep/libvec/inc/vector.h"
-#include "../dep/libmem/inc/libmem.h"
+#include "../libft/libft.h"
+#include "../libft_minh/libft_all.h"
+#include "../libvec/inc/vector.h"
+#include "../libmem/inc/libmem.h"
 
 
 # define BOLD_RED			"\e[1;31m"

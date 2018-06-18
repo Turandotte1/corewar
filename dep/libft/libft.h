@@ -19,6 +19,11 @@
 # include <string.h>
 # include <limits.h>
 # include <stdarg.h>
+# include <stdarg.h>
+# include <stdint.h>
+# include <sys/types.h>
+# include <inttypes.h>
+# include <wchar.h>
 # include "get_next_line.h"
 # include "printf.h"
 

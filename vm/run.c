@@ -1,4 +1,4 @@
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 static void				dump_memory(t_vm *vm)
 {

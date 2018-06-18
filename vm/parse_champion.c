@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 static t_vec				v_to_hexa(t_vec *vec)
 {

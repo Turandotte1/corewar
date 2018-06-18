@@ -16,9 +16,7 @@ int						arg_p(t_printf *flags, va_list ap)
 {
 	uintmax_t			num;
 	char				*str;
-	char				c;
 
-	c = 0;
 	flags->hash = 1;
 	flags->plus = 0;
 	flags->space = 0;

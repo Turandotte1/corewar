@@ -17,6 +17,9 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
+# include "../libft_minh/libft_all.h"
+# include "../libvec/inc/vector.h"
+# include "../libmem/inc/libmem.h"
 # include "op.h"
 # include "asm_struct.h"
 

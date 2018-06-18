@@ -1,4 +1,4 @@
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 static void						which_param(t_params *arg, char ocp, int opcode)
 {

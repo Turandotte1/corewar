@@ -7,7 +7,7 @@ GREY =\033[38;5;253m
 NAME1 = corewar
 NAME2 = asm
 
-CC = clang
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g3
 
 SRC_NAME1 = vm.c parse_args.c parse_champion.c give1.c give2.c into_vm.c \
@@ -33,12 +33,13 @@ DIR_INC = ./dep/includes/
 INC_NAME = vm.h asm.h op.h asm_struct.h
 INC = $(addprefix $(DIR_INC)/,$(INC_NAME))
 
-MY_LIB = ./dep/libft/libft.a ./dep/libvec/libvec.a ./dep/libmem/libmem.a 
+MY_LIB = ./dep/libft/libft.a ./dep/libvec/libvec.a ./dep/libmem/libmem.a ./dep/libft_minh/libft_all.a
 NCURSES	= -lpanel -lcurses -lcdk
 
 all: makelibs $(NAME1) $(NAME2)
 
 makelibs:
+	@make all -C ./dep/libft_minh
 	@make all -C ./dep/libft
 	@make all -C ./dep/libvec
 	@make all -C ./dep/libmem
@@ -68,6 +69,7 @@ $(OBJ_PATH2)/%.o: $(SRC_PATH2)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
+	@make clean -C ./dep/libft_minh
 	@make clean -C ./dep/libft
 	@make clean -C ./dep/libvec
 	@make clean -C ./dep/libmem
@@ -75,6 +77,7 @@ clean:
 #	@rm -rf $(OBJ_PATH2)
 
 fclean: clean
+	@make fclean -C ./dep/libft_minh
 	@make fclean -C ./dep/libft
 	@make fclean -C ./dep/libvec
 	@make fclean -C ./dep/libmem

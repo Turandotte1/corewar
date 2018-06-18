@@ -1,4 +1,4 @@
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 void				init_flag(t_flag *flag, t_vec *code, t_vec *queue, 
 													t_vec *names)

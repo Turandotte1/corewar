@@ -1,4 +1,4 @@
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 void					or(t_vm *vm, t_oper *p, t_params args[3])
 {
@@ -33,6 +33,7 @@ void					st(t_vm *vm, t_oper *p, t_params args[3])
 	//	copy_register(get_register(proc->reg, args[1].value),
 	//			get_register(proc->reg, args[0].value));
 	p->carry = 1;
+	champ_number = champ_number;
 	printf("i do st\n");
 }
 
@@ -51,7 +52,10 @@ void					sti(t_vm *vm, t_oper *p, t_params args[3])
 	champ_num = 0;
 //	read_register(get_register(proc->reg, 1), (char *)&champ_number);
 //	write_register(get_register(proc->reg, args[0].value), proc->pc + offset,
-//																champ_number);
+//			
+													//champ_num);
+	jump = jump;
+	champ_num = champ_num;
 	printf("i do sti\n");
 }
 

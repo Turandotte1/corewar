@@ -1,4 +1,4 @@
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 char				*vec_to_char(t_vec *map)
 {

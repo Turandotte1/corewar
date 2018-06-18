@@ -46,17 +46,10 @@ uintmax_t				check_size(long long unsigned int num, t_printf *flags)
 
 int						print_zero(t_printf *flags)
 {
-	char				c;
 	char				str[2];
 
-	c = '0';
 	flags->ret = 1;
-	if (flags->prec && !flags->hash
-			&& (flags->spec == 'o' || flags->spec == 'O'))
-	{
-		c = ' ';
-	}
-	else if (flags->width && (flags->spec == 'd' || flags->spec == 'D'))
+	if (flags->width && (flags->spec == 'd' || flags->spec == 'D'))
 	{
 		if (flags->prec && flags->zero)
 		{
@@ -66,7 +59,6 @@ int						print_zero(t_printf *flags)
 			flags->ret = 2;
 			return (print_str(flags, str));
 		}
-		c = ((flags->zero || flags->left) ? '0' : ' ');
 	}
 	return (print_zero2(flags));
 }

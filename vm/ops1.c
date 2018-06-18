@@ -1,4 +1,4 @@
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 void					add(t_vm *vm, t_oper *p, t_params args[3])
 {

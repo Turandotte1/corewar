@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 int(*g_tab_fonctions[0x10])(t_act *act, t_vec *vec, int i) =
 {f_live, f_ld, f_st, f_add, f_sub, f_and, f_and, f_and, f_zjmp,

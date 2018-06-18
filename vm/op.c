@@ -1,4 +1,4 @@
-#include "vm.h"
+#include "../dep/includes/vm.h"
 
 t_task				g_tab[OPS + 1] =
 {
