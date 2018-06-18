@@ -16,11 +16,9 @@
 # include <sys/stat.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "../libft_minh/libft_all.h"
-# include "../libvec/inc/vector.h"
-# include "../libmem/inc/libmem.h"
 # include "op.h"
 # include "asm_struct.h"
+# include "../libft_minh/libft_all.h"
 
 # define FC(x, y)			ft_putstr_color(x , y );
 
