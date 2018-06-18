@@ -27,7 +27,7 @@ t_task				g_tab[OPS + 1] =
 	{ 0, 0, { 0 }, 0, 0, 0, 0, 0 }
 };
 
-static int						check_ocp(t_oper *p, t_params args[3])
+static int					check_ocp(t_oper *p, t_params args[3])
 {
 	int							i;
 
@@ -41,8 +41,8 @@ static int						check_ocp(t_oper *p, t_params args[3])
 	return (1);
 }
 
-int								play(void (*func)(t_vm *, t_oper *, t_params[3]), 
-																	t_oper *p, t_vm *vm)
+int							play(void (*func)(t_vm *, t_oper *, t_params[3]),
+		t_oper *p, t_vm *vm)
 {
 	t_params					args[3];
 	int							jump;
@@ -60,13 +60,13 @@ int								play(void (*func)(t_vm *, t_oper *, t_params[3]),
 	return (jump);
 }
 
-int								which_operation(t_vm *vm, t_oper *p)
+int							which_operation(t_vm *vm, t_oper *p)
 {
 	static void	(*func[OPS])(t_vm *, t_oper *, t_params[3]) = {
 		&live, &ld, &st, &add, &sub, &and,
 		&or, &xor, &zjmp, &ldi, &sti, &fork_o,
 		&lld, &lldi, &lfork, &aff,
 	};
+
 	return (p->act == NULL ? 1 : play(func[p->act->val - 1], p, vm));
 }
-

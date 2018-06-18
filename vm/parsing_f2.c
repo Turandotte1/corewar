@@ -2,7 +2,7 @@
 
 int					f_live(t_act *act, t_vec *vec, int i)
 {
-	int 			y;
+	int			y;
 
 	y = 0;
 	act->f_p = 0;
@@ -18,7 +18,7 @@ int					f_live(t_act *act, t_vec *vec, int i)
 
 int					f_ld(t_act *act, t_vec *vec, int i)
 {
-	int 			id;
+	int			id;
 
 	id = *(int *)v_get(vec, i++);
 	if (id == 0xd0)

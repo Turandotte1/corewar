@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/06/15 17:58:18 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/06/18 20:39:38 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 void						del_queue(t_vec *vec, t_vec *names)
 {
-	int 					i;
+	int					i;
 
 	i = 0;
 	while (i < v_size(vec))
@@ -34,9 +34,9 @@ void						del_queue(t_vec *vec, t_vec *names)
 
 void						war_start(t_vm *vm)
 {
-	int 					how_many_players;
+	int						how_many_players;
 	int						position;
-	int 					i;
+	int						i;
 
 	how_many_players = vm->champs;
 	i = 0;
@@ -58,15 +58,15 @@ void						war_start(t_vm *vm)
 	}
 }
 
-void						parse_args(t_vm *vm, t_flag flags, int argc, 
-															char **argv)
+void						parse_args(t_vm *vm, t_flag flags, char **argv)
 {
+	int						i;
 	int						player;
 	t_parsing				parsing;
 
-
+	i = 0;
 	ft_bzero(&parsing, sizeof(t_parsing));
-	player = flag_or_champ(vm, argc, argv, &flags, &parsing);
+	player = flag_or_champ(vm, argv, &flags, &parsing);
 	if (player == 0 || v_size(&flags.n) != player)
 		usage();
 	if (player > 4)
@@ -86,7 +86,7 @@ int							main(int argc, char **argv)
 	ft_bzero(&vm, sizeof(t_vm));
 	ft_bzero(&flag, sizeof(t_flag));
 	vm.champ = malloc(sizeof(t_champion) * argc);
-	parse_args(&vm, flag, argc, argv);
+	parse_args(&vm, flag, argv);
 //	print_memory(vm.arena, MEM_SIZE);
 	war_start(&vm);
 	free(vm.arena);

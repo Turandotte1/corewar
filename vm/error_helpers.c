@@ -17,7 +17,7 @@ void				usage(void)
 	exit(EXIT_FAILURE);
 }
 
-int			error(char *s)
+int					error(char *s)
 {
 	if (!ft_strcmp(s, ""))
 	{

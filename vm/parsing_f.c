@@ -11,7 +11,7 @@ int					f_zjmp(t_act *act, t_vec *vec, int i)
 
 int					f_ldi(t_act *act, t_vec *vec, int i)
 {
-	int 			id;
+	int			id;
 
 	id = *(int *)v_get(vec, i++);
 	if ((id & 0xc0) == 0x40)
@@ -38,7 +38,7 @@ int					f_ldi(t_act *act, t_vec *vec, int i)
 
 int					f_sti(t_act *act, t_vec *vec, int i)
 {
-	int 			id;
+	int			id;
 
 	id = *(int *)v_get(vec, i++);
 	act->f_p = *(int *)v_get(vec, i++);

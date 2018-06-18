@@ -41,7 +41,7 @@ int						f_and_second_part(t_act *act, t_vec *vec, int i, int id)
 
 int						f_and(t_act *act, t_vec *vec, int i)
 {
-	int 				id;
+	int				id;
 
 	id = *(int *)v_get(vec, i++);
 	if ((id & 0xC0) == 0x40)

@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:40 by glegendr          #+#    #+#             */
-/*   Updated: 2018/05/29 23:19:29 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/06/18 20:39:09 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static t_vec				v_to_hexa(t_vec *vec)
 	return (tmp);
 }
 
-static void					filter_vec(t_vec *vec, t_vec *code, t_vm *vm, int player)
+static void					filter_vec(t_vec *vec, t_vec *code,
+		t_vm *vm, int player)
 {
 	t_vec	tmp;
 	int		i;
@@ -72,7 +73,7 @@ static t_vec				read_ins(int fd)
 	return (vec);
 }
 
-void						parse_champion(int fd, t_vec *queue, t_vec *names, 
+void						parse_champion(int fd, t_vec *queue, t_vec *names,
 										t_vec *code, t_vm *vm, int player)
 {
 	int						i;
