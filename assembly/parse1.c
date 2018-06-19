@@ -42,6 +42,8 @@ char	*save_label_name(t_champ *champ, char *line, int nb_bytes)
 char	*skip_comment_and_whitespace(char *str)
 {
 	str = ft_strtrim_both(str);
+	if (str == NULL)
+		return (0);
 	while (str[0] == COMMENT_CHAR || str[0] == '\n' || str[0] == ';')
 		str = ft_point_to_next_line(str);
 	return (str);

@@ -28,10 +28,16 @@ char	*get_name_or_comment(t_champ *c, char **content, char *str)
 
 	result = NULL;
 	i = 0;
+	if (*content == NULL)
+		return (0);
 	*content = skip_comment_and_whitespace((*content));
 	if (ft_strncmp(*content, str, ft_strlen(str)) == 0)
 	{
-		*content = ft_strchr(*content, '"') + 1;
+		*content = ft_strchr(*content, '"');
+		if (*content == NULL)
+			return (0);
+		else
+			*content = *content + 1;
 		while ((*content)[i] && (*content)[i] != '"')
 			i++;
 		if (!(result = ft_strndup(*content, i)))
