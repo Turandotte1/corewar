@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../dep/includes/asm.h"
-
 t_label	*new_label(void)
 {
 	t_label	*label;
@@ -42,7 +41,7 @@ int		label_value(t_param *param, int inst_addr, t_champ *c)
 	int		res;
 
 	res = 0;
-	if (!(label = ft_strdup(ft_strchr(param->init_val, LABEL_CHAR) + 1))
+	if (!(label = ft_strdup(ft_strchr(param->raw_value, LABEL_CHAR) + 1))
 	|| get_label_addr(c->labels, label) == -1)
 		close_asm(c, "Error: non existent label\n");
 	if (inst_addr > get_label_addr(c->labels, label))

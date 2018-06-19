@@ -12,6 +12,7 @@
 
 #include "../dep/includes/asm.h"
 
+
 t_instruct	*new_instruct(void)
 {
 	t_instruct	*instruct;
@@ -60,7 +61,7 @@ int			get_instruct(t_champ *champ, char *line, int nb_bytes)
 		instruct->opcode = find_op(instruct->name);
 		line = &line[i];
 		instruct->address = nb_bytes;
-		has_opc = g_op_tab[instruct->opcode].has_pcode;
+		has_opc = g_op_tab[instruct->opcode].has_opc;
 		nb_bytes += 1 + has_opc + get_param(champ, instruct, line);
 		add_instruct_end(champ, instruct);
 	}
@@ -79,7 +80,7 @@ void		free_instructs(t_instruct *instructs)
 		i = 0;
 		while (i < MAX_ARGS_NUMBER)
 		{
-			free(tmp_instruct->params[i].init_val);
+			free(tmp_instruct->params[i].raw_value);
 			i++;
 		}
 		free(tmp_instruct->name);
@@ -97,7 +98,7 @@ int			params_size(t_instruct *instr)
 	i = 0;
 	while (i < MAX_ARGS_NUMBER)
 	{
-		res += instr->params[i].bytes;
+		res += instr->params[i].nb_bytes;
 		++i;
 	}
 	return (res);

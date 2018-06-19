@@ -15,7 +15,7 @@ SRC_NAME1 = vm.c parse_args.c parse_champion.c give1.c give2.c into_vm.c \
 	run.c op.c ops1.c ops2.c ops3.c ops4.c params_analyser.c \
 	memory_helpers.c print_memory.c process_management.c ops_handler.c \
 
-SRC_NAME2 = convert.c error.c get_instruct.c get_label.c get_param_value.c main.c method.c method2.c op.c parse1.c parse2.c \
+SRC_NAME2 = convert.c error.c get_instruct.c get_label.c get_param_value.c main.c method.c op.c parse1.c parse2.c \
 
 SRC_PATH1 = ./vm
 SRC_PATH2 = ./assembly

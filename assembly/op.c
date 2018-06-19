@@ -17,7 +17,7 @@
 */
 #include "../dep/includes/asm.h"
 
-t_op		g_op_tab[17] =
+t_op	g_op_tab[17] =
 {
 	{0, 0, {0}, 0, 0, 0, 0, 0},
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
@@ -43,3 +43,17 @@ t_op		g_op_tab[17] =
 	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1},
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0}
 };
+
+int		find_op(char *name)
+{
+	int i;
+
+	i = 0;
+	while (i < 17)
+	{
+		if (ft_strcmp(g_op_tab[i].name, name) == 0)
+			return (i);
+		i++;
+	}
+	return (0);
+}

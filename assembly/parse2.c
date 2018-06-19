@@ -6,72 +6,52 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:07:10 by mipham            #+#    #+#             */
-/*   Updated: 2018/04/24 16:40:37 by mipham           ###   ########.fr       */
+/*   Updated: 2018/06/19 16:44:41 by mipham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/includes/asm.h"
 
-char	*save_label_name(t_champ *champ, char *line, int nb_bytes)
+void	parse_file(char *content, t_champ *champ)
 {
+	content = parse_header(content, champ);
+	content = skip_comment_and_whitespace(content);
+	parse_body(content, champ);
+	if (!champ->instructs && !champ->labels)
+		close_asm(champ, "Error: no instruction or label\n");
+}
+
+char	*get_name_or_comment(t_champ *c, char **content, char *str)
+{
+	char	*result;
 	int		i;
-	int		j;
-	t_label	*label;
 
+	result = NULL;
 	i = 0;
-	j = ft_strchr_i(line, LABEL_CHAR);
-	while (line[i] && line[i] != COMMENT_CHAR && line[i] != ';')
+	*content = skip_comment_and_whitespace((*content));
+	if (ft_strncmp(*content, str, ft_strlen(str)) == 0)
 	{
-		if (i == (j - 1) && ft_strchr(LABEL_CHARS, line[i]))
-		{
-			label = new_label();
-			if (!(label->name = ft_strndup(line, j)))
-				close_asm(champ, "Malloc error\n");
-			label->address = nb_bytes;
-			if (champ)
-				add_label_end(champ, label);
-			line = line + j + 1;
-			break ;
-		}
-		i++;
+		*content = ft_strchr(*content, '"') + 1;
+		while ((*content)[i] && (*content)[i] != '"')
+			i++;
+		if (!(result = ft_strndup(*content, i)))
+			close_asm(c, "Malloc error\n");
+		*content = ft_point_to_next_line(&(*content)[i]);
 	}
-	return (line);
+	return (result);
 }
 
-void	parse_params(t_champ *champ)
+char	*parse_header(char *content, t_champ *champ)
 {
-	t_instruct	*inst;
-	int			i;
-
-	inst = champ->instructs;
-	while (inst)
-	{
-		i = 0;
-		while (i < MAX_ARGS_NUMBER && inst->params[i].init_val)
-			param_value(&inst->params[i++], inst->address, champ);
-		if (!(check_params(inst)))
-			close_asm(champ, "Error: wrong parameters for instruction\n");
-		inst = inst->next;
-	}
-}
-
-void	parse_body(char *content, t_champ *champ)
-{
-	char		*line;
-	int			nb_bytes;
-
-	nb_bytes = 0;
-	while (content[0])
-	{
-		content = skip_comment_and_whitespace(content);
-		line = trim_comment(ft_cut_first_line(content));
-		if (ft_strchr(line, '.'))
-			close_asm(champ, "Error: unknown command\n");
-		content = ft_point_to_next_line(content);
-		nb_bytes = get_instruct(champ, line, nb_bytes);
-//		if (nb_bytes > CHAMP_MAX_SIZE)
-//			close_asm(champ, "Error: champ is too large\n");
-		free(line);
-	}
-	parse_params(champ);
+	content = skip_comment_and_whitespace(content);
+	champ->name = get_name_or_comment(champ, &content, NAME_CMD_STRING);
+	champ->comment = get_name_or_comment(champ, &content, COMMENT_CMD_STRING);
+	content = skip_comment_and_whitespace(content);
+	if (!champ->name || !champ->comment)
+		close_asm(champ, "Error: champ needs to have a name and a comment\n");
+	if (ft_strlen(champ->name) >= PROG_NAME_LENGTH)
+		close_asm(champ, "Error: champion's name is too long\n");
+	if (ft_strlen(champ->comment) >= COMMENT_LENGTH)
+		close_asm(champ, "Error: champion's comment is too long\n");
+	return (content);
 }

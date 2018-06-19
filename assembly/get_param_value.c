@@ -19,14 +19,14 @@ int		check_params(t_instruct *inst)
 
 	i = 0;
 	op = g_op_tab[find_op(inst->name)];
-	while (i < MAX_ARGS_NUMBER && inst->params[i].init_val)
+	while (i < MAX_ARGS_NUMBER && inst->params[i].raw_value)
 		i++;
 	if (i != op.nb_params)
 		return (0);
 	i = 0;
-	while (i < MAX_ARGS_NUMBER && inst->params[i].init_val)
+	while (i < MAX_ARGS_NUMBER && inst->params[i].raw_value)
 	{
-		if (!(inst->params[i].type & op.arg_type[i]))
+		if (!(inst->params[i].type & op.params_types[i]))
 			return (0);
 		i++;
 	}
@@ -35,41 +35,41 @@ int		check_params(t_instruct *inst)
 
 void	param_value(t_param *param, int inst_addr, t_champ *c)
 {
-	if (param->init_val[0] == LABEL_CHAR || param->init_val[1] == LABEL_CHAR)
+	if (param->raw_value[0] == LABEL_CHAR || param->raw_value[1] == LABEL_CHAR)
 		param->value = label_value(param, inst_addr, c);
 	else
 	{
 		if (param->type == T_REG)
 		{
-			if (!ft_str_is_digits(&param->init_val[1])
-			|| ft_atoi(&param->init_val[1]) > REG_NUMBER
-			|| ft_atoi(&param->init_val[1]) < 1)
+			if (!ft_str_is_digits(&param->raw_value[1])
+			|| ft_atoi(&param->raw_value[1]) > REG_NUMBER
+			|| ft_atoi(&param->raw_value[1]) < 1)
 				close_asm(c, "Error: wrong format for reg param\n");
-			param->value = ft_atoi(&param->init_val[1]);
+			param->value = ft_atoi(&param->raw_value[1]);
 		}
 		else if (param->type == T_DIR)
 		{
-			if (!ft_str_is_digits(&param->init_val[1]))
+			if (!ft_str_is_digits(&param->raw_value[1]))
 				close_asm(c, "Error: direct param must have only numbers\n");
-			param->value = ft_atoi(&param->init_val[1]);
+			param->value = ft_atoi(&param->raw_value[1]);
 		}
 		else if (param->type == T_IND)
 		{
-			if (!ft_str_is_digits(param->init_val))
+			if (!ft_str_is_digits(param->raw_value))
 				close_asm(c, "Error: indirect param must have only numbers\n");
-			param->value = ft_atoi(param->init_val);
+			param->value = ft_atoi(param->raw_value);
 		}
 	}
 }
 
 void	get_param_type(t_champ *c, t_param *param)
 {
-	if (param->init_val && param->init_val[0] == 'r')
+	if (param->raw_value && param->raw_value[0] == 'r')
 		param->type = T_REG;
-	else if (param->init_val && param->init_val[0] == DIRECT_CHAR)
+	else if (param->raw_value && param->raw_value[0] == DIRECT_CHAR)
 		param->type = T_DIR;
-	else if (param->init_val && (param->init_val[0] == '-'
-	|| ft_isdigit(param->init_val[0]) || param->init_val[0] == LABEL_CHAR))
+	else if (param->raw_value && (param->raw_value[0] == '-'
+	|| ft_isdigit(param->raw_value[0]) || param->raw_value[0] == LABEL_CHAR))
 		param->type = T_IND;
 	else
 		close_asm(c, "Error: unknown param type\n");
@@ -89,17 +89,17 @@ int		get_nb_bytes(t_instruct *instruct)
 	while ((i < MAX_ARGS_NUMBER) && params[i].type)
 	{
 		if (params[i].type == T_REG)
-			params[i].bytes = 1;
+			params[i].nb_bytes = 1;
 		else if (params[i].type == T_IND)
-			params[i].bytes = 2;
+			params[i].nb_bytes = 2;
 		else if (params[i].type == T_DIR)
 		{
-			if (g_op_tab[op].has_idx)
-				params[i].bytes = 2;
+			if (g_op_tab[op].dir_two_bytes)
+				params[i].nb_bytes = 2;
 			else
-				params[i].bytes = 4;
+				params[i].nb_bytes = 4;
 		}
-		nb_bytes += params[i++].bytes;
+		nb_bytes += params[i++].nb_bytes;
 	}
 	return (nb_bytes);
 }
@@ -116,7 +116,7 @@ int		get_param(t_champ *c, t_instruct *inst, char *line)
 	nb_bytes = 0;
 	while (split[i] && i < MAX_ARGS_NUMBER)
 	{
-		if (!(inst->params[i].init_val = ft_strdup(ft_strtrim(split[i]))))
+		if (!(inst->params[i].raw_value = ft_strdup(ft_strtrim_both(split[i]))))
 			close_asm(c, "Malloc error\n");
 		free(split[i]);
 		get_param_type(c, &inst->params[i]);

@@ -76,14 +76,14 @@ typedef char	t_arg_type;
 
 typedef struct		s_op
 {
-	char			*name;
-	int				nb_params;
-	t_arg_type		arg_type[4];
-	int				opcode;
-	int				nb_cycles;
-	char			*comment;
-	int				has_pcode;
-	int				has_idx;
+	char	*name;
+	int		nb_params;
+	char	params_types[MAX_ARGS_NUMBER];
+	int		opcode;
+	int		nb_cycles;
+	char	*display_name;
+	int		has_opc;
+	int		dir_two_bytes;
 }					t_op;
 
 typedef struct		header_s

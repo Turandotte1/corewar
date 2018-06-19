@@ -12,17 +12,12 @@
 
 #include "../dep/includes/asm.h"
 
-void	asm_error(const char *str)
+void	close_asm(t_champ *champ, char *str)
 {
-	ft_putstr_color(str, COL_LIGHT_RED);
-	exit(EXIT_FAILURE);
-}
-
-void	print_detailed_error(const char *av1)
-{
-	ft_putstr_color("Couldn't convert ", COL_LIGHT_RED);
-	ft_putstr_color(av1, COL_LIGHT_YELLOW);
-	ft_putstr_color(".\n", COL_LIGHT_RED);
+	free_champ(champ);
+	if (str)
+		ft_error_v(2, "s", str);
+	exit(0);
 }
 
 void	free_champ(t_champ *champ)
@@ -32,12 +27,4 @@ void	free_champ(t_champ *champ)
 	free_labels(champ->labels);
 	free_instructs(champ->instructs);
 	free(champ);
-}
-
-void	close_asm(t_champ *champ, char *str)
-{
-	free_champ(champ);
-	if (str)
-		ft_error_v(2, "s", str);
-	exit(0);
 }

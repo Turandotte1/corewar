@@ -12,7 +12,7 @@
 
 #include "../dep/includes/asm.h"
 
-int		main(int ac, char **argv)
+int	main(int ac, char **argv)
 {
 	char	*content;
 	int		len;
