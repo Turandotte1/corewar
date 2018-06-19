@@ -6,7 +6,7 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:07:10 by mipham            #+#    #+#             */
-/*   Updated: 2018/04/24 16:40:37 by mipham           ###   ########.fr       */
+/*   Updated: 2018/06/19 16:14:01 by mipham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		get_progsize(t_champ *champ)
 	instr = champ->instructs;
 	while (instr)
 	{
-		size += params_size(instr);
+		size += 1 + params_size(instr);
 		if (g_op_tab[instr->opcode].opcode)
 			++size;
 		instr = instr->next;
