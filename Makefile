@@ -7,7 +7,7 @@ GREY =\033[38;5;253m
 NAME1 = corewar
 NAME2 = asm
 
-CC = gcc
+CC = clang
 CFLAGS = -Wall -Wextra -Werror -g3
 
 SRC_NAME1 = vm.c parse_args.c parse_champion.c give1.c give2.c into_vm.c \
