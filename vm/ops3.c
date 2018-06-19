@@ -19,27 +19,29 @@ void					or(t_vm *vm, t_oper *p, t_params args[3])
 
 void					st(t_vm *vm, t_oper *p, t_params args[3])
 {
-	int					champ_number;
+	//int					champ_number;
 
 	vm->error = 0;
-	if (args[1].type == T_IND)
-	{
-		champ_number = 0;
+	//if (args[1].type == T_IND)
+	//{
+	//	champ_number = 0;
 	//	read_register(get_register(proc->reg, 1), (char *)&champ_number);
 	//	write_register(get_register(proc->reg, args[0].value),
 		//			proc->pc + ((short)args[1].value) % IDX_MOD, champ_number);
-	}
-	else if (args[1].type == T_REG)
+	//}
+	if (args[1].type == T_REG)
+	{
 	//	copy_register(get_register(proc->reg, args[1].value),
 	//			get_register(proc->reg, args[0].value));
-	p->carry = 1;
-	champ_number = champ_number;
-	printf("i do st\n");
+		p->carry = 1;
+	//champ_number = champ_number;
+		ft_printf("i do st\n");
+	}
 }
 
 void					sti(t_vm *vm, t_oper *p, t_params args[3])
 {
-	int					champ_num;
+//	int					champ_num;
 	int					jump;
 	int					first;
 	int					second;
@@ -49,14 +51,14 @@ void					sti(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	jump = (first + second) % IDX_MOD;
-	champ_num = 0;
+//	champ_num = 0;
 //	read_register(get_register(proc->reg, 1), (char *)&champ_number);
 //	write_register(get_register(proc->reg, args[0].value), proc->pc + offset,
 //			
 													//champ_num);
-	jump = jump;
-	champ_num = champ_num;
-	printf("i do sti\n");
+//	(void*)jump;
+//	champ_num = champ_num;
+	ft_printf("i do sti\n");
 }
 
 void					sub(t_vm *vm, t_oper *p, t_params args[3])

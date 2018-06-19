@@ -44,7 +44,7 @@ char					*move_players(t_vm *vm, t_oper *p, int offset)
 		pc = mem + (pc - (mem + MEM_SIZE)) % MEM_SIZE;
 	p->pc = pc;
 	opcode = read_byte(pc);
-	opcode = opcode;
+//	opcode = opcode;
 	return (pc);
 }
 

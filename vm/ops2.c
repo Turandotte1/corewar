@@ -21,8 +21,8 @@ void						ldi(t_vm *vm, t_oper *p, t_params args[3])
 
 	//first = get_value(p, args, 0, 0);
 	//second = get_value(p, args, 1, 0);
-	p = p;
-	args = args;
+	(void) p;
+	(void) args;
 	if (vm->error)
 		return ;
 	//jump = (first + second) % IDX_MOD;
@@ -62,8 +62,8 @@ void						lldi(t_vm *vm, t_oper *p, t_params args[3])
 
 	//first = get_value(p, args, 0, 1);
 	//second = get_value(p, args, 1, 1);
-		p = p;
-	args = args;
+		(void) p;
+	(void) args;
 if (vm->error)
 		return ;
 	//jump = first + second;
