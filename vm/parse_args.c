@@ -102,6 +102,16 @@ static void					into_struct(int *tab, t_flag *flag)
 		give_name(flag, nb);
 }
 
+t_norme							concat(t_vec *vec, t_vm *vm, int player)
+{
+	t_norme tmp;
+
+	tmp.code = vec;
+	tmp.vm = vm;
+	tmp.player = player;
+	return (tmp);
+}
+
 int							flag_or_champ(t_vm *vm, char **argv,
 		t_flag *flags, t_parsing *parsing)
 {
@@ -124,7 +134,7 @@ int							flag_or_champ(t_vm *vm, char **argv,
 		else
 		{
 			parse_champion(fd, &parsing->queue, &parsing->names,
-					&parsing->code, vm, player);
+					concat(&parsing->code, vm, player));
 			give_dispo_name(flags, ++player);
 		}
 		++i;

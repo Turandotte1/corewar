@@ -73,8 +73,10 @@ static t_vec				read_ins(int fd)
 	return (vec);
 }
 
+//		concat vm, player et code
+
 void						parse_champion(int fd, t_vec *queue, t_vec *names,
-										t_vec *code, t_vm *vm, int player)
+										t_norme norme)
 {
 	int						i;
 	t_vec					vec;
@@ -99,5 +101,5 @@ void						parse_champion(int fd, t_vec *queue, t_vec *names,
 		error("size is too big");
 	give_actions(&vec, queue);
 	v_push(names, &head);
-	filter_vec(&vec, code, vm, player);
+	filter_vec(&vec, norme.code, norme.vm, norme.player);
 }

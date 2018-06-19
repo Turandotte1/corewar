@@ -186,6 +186,13 @@ typedef struct 						s_vm
 	char							*arena;
 }									t_vm;
 
+typedef struct						s_norme
+{
+	t_vm							*vm;
+	t_vec							*code;
+	int							player;
+}									t_norme;
+
 extern t_task						g_tab[OPS + 1];
 
 /*
@@ -234,7 +241,7 @@ int									f_ld(t_act *act, t_vec *vec, int i);
 */ 
 
 
-void								parse_champion(int fd, t_vec *queue, t_vec *names, t_vec *code, t_vm *vm, int champ);
+void								parse_champion(int fd, t_vec *queue, t_vec *names, t_norme norme);
 void								give_name(t_flag *f, int name);
 void								give_magic_number(t_vec *vec, header_t *head);
 void								give_size(t_vec *vec, int *i, header_t *head);
