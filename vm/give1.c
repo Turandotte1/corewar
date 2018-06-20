@@ -6,11 +6,21 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 16:57:03 by glegendr          #+#    #+#             */
-/*   Updated: 2018/06/18 20:38:23 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/06/20 18:02:47 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/includes/vm.h"
+
+t_norme					concat(t_vec *vec, t_vm *vm, int player)
+{
+	t_norme tmp;
+
+	tmp.code = vec;
+	tmp.vm = vm;
+	tmp.player = player;
+	return (tmp);
+}
 
 void					give_name(t_flag *f, int name)
 {

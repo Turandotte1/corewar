@@ -6,14 +6,14 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 13:28:50 by mipham            #+#    #+#             */
-/*   Updated: 2018/05/07 13:29:00 by mipham           ###   ########.fr       */
+/*   Updated: 2018/06/20 18:40:42 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_STRUCT_H
-#define ASM_STRUCT_H
+# define ASM_STRUCT_H
 
-#include "asm.h"
+# include "asm.h"
 
 /*
 ** je stocke mes labels dans une liste, address est un flag qui se suivent

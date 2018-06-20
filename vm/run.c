@@ -45,7 +45,7 @@ static int				i_am_alive(t_vm *vm)
 
 static void				showmust_go_on(t_vm *vm)
 {
-	t_oper 				*current;
+	t_oper				*current;
 	int					cycles;
 	int					opcode;
 	int					jump;

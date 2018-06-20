@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser1.c                                          :+:      :+:    :+:   */
+/*   parser_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:47 by glegendr          #+#    #+#             */
-/*   Updated: 2018/06/18 20:39:04 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/06/20 18:11:52 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,16 +100,6 @@ static void					into_struct(int *tab, t_flag *flag)
 	}
 	else
 		give_name(flag, nb);
-}
-
-t_norme							concat(t_vec *vec, t_vm *vm, int player)
-{
-	t_norme tmp;
-
-	tmp.code = vec;
-	tmp.vm = vm;
-	tmp.player = player;
-	return (tmp);
 }
 
 int							flag_or_champ(t_vm *vm, char **argv,
