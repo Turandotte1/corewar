@@ -70,10 +70,10 @@ static int					*is_a_flag(char **argv, int *i, int argc)
 		flag = 3;
 	if (*i == argc - 1 && (flag == 3 || flag == 1))
 		usage();
-	if (flag == 3 || flag == 1)
-		if ((nb = next_nb(argv[*i + 1])) < 0)
+	if ((flag == 3 || flag == 1) && (nb = next_nb(argv[*i + 1])) < 0)
 			error("value is too big or under 0");
-	*i += 1;
+	if (flag == 3 || flag == 1)
+		*i += 1;
 	if ((ret = (int *)malloc(sizeof(int) * 2)) == NULL)
 		error("malloc Error");
 	ret[0] = flag;
