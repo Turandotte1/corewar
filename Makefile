@@ -14,6 +14,7 @@ SRC_NAME1 = vm.c parse_args.c parse_champion.c give1.c give2.c into_vm.c \
 	parsing_f.c parsing_f1.c parsing_f2.c init.c error_helpers.c \
 	run.c op.c ops1.c ops2.c ops3.c ops4.c params_analyser.c \
 	memory_helpers.c print_memory.c process_management.c ops_handler.c \
+	visu_init.c \
 
 SRC_NAME2 = convert.c error.c get_instruct.c get_label.c get_param_value.c main.c method.c op.c parse1.c parse2.c \
 
@@ -35,7 +36,7 @@ INC = $(addprefix $(DIR_INC)/,$(INC_NAME))
 
 MY_LIB = ./dep/libft/libft.a ./dep/libvec/libvec.a ./dep/libmem/libmem.a ./dep/libft_minh/libft_all.a
 MY_LIB_ASM = ./dep/libft/libft.a ./dep/libft_minh/libft_all.a
-NCURSES	= -lpanel -lcurses -lcdk
+NCURSES	= -lpanel -lncurses -lcdk
 
 all: makelibs $(NAME1) $(NAME2)
 
@@ -48,7 +49,7 @@ makelibs:
 $(NAME1): $(OBJ1)
 	@printf "$(RED)[$(NAME1)]: $(CYAN)Compiling .o...$(GREEN)[done] $(GREY)\n"
 	@printf "$(RED)[$(NAME1)]: $(CYAN)Object files compilation: $(GREEN)[OK]$(NC)\n"
-	$(CC) $(CFLAGS) $(OBJ1) -o $(NAME1) -I $(DIR_INC) -L $(MY_LIB) 
+	$(CC) $(CFLAGS) $(OBJ1) -o $(NAME1) -I $(DIR_INC) -L $(MY_LIB) $(NCURSES)
 	@printf "$(RED)[$(NAME1)]: $(CYAN)Executable compilation: $(GREEN)[OK] $(NC)\n"
 
 $(NAME2): $(OBJ2)

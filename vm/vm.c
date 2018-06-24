@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../dep/includes/vm.h"
+#include "../dep/includes/viz.h"
 
 /*
 ** Things to do:
@@ -50,7 +51,7 @@ void						war_start(t_vm *vm)
 	vm->cycle.check = CYCLE_TO_DIE;
 	vm->cycle.cur = 0;
 	if (vm->v)
-		printf("visu mode\n");
+		start_ncurse_mode(vm);
 	else
 	{
 		while (someone_is_alive(vm))

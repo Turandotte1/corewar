@@ -1,17 +1,7 @@
-#include "bonus.h"
+#include "../dep/includes/viz.h"
+#include "../dep/includes/vm.h"
 
-void						colorize_it()
-{
-	start_color();
-	init_pair(1, 89, COLOR_BLACK); //player 1
-	init_pair(2, 117, COLOR_BLACK); //player 2
-	init_pair(3, 141, COLOR_BLACK); //player 3
-	init_pair(4, , COLOR_BLACK);//player 4
-	init_pair(5, 245, 245); //frame
-	init_pair(6, 245, COLOR_BLACK); //fond
-}
-
-static int	get_input(int input, t_panel panels[3])
+/*static int	get_input(int input, t_panel panels[3])
 {
 	if (input == 'n' || input == 's')
 		g_corewar.state = STATE_STEP;
@@ -37,12 +27,14 @@ static int	get_input(int input, t_panel panels[3])
 		return (0);
 	return (1);
 }
+*/
 
-void		start_game(int (*cycle)(t_cycle_infos *))
+void						start_game(int (*someone_is_alive)(t_vm *), t_vm *vm)
 {
-	t_panel	panels[3];
+//	t_windows				win[3];
 
-	panels_init(panels);
+	someone_is_alive(vm);
+/*	panels_init(panels);
 	while (get_input(wgetch(panels[1].win), panels))
 	{
 		if (g_corewar.state & (STATE_RUNNING | STATE_STEP))
@@ -60,20 +52,32 @@ void		start_game(int (*cycle)(t_cycle_infos *))
 		}
 		draw(panels, &g_corewar.cycle_infos);
 	}
-	window_destroy(panels[0].win);
-	window_destroy(panels[1].win);
-	window_destroy(panels[2].win);
+	delete_win(panels[0].win);
+	delete_win(panels[1].win);
+	delete_win(panels[2].win);
+	*/
 	endwin();
+}
+
+void						colorize_it()
+{
+	start_color();
+	init_pair(1, 89, COLOR_BLACK); //player 1
+	init_pair(2, 117, COLOR_BLACK); //player 2
+	init_pair(3, 141, COLOR_BLACK); //player 3
+	init_pair(4, 161, COLOR_BLACK);//player 4
+	init_pair(5, 245, 245); //frame
+	init_pair(6, 245, COLOR_BLACK); //main color
 }
 
 void						start_ncurse_mode(t_vm *vm)
 {
-			initscr();
-			cbreak();
-			raw();
-			noecho();
-			curs_set(0);
-			colorize_it();
-			//	load_players(vm->);
-			//	start_game();
+	initscr();
+	cbreak();
+	raw();
+	noecho();
+	curs_set(0);
+	colorize_it();
+//	memory_handler_here;
+	start_game(&someone_is_alive, vm);
 }
