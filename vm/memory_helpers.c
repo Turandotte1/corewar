@@ -45,49 +45,15 @@ void					analyze_info(t_reg r[REG_SIZE], char *val)
 		convert_endian(val, (char *)r, REG_SIZE);
 }
 
-static void				write_bytes(char *dst, char *src, size_t count, int number)
-{
-	t_byte_infos	*byte;
-	t_player		*player;
-	size_t			offset;
-	size_t			i;
-
-	i = 0;
-	offset = 0;
-	if (dst != g_corewar.cycle_infos.arena)
-		offset = dst - g_corewar.cycle_infos.arena;
-	while (i < count)
-	{
-		dst[i] = src[i];
-		byte = &g_corewar.cycle_infos.byte_infos[offset + i];
-		byte->op = 50;
-		if ((player = who_is_it(number)))
-			byte->number = player->id;
-		i++;
-	}
-}
-
-void					write_range(char *src, char *pc, size_t range, int number)
-{
-	char	*mem;
-	int		overflow;
-
-	if ((mem = g_corewar.cycle_infos.arena) > pc)
-		pc = ((pc - mem) % MEM_SIZE) + mem + MEM_SIZE;
-	else if (pc > mem + MEM_SIZE)
-		pc = mem + (pc - (mem + MEM_SIZE)) % MEM_SIZE;
-	if ((overflow = pc + range - (mem + MEM_SIZE)) > 0)
-	{
-		range -= overflow;
-		write_bytes(mem, &src[range], overflow, number);
-	}
-	write_bytes(pc, src, range, number);
-}
 
 void					write_info(t_reg r[REG_SIZE], char *pc, int champ_number)
 {
 	if (r)
-		write_range((char *)r, pc, REG_SIZE, champ_number);
+		//write_range((char *)r, pc, REG_SIZE, champ_number);
+		printf("writing here\n");
+	champ_number = 2;
+	pc = NULL;
+	r = NULL;
 }
 
 
