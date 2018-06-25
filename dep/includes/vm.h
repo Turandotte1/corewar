@@ -107,6 +107,14 @@ typedef struct						s_params
 	t_arg_type						type;
 }									t_params;
 
+typedef struct 						s_binary
+{
+	char							id;
+	char							live;
+	char							pc;
+	char							op;
+}									t_binary;
+
 typedef struct						s_cycle
 {
 	int								to_die;
@@ -114,12 +122,13 @@ typedef struct						s_cycle
 	int								cur;
 	int								cycle_nb;
 	int 							last_live;
+	t_binary						byte[MEM_SIZE];
 }									t_cycle;
 
 typedef struct						s_champion
 {
 	char							*ch;
-	char								*complete_ch;
+	char							*complete_ch;
 	int								len;
 	int								position;
 	int								last_live;
@@ -276,7 +285,7 @@ t_champion							*who_is_it(t_vm *vm, int id);
 t_reg								*read_info(t_vm *vm, t_reg r[REG_SIZE], int i);
 
 
-
+void					write_range(char *src, char *pc, size_t range, int number);
 
 void								analyze_info(t_reg r[REG_SIZE], char *val);
 

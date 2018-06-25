@@ -27,7 +27,7 @@ void						ld(t_vm *vm, t_oper *p, t_params args[3])
 	int						val;
 
 	val = get_value(p, args, 0, 0);
-	store(read_info(vm, p->r, args[1].value), (char *)&val);
+	store_info(read_info(vm, p->r, args[1].value), (char *)&val);
 	if (vm->error)
 		return ;
 	p->carry = (val == 0) ? 1 : 0;
