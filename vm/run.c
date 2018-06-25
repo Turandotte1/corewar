@@ -1,10 +1,5 @@
 #include "../dep/includes/vm.h"
-
-static void				dump_memory(t_vm *vm)
-{
-	print_memory(vm->arena, 4096);
-	exit(0);
-}
+#include "../dep/includes/viz.h"
 
 static void				count_lives(t_vm *vm, size_t *hm_live, size_t *hm_die)
 {
@@ -30,7 +25,7 @@ static int				i_am_alive(t_vm *vm)
 
 	count_lives(vm, &live_count, &die_count);
 	if (die_count > 0)
-		kill_processes(vm, vm->hm_process - die_count);
+		kill_process(vm, vm->hm_process - die_count);
 	else
 	{
 		i = vm->hm_process;
@@ -39,7 +34,7 @@ static int				i_am_alive(t_vm *vm)
 	}
 	i = vm->champs;
 	while (--i >= 0)
-		vm->champ[i].live_made = 0;
+		vm->champ[i].cur_live = 0;
 	return (live_count >= NBR_LIVE);
 }
 
@@ -56,7 +51,7 @@ static void				showmust_go_on(t_vm *vm)
 		current = &vm->ops[cycles];
 		if (current->waiting < 0)
 		{
-			opcode = read_byte(current->pc) - 1;
+			opcode = read_adress_info(current->pc) - 1;
 			if (opcode < OPS && opcode >= 0)
 			{
 				current->act = &g_tab[opcode];
@@ -74,8 +69,12 @@ static void				showmust_go_on(t_vm *vm)
 int						someone_is_alive(t_vm *vm)
 {
 	if (vm->dump > 0 && vm->hm_cycles >= vm->dump_nb)
-		dump_memory(vm);
+	{
+		print_memory(vm->arena, 4096);
+		exit(EXIT_SUCCESS);
+	}
 	vm->hm_cycles++;
+	printf("%d\n", vm->hm_cycles);
 	showmust_go_on(vm);
 	if (vm->hm_cycles >= vm->cycle.check)
 	{
@@ -89,4 +88,25 @@ int						someone_is_alive(t_vm *vm)
 		vm->cycle.check -= CYCLE_DELTA;
 	}
 	return (vm->hm_process <= 0 || vm->cycle.to_die <= 0) ? 0 : 1;
+}
+
+void					players_are_ready(t_vm *vm)
+{
+	t_champion			*win;
+
+	vm->cycle.to_die = CYCLE_TO_DIE;
+	vm->cycle.check = CYCLE_TO_DIE;
+	vm->cycle.cur = 0;
+	if (vm->v)
+		start_ncurse_mode(vm);
+	else
+	{
+		while (someone_is_alive(vm))
+			;
+	}
+	if ((win = who_is_it(vm, vm->cycle.last_live)))
+		ft_printf("Contestant %i, \"%s\", has won !\n", -win->champ_id, "Zork");
+	else
+		ft_printf("Contestant %i, \"%s\", has won !\n",
+				-vm->champ->champ_id, "Zork1");
 }

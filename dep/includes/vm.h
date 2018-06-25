@@ -113,6 +113,7 @@ typedef struct						s_cycle
 	int								check;
 	int								cur;
 	int								cycle_nb;
+	int 							last_live;
 }									t_cycle;
 
 typedef struct						s_champion
@@ -120,7 +121,8 @@ typedef struct						s_champion
 	char							*ch;
 	int								len;
 	int								position;
-	int								live_made;
+	int								last_live;
+	int 							cur_live;
 	int								champ_id;
 }									t_champion;
 
@@ -220,6 +222,7 @@ void								into_vm(t_vm *vm, t_flag *flag,
 */
 
 void								war_start(t_vm *vm);
+void								players_are_ready(t_vm *vm);
 int									someone_is_alive(t_vm *vm);
 int									which_operation(t_vm *vm, t_oper *p);
 size_t								analyze_param(t_oper *p, int opcode,
@@ -236,8 +239,9 @@ int									get_value(t_oper *proc, t_params *arg,
 **----------------------------------Operations----------------------------------
 */
 
-void								add(t_vm *vm, t_oper *p, t_params args[3]);
 void								live(t_vm *vm, t_oper *p, t_params args[3]);
+
+void								add(t_vm *vm, t_oper *p, t_params args[3]);
 void								aff(t_vm *vm, t_oper *p, t_params args[3]);
 void								and(t_vm *vm, t_oper *p, t_params args[3]);
 void								fork_o(t_vm *vm, t_oper *p,
@@ -261,13 +265,15 @@ void								zjmp(t_vm *vm, t_oper *p, t_params args[3]);
 
 t_oper								*make_process(t_vm *vm,
 		char *pc, t_oper *parent_t);
-void								kill_processes(t_vm *vm, size_t count);
+void								kill_process(t_vm *vm, size_t count);
+t_champion							*who_is_it(t_vm *vm, int id);
 
 /*
 **----------------------------------Memory helpers------------------------------
 */
 
-char								read_byte(char *addr);
+char								read_adress_info(char *address);
+
 t_reg								*get_register(t_reg *registers, int idx);
 void								read_range(char *dst, char *pc,
 		size_t range);

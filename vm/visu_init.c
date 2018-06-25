@@ -31,31 +31,31 @@
 
 void						start_game(int (*someone_is_alive)(t_vm *), t_vm *vm)
 {
-//	t_windows				win[3];
+	t_windows				win[3];
 
+	windows_init(win, vm);
+	sleep(1);
 	someone_is_alive(vm);
-/*	panels_init(panels);
-	while (get_input(wgetch(panels[1].win), panels))
-	{
-		if (g_corewar.state & (STATE_RUNNING | STATE_STEP))
-		{
-			if (cycle_fn(&g_corewar.cycle_infos) <= 0)
-			{
-				g_corewar.state = STATE_DONE;
-				g_corewar.flags &= ~FLAG_FULL;
-				panels_resize(panels);
-				timeout(-1);
-				while (getch() == KEY_RESIZE)
-					panels_resize(panels);
-				break ;
-			}
-		}
-		draw(panels, &g_corewar.cycle_infos);
-	}
-	delete_win(panels[0].win);
-	delete_win(panels[1].win);
-	delete_win(panels[2].win);
-	*/
+//	while (get_input(wgetch(panels[1].win), panels))
+//	{
+//		if (g_corewar.state & (STATE_RUNNING | STATE_STEP))
+//		{
+//			if (cycle_fn(&g_corewar.cycle_infos) <= 0)
+//			{
+//				g_corewar.state = STATE_DONE;
+//				g_corewar.flags &= ~FLAG_FULL;
+//				panels_resize(panels);
+//				timeout(-1);
+//				while (getch() == KEY_RESIZE)
+//					panels_resize(panels);
+//				break ;
+//			}
+//		}
+//		draw(panels, &g_corewar.cycle_infos);
+//	}
+//	delete_win(panels[0].win);
+//	delete_win(panels[1].win);
+//	delete_win(panels[2].win);
 	endwin();
 }
 

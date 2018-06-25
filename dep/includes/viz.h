@@ -3,17 +3,25 @@
 
 #include "vm.h"
 
-typedef struct	s_vec2
+typedef struct			s_coord
 {
-	int		x;
-	int		y;
-}				t_vec2;
+	int					x;
+	int					y;
+}						t_coord;
 
-typedef struct	s_windows
+typedef struct			s_windows
 {
-	WINDOW	*win;
-	t_vec2	size;
-}				t_windows;
+	WINDOW				*window;
+	t_coord				len;
+}						t_windows;
+
+typedef struct			s_data
+{
+	va_list				*ap;
+	const char			*format;
+	char				*out;
+	int					write_size;
+}						t_data;
 
 
 
@@ -23,5 +31,12 @@ typedef struct	s_windows
 
 void			start_ncurse_mode(t_vm *vm);
 void			start_game(int (*someone_is_alive)(t_vm *), t_vm *vm);
+void			windows_init(t_windows win[3], t_vm *vm);
+
+/*
+**---------------------------drawing functions----------------------------------
+*/
+
+void			draw_win(t_windows win[3], t_vm *vm);
 
 #endif

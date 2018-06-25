@@ -43,12 +43,11 @@ char					*move_players(t_vm *vm, t_oper *p, int offset)
 	else if (pc > mem + MEM_SIZE)
 		pc = mem + (pc - (mem + MEM_SIZE)) % MEM_SIZE;
 	p->pc = pc;
-	opcode = read_byte(pc);
-//	opcode = opcode;
+	opcode = read_adress_info(pc);
 	return (pc);
 }
 
-void					kill_processes(t_vm *vm, size_t count)
+void					kill_process(t_vm *vm, size_t count)
 {
 	t_oper				*old;
 
@@ -79,4 +78,20 @@ t_oper					*make_process(t_vm *vm, char *pc, t_oper *parent_p)
 	new_p->act = 0;
 	new_p->pc = pc;
 	return (new_p);
+}
+
+t_champion				*who_is_it(t_vm *vm, int id)
+{
+	int					i;
+	t_champion			*champ;
+	
+	i = 0;
+	while (i < vm->champs)
+	{
+		champ = &vm->champ[i];
+		if (champ->champ_id == id)
+			return (champ);
+		i++;
+	}
+	return (NULL);
 }

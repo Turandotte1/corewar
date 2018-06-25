@@ -13,11 +13,43 @@
 #include "../dep/includes/vm.h"
 #include "../dep/includes/viz.h"
 
-/*
-** Things to do:
-** Lier visu au bon endroit, ajouter cycle ncurse
-** ajouter memory dump dans someone_is_alive in run.c
-*/
+void						convert_endian(char *dest, char *src, 
+															size_t type_len)
+{
+	int						i;
+
+	i = type_len - 1;
+	while (i >= 0)
+	{
+		dest[i] = src[type_len - (i + 1)];
+		i--;
+	}
+}
+
+void						war_start(t_vm *vm)
+{
+	int						how_many_players;
+	int						position;
+	int						i;
+	t_champion 				*player;
+
+	how_many_players = vm->champs;
+	i = 0;
+	ft_printf("Introducing contestants...\n");
+	while (i < how_many_players)
+	{
+		player = &vm->champ[i];
+		position = player->position;
+		ft_printf("* Player %i, weighing %i bytes, \"%s\" (\"%s\") !\n", 
+			player->champ_id, 400, "Zork", "I am Zork");
+		make_process(vm, &vm->arena[position], NULL);
+		player->champ_id = -player->champ_id;
+		convert_endian((char*)&vm->ops[i].r[0], (char *)&player->champ_id, REG_SIZE);
+//		print_memory(&vm->ops[i].r[0], REG_SIZE);
+		i++;
+	}
+	players_are_ready(vm);
+}
 
 void						del_queue(t_vec *vec, t_vec *names)
 {
@@ -31,32 +63,6 @@ void						del_queue(t_vec *vec, t_vec *names)
 	}
 	v_del(vec);
 	v_del(names);
-}
-
-void						war_start(t_vm *vm)
-{
-	int						how_many_players;
-	int						position;
-	int						i;
-
-	how_many_players = vm->champs;
-	i = 0;
-	while (how_many_players)
-	{
-		position = vm->champ[i++].position;
-		make_process(vm, &vm->arena[position], NULL);
-		--how_many_players;
-	}
-	vm->cycle.to_die = CYCLE_TO_DIE;
-	vm->cycle.check = CYCLE_TO_DIE;
-	vm->cycle.cur = 0;
-	if (vm->v)
-		start_ncurse_mode(vm);
-	else
-	{
-		while (someone_is_alive(vm))
-			;
-	}
 }
 
 void						parse_args(t_vm *vm, t_flag flags, char **argv)
@@ -86,7 +92,6 @@ int							main(int argc, char **argv)
 	ft_bzero(&flag, sizeof(t_flag));
 	vm.champ = malloc(sizeof(t_champion) * argc);
 	parse_args(&vm, flag, argv);
-//	print_memory(vm.arena, MEM_SIZE);
 	war_start(&vm);
 	free(vm.arena);
 	return (0);

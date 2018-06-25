@@ -12,11 +12,11 @@
 
 #include "../dep/includes/vm.h"
 
-char					read_byte(char *addr)
+char					read_adress_info(char *address)
 {
 	int					overflow;
 
-	if ((overflow = addr - (addr + MEM_SIZE)) >= 0)
-		return (addr[overflow]);
-	return (*addr);
+	if ((overflow = address - (address + MEM_SIZE)) >= 0)
+		return (address[overflow]);
+	return (*address);
 }

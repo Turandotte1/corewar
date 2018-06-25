@@ -67,7 +67,7 @@ static void						get_param(char *pc, t_params args[3], int param_count)
 		value_ptr = (char *)&args[i].value;
 		while (j < size)
 		{
-			value_ptr[size - (j + 1)] = read_byte(pc + jump + j);
+			value_ptr[size - (j + 1)] = read_adress_info(pc + jump + j);
 			j++;
 		}
 		jump += args[i].size;
@@ -83,7 +83,7 @@ size_t							analyze_param(t_oper *p, int opcode, t_params args[3])
 
 	ft_bzero(args, sizeof(t_params) * 3);
 	param_count = g_tab[opcode - 1].hm_params;
-	jump = check_param(args, read_byte(p->pc + 1), opcode - 1, param_count);
+	jump = check_param(args, read_adress_info(p->pc + 1), opcode - 1, param_count);
 	param_len = args[0].size + args[1].size + args[2].size;
 	if (param_len > 0)
 		get_param((char *)&p->pc[jump], args, param_count);

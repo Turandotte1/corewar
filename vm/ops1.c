@@ -1,5 +1,32 @@
 #include "../dep/includes/vm.h"
 
+void					live(t_vm *vm, t_oper *p, t_params args[3])
+{
+//	int					jump;
+//	t_cycle				*cycle;
+//	t_champion			*champ;
+	
+	printf("i do live\n");
+	vm->error = 0;
+	p->live++;
+	args[2].value = 0;
+/*	if ((champ = who_is_it(vm, args[0].value)))
+	{
+		cycle = &vm->cycle;
+		jump = p->pc - vm->arena;
+//		if (jump >= 0 && jump < MEM_SIZE)
+//			->byte_infos[jump].live = 50;
+		cycle->last_live = champ->champ_id;
+		champ->last_live = vm->hm_cycles;
+		champ->cur_live++;
+		if (!(vm->v))
+			ft_printf("A process tells player %i(%s) is alive\n",
+								champ->champ_id, "insert name here");
+	}
+	*/
+
+}
+
 void					add(t_vm *vm, t_oper *p, t_params args[3])
 {
 	int					sum;
@@ -15,32 +42,7 @@ void					add(t_vm *vm, t_oper *p, t_params args[3])
 	printf("i do add\n");
 }
 
-void					live(t_vm *vm, t_oper *p, t_params args[3])
-{
-	vm->error = 0;
-/*	t_cycle_infos	*infos;
-	t_player		*player;
-	int				offset;
 
-	proc->live++;
-	if ((player = find_player(args[0].value)))
-	{
-		infos = &g_corewar.cycle_infos;
-		offset = proc->pc - infos->arena;
-		if (offset >= 0 && offset < MEM_SIZE)
-			infos->byte_infos[offset].live = 50;
-		infos->last_live = player->number;
-		player->last_live = infos->count;
-		player->current_lives++;
-		if (!(g_corewar.flags & FLAG_NCUR))
-			ft_printf(player->number, player->name);
-	}
-	*/
-	p->carry = 1;
-	args[2].value = 0;
-	printf("i do live\n");
-
-}
 
 void						aff(t_vm *vm, t_oper *p, t_params args[3])
 {
