@@ -42,7 +42,7 @@ static int					check_ocp(t_oper *p, t_params args[3])
 }
 
 int							play(void (*func)(t_vm *, t_oper *, t_params[3]),
-		t_oper *p, t_vm *vm)
+														t_oper *p, t_vm *vm)
 {
 	t_params					args[3];
 	int							jump;
@@ -50,11 +50,11 @@ int							play(void (*func)(t_vm *, t_oper *, t_params[3]),
 	p->waiting = -1;
 	vm->error = 0;
 	jump = analyze_param(p, p->act->val, args);
-	if (func == &zjmp)
-	{
-		func(vm, p, args);
-		return (0);
-	}
+//	if (func == &zjmp)
+//	{
+//		func(vm, p, args);
+//		return (0);
+//	}
 	if (!p->act->ocp || check_ocp(p, args))
 		func(vm, p, args);
 	return (jump);
@@ -67,6 +67,5 @@ int							which_operation(t_vm *vm, t_oper *p)
 		&or, &xor, &zjmp, &ldi, &sti, &fork_o,
 		&lld, &lldi, &lfork, &aff,
 	};
-
 	return (p->act == NULL ? 1 : play(func[p->act->val - 1], p, vm));
 }

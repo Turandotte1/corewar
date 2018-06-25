@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../dep/includes/vm.h"
-#include "../dep/includes/viz.h"
 
 void						convert_endian(char *dest, char *src, 
 															size_t type_len)
@@ -45,7 +44,7 @@ void						war_start(t_vm *vm)
 		make_process(vm, &vm->arena[position], NULL);
 		player->champ_id = -player->champ_id;
 		convert_endian((char*)&vm->ops[i].r[0], (char *)&player->champ_id, REG_SIZE);
-//		print_memory(&vm->ops[i].r[0], REG_SIZE);
+		print_memory(&vm->ops[i].r[0], REG_SIZE);
 		i++;
 	}
 	players_are_ready(vm);

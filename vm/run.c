@@ -1,7 +1,8 @@
 #include "../dep/includes/vm.h"
 #include "../dep/includes/viz.h"
 
-static void				count_lives(t_vm *vm, size_t *hm_live, size_t *hm_die)
+static void				count_lives(t_vm *vm, 
+										size_t *hm_live, size_t *hm_die)
 {
 	int					i;
 
@@ -46,7 +47,7 @@ static void				showmust_go_on(t_vm *vm)
 	int					jump;
 
 	cycles = vm->hm_process;
-	while (cycles--)
+	while (--cycles >= 0)
 	{
 		current = &vm->ops[cycles];
 		if (current->waiting < 0)
@@ -74,7 +75,7 @@ int						someone_is_alive(t_vm *vm)
 		exit(EXIT_SUCCESS);
 	}
 	vm->hm_cycles++;
-	printf("%d\n", vm->hm_cycles);
+//	printf("%d\n", vm->hm_cycles);
 	showmust_go_on(vm);
 	if (vm->hm_cycles >= vm->cycle.check)
 	{

@@ -249,7 +249,7 @@ void								fork_o(t_vm *vm, t_oper *p,
 void								ld(t_vm *vm, t_oper *p, t_params args[3]);
 void								ldi(t_vm *vm, t_oper *p, t_params args[3]);
 void								lfork(t_vm *vm, t_oper *p,
-		t_params args[3]);
+															t_params args[3]);
 void								lld(t_vm *vm, t_oper *p, t_params args[3]);
 void								lldi(t_vm *vm, t_oper *p, t_params args[3]);
 void								or(t_vm *vm, t_oper *p, t_params args[3]);
@@ -272,14 +272,27 @@ t_champion							*who_is_it(t_vm *vm, int id);
 **----------------------------------Memory helpers------------------------------
 */
 
+t_reg								*read_info(t_vm *vm, t_reg r[REG_SIZE], int i);
+
+
+
+
+void								analyze_info(t_reg r[REG_SIZE], char *val);
+
+
+void								write_info(t_reg r[REG_SIZE], char *pc, 
+												int champ_number);
 char								read_adress_info(char *address);
 
-t_reg								*get_register(t_reg *registers, int idx);
 void								read_range(char *dst, char *pc,
 		size_t range);
-void								store_register(char *dst, char *src,
-		size_t type_size);
+void								store(t_reg r[REG_SIZE], char *val);
 void								print_memory(const void *addr, size_t size);
+
+void								convert_endian(char *dest, char *src, 
+															size_t type_len);
+
+
 
 /*
 ** Pour les operation

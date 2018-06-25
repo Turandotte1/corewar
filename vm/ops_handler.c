@@ -51,15 +51,3 @@ t_reg						*get_register(t_reg *registers, int idx)
 	}
 	ft_memcpy((void *)dst, (void *)pc, range);
 }*/
-
-void						store_register(char *dst, char *src, size_t type_size)
-{
-	int		i;
-
-	i = type_size - 1;
-	while (i >= 0)
-	{
-		dst[i] = src[type_size - (i + 1)];
-		i--;
-	}
-}

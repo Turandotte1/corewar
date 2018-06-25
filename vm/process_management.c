@@ -33,7 +33,6 @@ char					*move_players(t_vm *vm, t_oper *p, int offset)
 {
 	char				*pc;
 	char				*mem;
-	int 				opcode;
 
 	p->act = NULL;
 	p->waiting = -1;
@@ -43,7 +42,6 @@ char					*move_players(t_vm *vm, t_oper *p, int offset)
 	else if (pc > mem + MEM_SIZE)
 		pc = mem + (pc - (mem + MEM_SIZE)) % MEM_SIZE;
 	p->pc = pc;
-	opcode = read_adress_info(pc);
 	return (pc);
 }
 
@@ -59,14 +57,15 @@ void					kill_process(t_vm *vm, size_t count)
 	free(old);
 }
 
-t_oper					*make_process(t_vm *vm, char *pc, t_oper *parent_p)
+t_oper						*make_process(t_vm *vm, char *pc, t_oper *parent_p)
 {
-	t_oper				*new_p;
-	t_oper				*temp;
-	int 				now;
+	static unsigned int		uid = 0;
+	t_oper					*new_p;
+	t_oper					*temp;
+	int 					now;
 
-	if (parent_p)
-		ft_memcpy(&temp, parent_p, sizeof(t_oper));
+//	if (parent_p)
+//		ft_memcpy(&temp, parent_p, sizeof(t_oper));
 	vm->hm_process++;
 	now = vm->hm_process;
 	vm->ops = realloc(vm->ops, sizeof(t_oper) * now);
@@ -74,6 +73,7 @@ t_oper					*make_process(t_vm *vm, char *pc, t_oper *parent_p)
 	ft_bzero(new_p, sizeof(t_oper));
 	if (parent_p)
 		ft_memcpy(new_p, &temp, sizeof(t_oper));
+	new_p->id = uid++;
 	new_p->waiting = -1;
 	new_p->act = 0;
 	new_p->pc = pc;
