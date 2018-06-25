@@ -1,25 +1,21 @@
 #include "../dep/includes/vm.h"
 
-void					sti(t_vm *vm, t_oper *p, t_params args[3])
+void						sti(t_vm *vm, t_oper *p, t_params args[3])
 {
-//	int					champ_num;
-	int					jump;
-	int					first;
-	int					second;
+	int						champ_id;
+	int						jump;
+	int						a;
+	int						b;
 
-	first = get_value(p, args, 1, 0);
-	second = get_value(p, args, 2, 0);
+	a = get_value(vm, p, args, 1, 0);
+	b = get_value(vm, p, args, 2, 0);
 	if (vm->error)
 		return ;
-	jump = (first + second) % IDX_MOD;
-//	champ_num = 0;
-//	read_register(get_register(proc->reg, 1), (char *)&champ_number);
-//	write_register(get_register(proc->reg, args[0].value), proc->pc + offset,
-//			
-													//champ_num);
-//	(void*)jump;
-//	champ_num = champ_num;
-	ft_printf("i do sti\n");
+	jump = (a + b) % IDX_MOD;
+	champ_id = 0;
+	analyze_info(read_info(vm, p->r, 1), (char *)&champ_id);
+	write_info(vm, read_info(vm, p->r, args[0].value), p->pc + jump, champ_id);
+	printf("i do sti\n");
 }
 
 void						fork_o(t_vm *vm, t_oper *p, t_params args[3])
@@ -34,38 +30,36 @@ void						fork_o(t_vm *vm, t_oper *p, t_params args[3])
 
 void						lld(t_vm *vm, t_oper *p, t_params args[3])
 {
-	int						val;
+	int						lld;
 
-	val = get_value(p, args, 0, 1);
-//	store_register(get_register(proc->reg, args[1].value), (char *)&value);
+	lld = get_value(vm, p, args, 0, 1);
+	store_info(read_info(vm, p->r, args[1].value), (char *)&lld);
 	if (vm->error)
 		return ;
-	p->carry = (val != 0) ? 0 : 1;
+	p->carry = (lld == 0) ? 1 : 0;
 	printf("i do lld\n");
 }
 
 void						lldi(t_vm *vm, t_oper *p, t_params args[3])
 {
-//	t_reg					*dest;
-	int						reg_val;
-	//int						jump;
-	//int						first;
-	//int						second;
+	t_reg					*dest;
+	int						lldi;
+	int						jump;
+	int						a;
+	int						b;
 
-	//first = get_value(p, args, 0, 1);
-	//second = get_value(p, args, 1, 1);
-		(void) p;
-	(void) args;
-if (vm->error)
-		return ;
-	//jump = first + second;
-//	if ((dest = get_register(p->reg, args[2].value)))
-//		read_range((char *)dst_reg, proc->pc + offset, REG_SIZE);
-	reg_val = 0;
-//	read_register(get_register(proc->reg, args[2].value), (char *)&reg_value);
+	a = get_value(vm, p, args, 0, 1);
+	b = get_value(vm, p, args, 1, 1);
 	if (vm->error)
 		return ;
-	p->carry = (reg_val != 0 ) ? 0 : 1;
+	jump = a + b;
+	if ((dest = read_info(vm, p->r, args[2].value)))
+		read_through(vm, (char *)dest, p->pc + jump, REG_SIZE);
+	lldi = 0;
+	analyze_info(read_info(vm, p->r, args[2].value), (char *)&lldi);
+	if (vm->error)
+		return ;
+	p->carry = (lldi == 0) ? 1 : 0;
 	printf("i do lldi\n");
 }
 
@@ -77,27 +71,3 @@ void						lfork(t_vm *vm, t_oper *p, t_params args[3])
 	move_players(vm, new_p, (short)args[0].value);
 	printf("i do lfork\n");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

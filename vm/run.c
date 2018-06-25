@@ -75,7 +75,6 @@ int						someone_is_alive(t_vm *vm)
 		exit(EXIT_SUCCESS);
 	}
 	vm->hm_cycles++;
-//	printf("%d\n", vm->hm_cycles);
 	showmust_go_on(vm);
 	if (vm->hm_cycles >= vm->cycle.check)
 	{

@@ -17,8 +17,8 @@ void						live(t_vm *vm, t_oper *p, t_params args[3])
 		champ->last_live = vm->hm_cycles;
 		champ->cur_live++;
 		if (!(vm->v))
-			ft_printf("A process tells player %i(%s) is alive\n",
-								champ->champ_id, "insert name here");
+			ft_printf("Player %d (%s) is said to be alive\n",
+								-champ->champ_id, "insert name here");
 	}
 }
 
@@ -26,33 +26,31 @@ void						ld(t_vm *vm, t_oper *p, t_params args[3])
 {
 	int						val;
 
-	val = get_value(p, args, 0, 0);
-//	store_info(read_info(vm, p->r, args[1].value), (char *)&val);
+	val = get_value(vm, p, args, 0, 0);
+	store_info(read_info(vm, p->r, args[1].value), (char *)&val);
 	if (vm->error)
 		return ;
 	p->carry = (val == 0) ? 1 : 0;
-//	printf("i do ld\n");
+	printf("i do ld\n");
 }
 
 void						st(t_vm *vm, t_oper *p, t_params args[3])
 {
-	int					champ_number;
+	int						champ_id;
 
 	if (args[1].type == T_IND)
 	{
-		champ_number = 0;
-		analyze_info(read_info(vm, p->r, 1), (char *)&champ_number);
-	//	write_register(get_register(proc->reg, args[0].value),
-		//			proc->pc + ((short)args[1].value) % IDX_MOD, champ_number);
+		champ_id = 0;
+		analyze_info(read_info(vm, p->r, 1), (char *)&champ_id);
+		write_info(vm, read_info(vm, p->r, args[0].value),
+					p->pc + ((short)args[1].value) % IDX_MOD, champ_id);
 	}
 	if (args[1].type == T_REG)
 	{
-	//	copy_register(get_register(proc->reg, args[1].value),
-	//			get_register(proc->reg, args[0].value));
-		p->carry = 1;
-	//champ_number = champ_number;
-		ft_printf("i do st\n");
+		copy_info(read_info(vm, p->r, args[1].value),
+				read_info(vm, p->r, args[0].value));
 	}
+	printf("i do st\n");
 }
 
 void						add(t_vm *vm, t_oper *p, t_params args[3])
@@ -61,30 +59,33 @@ void						add(t_vm *vm, t_oper *p, t_params args[3])
 	int						a;
 	int						b;
 
-	vm->error = 0;
-	a = get_value(p, args, 0, 0);
-	b = get_value(p, args, 1, 0);
+	a = get_value(vm, p, args, 0, 0);
+	b = get_value(vm, p, args, 1, 0);
+	if (vm->error)
+		return ;
 	sum = a + b;
-//	store_register((char*)get_register(p->r, args[2].value), (char *)&sum, REG_SIZE);
-	p->carry = (sum != 0) ? 0 : 1;
+	store_info(read_info(vm, p->r, args[2].value), (char *)&sum);
+	if (vm->error)
+		return ;
+	p->carry = (sum == 0) ? 1 : 0;
 	printf("i do add\n");
 }
 
 void						sub(t_vm *vm, t_oper *p, t_params args[3])
 {
-	int						sum;
-	int						first;
-	int						second;
+	int						sub;
+	int						a;
+	int						b;
 
-	first = get_value(p, args, 0, 0);
-	second = get_value(p, args, 1, 0);
+	a = get_value(vm, p, args, 0, 0);
+	b = get_value(vm, p, args, 1, 0);
 	if (vm->error)
 		return ;
-	sum = first - second;
-//	store_register(get_register(proc->reg, args[2].value), (char *)&sum);
+	sub = a - b;
+	store_info(read_info(vm, p->r, args[2].value), (char *)&sub);
 	if (vm->error)
 		return ;
-	p->carry = (sum != 0) ? 0 : 1;
+	p->carry = (sub == 0) ? 1 : 0;
 	printf("i do sub\n");
 }
 

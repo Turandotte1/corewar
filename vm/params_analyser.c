@@ -87,5 +87,5 @@ size_t							analyze_param(t_oper *p, int opcode, t_params args[3])
 	param_len = args[0].size + args[1].size + args[2].size;
 	if (param_len > 0)
 		get_param((char *)&p->pc[jump], args, param_count);
-	return (jump + param_count);
+	return (jump + param_len);
 }

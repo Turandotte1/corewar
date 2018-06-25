@@ -129,12 +129,12 @@ typedef struct						s_champion
 {
 	char							*ch;
 	char							*complete_ch;
-	header_t 						head;
 	int								len;
 	int								position;
 	int								last_live;
 	int 							cur_live;
 	int								champ_id;
+//	header_t 						head;
 }									t_champion;
 
 typedef struct						s_vm
@@ -243,8 +243,7 @@ int									play(void (*func)(t_vm *, t_oper *,
 		t_oper *p, t_vm *vm);
 char								*move_players(t_vm *vm, t_oper *p,
 		int offset);
-int									get_value(t_oper *proc, t_params *arg,
-		int idx, int long_op);
+
 
 /*
 **----------------------------------Operations----------------------------------
@@ -284,21 +283,28 @@ t_champion							*who_is_it(t_vm *vm, int id);
 */
 
 t_reg								*read_info(t_vm *vm, t_reg r[REG_SIZE], int i);
+void								store_info(t_reg r[REG_SIZE], char *val);
 
-
-void					write_range(char *src, char *pc, size_t range, int number);
 
 void								analyze_info(t_reg r[REG_SIZE], char *val);
 
+void 								copy_info(t_reg dest[REG_SIZE], t_reg src[REG_SIZE]);
 
-void								write_info(t_reg r[REG_SIZE], char *pc, 
-												int champ_number);
+
+void					write_info(t_vm *vm, t_reg r[REG_SIZE], char *pc, int champ_number);
+
 char								read_adress_info(char *address);
 
-void								read_range(char *dst, char *pc,
-		size_t range);
+void						read_through(t_vm *vm, char *dst, char *pc, size_t range);
+int							get_value(t_vm *vm, t_oper *p, t_params *args, int idx, int long_op);
+
+
+
 void								store(t_reg r[REG_SIZE], char *val);
 void								print_memory(const void *addr, size_t size);
+
+void								binary_write(t_vm *vm, char *src, char *pc, 
+										size_t range, int number);
 
 void								convert_endian(char *dest, char *src, 
 															size_t type_len);

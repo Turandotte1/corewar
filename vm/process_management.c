@@ -29,10 +29,10 @@ static void					resize(t_oper *new, t_oper *old, size_t old_size)
 		ft_memcpy(&new[idx], &old[from], sizeof(t_oper) * (i - from));
 }
 
-char					*move_players(t_vm *vm, t_oper *p, int offset)
+char						*move_players(t_vm *vm, t_oper *p, int offset)
 {
-	char				*pc;
-	char				*mem;
+	char					*pc;
+	char					*mem;
 
 	p->act = NULL;
 	p->waiting = -1;
@@ -45,9 +45,9 @@ char					*move_players(t_vm *vm, t_oper *p, int offset)
 	return (pc);
 }
 
-void					kill_process(t_vm *vm, size_t count)
+void						kill_process(t_vm *vm, size_t count)
 {
-	t_oper				*old;
+	t_oper					*old;
 
 	old = vm->ops;
 	if (!(vm->ops = (t_oper *)malloc(sizeof(t_oper) * count)))
@@ -59,13 +59,14 @@ void					kill_process(t_vm *vm, size_t count)
 
 t_oper						*make_process(t_vm *vm, char *pc, t_oper *parent_p)
 {
-	static unsigned int		uid = 0;
+	static unsigned int		uid;
 	t_oper					*new_p;
 	t_oper					*temp;
 	int 					now;
 
-//	if (parent_p)
-//		ft_memcpy(&temp, parent_p, sizeof(t_oper));
+	uid = 0;
+	if (parent_p)
+		ft_memcpy(&temp, parent_p, sizeof(t_oper));
 	vm->hm_process++;
 	now = vm->hm_process;
 	vm->ops = realloc(vm->ops, sizeof(t_oper) * now);
@@ -80,10 +81,10 @@ t_oper						*make_process(t_vm *vm, char *pc, t_oper *parent_p)
 	return (new_p);
 }
 
-t_champion				*who_is_it(t_vm *vm, int id)
+t_champion					*who_is_it(t_vm *vm, int id)
 {
-	int					i;
-	t_champion			*champ;
+	int						i;
+	t_champion				*champ;
 	
 	i = 0;
 	while (i < vm->champs)

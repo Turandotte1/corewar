@@ -22,21 +22,11 @@ t_reg					*read_info(t_vm *vm, t_reg r[REG_SIZE], int i)
 	return (&r[i - 1]);
 }
 
-char					read_adress_info(char *address)
-{
-	int					overflow;
-
-	if ((overflow = address - (address + MEM_SIZE)) >= 0)
-		return (address[overflow]);
-	return (*address);
-}
-
 void					store_info(t_reg r[REG_SIZE], char *val)
 {
 	if (r)
 		convert_endian((char *)r, val, REG_SIZE);
 }
-
 
 
 void					analyze_info(t_reg r[REG_SIZE], char *val)
@@ -46,38 +36,14 @@ void					analyze_info(t_reg r[REG_SIZE], char *val)
 }
 
 
-void					write_info(t_reg r[REG_SIZE], char *pc, int champ_number)
+void					write_info(t_vm *vm, t_reg r[REG_SIZE], char *pc, int champ_number)
 {
 	if (r)
-		//write_range((char *)r, pc, REG_SIZE, champ_number);
-		printf("writing here\n");
-	champ_number = 2;
-	pc = NULL;
-	r = NULL;
+		binary_write(vm, (char *)r, pc, REG_SIZE, champ_number);
 }
 
-
-
-
-
-
-
-/*void		read_register(t_reg reg[REG_SIZE], char *value)
+void 					copy_info(t_reg dest[REG_SIZE], t_reg src[REG_SIZE])
 {
-	if (reg)
-		swap_endianess(value, (char *)reg, REG_SIZE);
+	if (dest && src)
+		ft_memcpy((void *)dest, (void *)src, REG_SIZE);
 }
-
-void		store_register(t_reg reg[REG_SIZE], char *value)
-{
-	if (reg)
-		swap_endianess((char *)reg, value, REG_SIZE);
-}
-
-
-
-void		copy_register(t_reg r1[REG_SIZE], t_reg r2[REG_SIZE])
-{
-	if (r1 && r2)
-		ft_memcpy((void *)r1, (void *)r2, REG_SIZE);
-}*/
