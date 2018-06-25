@@ -51,7 +51,7 @@ static void					filter_vec(t_vec *vec, t_vec *code,
 	vm->champ[player].ch = (char *)malloc(sizeof(char) * (v_size(&tmp) + 1));
 	ft_memcpy(vm->champ[player].ch, v_raw(&tmp), v_size(&tmp));
 	vm->champ[player].len = v_size(&tmp);
-	vm->champ[player].complete_ch = vec_to_char(&vec); 	
+	vm->champ[player].complete_ch = vec_to_char(vec);
 	v_del(vec);
 }
 
