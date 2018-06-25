@@ -129,6 +129,7 @@ typedef struct						s_champion
 {
 	char							*ch;
 	char							*complete_ch;
+	header_t 						head;
 	int								len;
 	int								position;
 	int								last_live;

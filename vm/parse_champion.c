@@ -51,7 +51,6 @@ static void					filter_vec(t_vec *vec, t_vec *code,
 	vm->champ[player].ch = (char *)malloc(sizeof(char) * (v_size(&tmp) + 1));
 	ft_memcpy(vm->champ[player].ch, v_raw(&tmp), v_size(&tmp));
 	vm->champ[player].len = v_size(&tmp);
-	vm->champ[player].complete_ch = vec_to_char(vec);
 	v_del(vec);
 }
 
@@ -100,5 +99,6 @@ void						parse_champion(int fd, t_vec *queue, t_vec *names,
 		error("size is too big");
 	give_actions(&vec, queue);
 	v_push(names, &head);
+	norme.vm->champ[norme.player].head = head;
 	filter_vec(&vec, norme.code, norme.vm, norme.player);
 }
