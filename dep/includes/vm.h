@@ -187,9 +187,9 @@ int									error(char *s);
 */
 
 void								parse_args(t_vm *vm, t_flag flags,
-		char **argv);
-int									flag_or_champ(t_vm *vm, char **argv,
-		t_flag *flags, t_parsing *parsing);
+																	char **argv);
+int									flag_or_champ(t_vm *vm, char **argv, t_flag *flags, 
+																t_parsing *parsing);
 int									f_zjmp(t_act *act, t_vec *vec, int i);
 int									f_ldi(t_act *act, t_vec *vec, int i);
 int									f_sti(t_act *act, t_vec *vec, int i);
@@ -197,8 +197,8 @@ int									f_fork(t_act *act, t_vec *vec, int i);
 int									f_aff(t_act *act, t_vec *vec, int i);
 int									f_add(t_act *act, t_vec *vec, int i);
 int									f_sub(t_act *act, t_vec *vec, int i);
-int									f_and_second_part(t_act *act, t_vec *vec,
-		int i, int id);
+int									f_and_second_part(t_act *act, t_vec *vec, int i, 
+																			int id);
 int									f_and(t_act *act, t_vec *vec, int i);
 int									f_st(t_act *act, t_vec *vec, int i);
 int									f_live(t_act *act, t_vec *vec, int i);
@@ -209,15 +209,12 @@ t_norme								concat(t_vec *vec, t_vm *vm, int player);
 **----------------------------------Champion's parsing--------------------------
 */
 
-void								parse_champion(int fd, t_vec *queue,
-		t_vec *names, t_norme norme);
+void								parse_champion(int fd, t_vec *queue, t_vec *names, 
+																			t_norme norme);
 void								give_name(t_flag *f, int name);
-void								give_magic_number(t_vec *vec,
-		header_t *head);
-void								give_size(t_vec *vec, int *i,
-		header_t *head);
-void								give_comment(t_vec *vec, int *i,
-		header_t *head);
+void								give_magic_number(t_vec *vec, header_t *head);
+void								give_size(t_vec *vec, int *i, header_t *head);
+void								give_comment(t_vec *vec, int *i, header_t *head);
 void								give_actions(t_vec *vec, t_vec *queue);
 char								*vec_to_char(t_vec *map);
 
@@ -225,8 +222,7 @@ char								*vec_to_char(t_vec *map);
 **-----------------------------------Load players in memory---------------------
 */
 
-void								into_vm(t_vm *vm, t_flag *flag,
-		t_vec *code);
+void								into_vm(t_vm *vm, t_flag *flag, t_vec *code);
 
 /*
 **-----------------------------------Play---------------------------------------
@@ -237,13 +233,10 @@ void								players_are_ready(t_vm *vm);
 int									someone_is_alive(t_vm *vm);
 int									which_operation(t_vm *vm, t_oper *p);
 size_t								analyze_param(t_oper *p, int opcode,
-		t_params args[3]);
-int									play(void (*func)(t_vm *, t_oper *,
-			t_params[3]),
-		t_oper *p, t_vm *vm);
-char								*move_players(t_vm *vm, t_oper *p,
-		int offset);
-
+																t_params args[3]);
+int									play(void (*func)(t_vm *, t_oper *,t_params[3]),
+															t_oper *p, t_vm *vm);
+char								*move_players(t_vm *vm, t_oper *p, int offset);
 
 /*
 **----------------------------------Operations----------------------------------
@@ -255,7 +248,7 @@ void								add(t_vm *vm, t_oper *p, t_params args[3]);
 void								aff(t_vm *vm, t_oper *p, t_params args[3]);
 void								and(t_vm *vm, t_oper *p, t_params args[3]);
 void								fork_o(t_vm *vm, t_oper *p,
-		t_params args[3]);
+																t_params args[3]);
 void								ld(t_vm *vm, t_oper *p, t_params args[3]);
 void								ldi(t_vm *vm, t_oper *p, t_params args[3]);
 void								lfork(t_vm *vm, t_oper *p,
@@ -274,7 +267,7 @@ void								zjmp(t_vm *vm, t_oper *p, t_params args[3]);
 */
 
 t_oper								*make_process(t_vm *vm,
-		char *pc, t_oper *parent_t);
+													char *pc, t_oper *parent_t);
 void								kill_process(t_vm *vm, size_t count);
 t_champion							*who_is_it(t_vm *vm, int id);
 
@@ -284,58 +277,24 @@ t_champion							*who_is_it(t_vm *vm, int id);
 
 t_reg								*read_info(t_vm *vm, t_reg r[REG_SIZE], int i);
 void								store_info(t_reg r[REG_SIZE], char *val);
-
-
 void								analyze_info(t_reg r[REG_SIZE], char *val);
-
+void								write_info(t_vm *vm, t_reg r[REG_SIZE], char *pc, 
+																	int champ_id);
 void 								copy_info(t_reg dest[REG_SIZE], t_reg src[REG_SIZE]);
-
-
-void					write_info(t_vm *vm, t_reg r[REG_SIZE], char *pc, int champ_number);
-
-char								read_adress_info(char *address);
-
-void						read_through(t_vm *vm, char *dst, char *pc, size_t range);
-int							get_value(t_vm *vm, t_oper *p, t_params *args, int idx, int long_op);
-
-
-
-void								store(t_reg r[REG_SIZE], char *val);
 void								print_memory(const void *addr, size_t size);
-
-void								binary_write(t_vm *vm, char *src, char *pc, 
-										size_t range, int number);
-
 void								convert_endian(char *dest, char *src, 
 															size_t type_len);
 
-
-
 /*
-** Pour les operation
-**  on lit l'opcode, on recupere la valeur d'attente
-** (int waiting je l'ai appelle), on decremente la valeur d'attente
-** avec le cycle jusqu'a 0,
-**
-**  on calcule la nouvelle position de pc, on check ocp
-** 		 on parse les argc
-**
-** ------------------------OPTIONS A GERER-----------------------------
-** -n nom
-** -dump nbr_cycles
-** -v (si jamais on le fait);
-**
-**
-** on stock les trucs dans le vecteur structure t_act
-** (name, les trois parametres);
-**
-** on cree la map et on trouve la position initiale de joueur dans la map;
-**
-** si -v tu boucle dans le ncurses, sinon on boucle dans la vm:
-** 		- ou on check si memoire doit etre dumper, on break
-** 		- on run les operations en verifiant combien de processus on a par cycle
-** 		- si on doit decrementer CYCLE_DELTA, on sort du boucle
-** 		- des qu'on a pas de live d'un jouer
+**----------------------------------Ops handlers---------------------------------
 */
 
+char								read_adress_info(char *address);
+void								read_through(t_vm *vm, char *dst, char *pc, 
+																			size_t range);
+int									get_value(t_vm *vm, t_oper *p, t_params *args, 
+													int idx, int long_op);
+void								store(t_reg r[REG_SIZE], char *val);
+void								binary_write(t_vm *vm, char *src, char *pc, 
+										size_t range, int number);
 #endif

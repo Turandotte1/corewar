@@ -36,10 +36,10 @@ void					analyze_info(t_reg r[REG_SIZE], char *val)
 }
 
 
-void					write_info(t_vm *vm, t_reg r[REG_SIZE], char *pc, int champ_number)
+void					write_info(t_vm *vm, t_reg r[REG_SIZE], char *pc, int champ_id)
 {
 	if (r)
-		binary_write(vm, (char *)r, pc, REG_SIZE, champ_number);
+		binary_write(vm, (char *)r, pc, REG_SIZE, champ_id);
 }
 
 void 					copy_info(t_reg dest[REG_SIZE], t_reg src[REG_SIZE])
