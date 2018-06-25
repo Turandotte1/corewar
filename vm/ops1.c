@@ -18,7 +18,7 @@ void						live(t_vm *vm, t_oper *p, t_params args[3])
 		champ->cur_live++;
 		if (!(vm->v))
 			ft_printf("Player %d (%s) is said to be alive\n",
-								-champ->champ_id, "insert name here");
+								-champ->champ_id, champ->head.prog_name);
 	}
 }
 
@@ -31,7 +31,7 @@ void						ld(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (val == 0) ? 1 : 0;
-	printf("i do ld\n");
+//	printf("i do ld\n");
 }
 
 void						st(t_vm *vm, t_oper *p, t_params args[3])
@@ -50,7 +50,7 @@ void						st(t_vm *vm, t_oper *p, t_params args[3])
 		copy_info(read_info(vm, p->r, args[1].value),
 				read_info(vm, p->r, args[0].value));
 	}
-	printf("i do st\n");
+//	printf("i do st\n");
 }
 
 void						add(t_vm *vm, t_oper *p, t_params args[3])
@@ -68,7 +68,7 @@ void						add(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (sum == 0) ? 1 : 0;
-	printf("i do add\n");
+//	printf("i do add\n");
 }
 
 void						sub(t_vm *vm, t_oper *p, t_params args[3])
@@ -86,6 +86,6 @@ void						sub(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (sub == 0) ? 1 : 0;
-	printf("i do sub\n");
+//	printf("i do sub\n");
 }
 

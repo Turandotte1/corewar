@@ -30,20 +30,20 @@ void						war_start(t_vm *vm)
 	int						how_many_players;
 	int						position;
 	int						i;
-	t_champion 				*player;
+	t_champion 				*champ;
 
 	how_many_players = vm->champs;
 	i = 0;
 	ft_printf("Introducing contestants...\n");
 	while (i < how_many_players)
 	{
-		player = &vm->champ[i];
-		position = player->position;
+		champ = &vm->champ[i];
+		position = champ->position;
 		ft_printf("* Player %i, weighing %i bytes, \"%s\" (\"%s\") !\n", 
-			player->champ_id, 400, "Zork", "I am Zork");
+			champ->champ_id, champ->head.prog_size, champ->head.prog_name, champ->head.comment);
 		make_process(vm, &vm->arena[position], NULL);
-		player->champ_id = -player->champ_id;
-		convert_endian((char*)&vm->ops[i].r[0], (char *)&player->champ_id, REG_SIZE);
+		champ->champ_id = -champ->champ_id;
+		convert_endian((char*)&vm->ops[i].r[0], (char *)&champ->champ_id, REG_SIZE);
 		i++;
 	}
 	players_are_ready(vm);

@@ -15,7 +15,7 @@ void						sti(t_vm *vm, t_oper *p, t_params args[3])
 	champ_id = 0;
 	analyze_info(read_info(vm, p->r, 1), (char *)&champ_id);
 	write_info(vm, read_info(vm, p->r, args[0].value), p->pc + jump, champ_id);
-	printf("i do sti\n");
+//	printf("i do sti\n");
 }
 
 void						fork_o(t_vm *vm, t_oper *p, t_params args[3])
@@ -23,9 +23,9 @@ void						fork_o(t_vm *vm, t_oper *p, t_params args[3])
 	t_oper					*new_p;
 
 	new_p = NULL;
-	new_p = make_process(vm, new_p->pc, p);
+	new_p = make_process(vm, p->pc, p);
 	move_players(vm, new_p, (short)args[0].value % IDX_MOD);
-	printf("i do fork\n");
+//	printf("i do fork\n");
 }
 
 void						lld(t_vm *vm, t_oper *p, t_params args[3])
@@ -37,7 +37,7 @@ void						lld(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (lld == 0) ? 1 : 0;
-	printf("i do lld\n");
+//	printf("i do lld\n");
 }
 
 void						lldi(t_vm *vm, t_oper *p, t_params args[3])
@@ -60,7 +60,7 @@ void						lldi(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (lldi == 0) ? 1 : 0;
-	printf("i do lldi\n");
+//	printf("i do lldi\n");
 }
 
 void						lfork(t_vm *vm, t_oper *p, t_params args[3])
@@ -69,5 +69,5 @@ void						lfork(t_vm *vm, t_oper *p, t_params args[3])
 
 	new_p = make_process(vm, p->pc, p);
 	move_players(vm, new_p, (short)args[0].value);
-	printf("i do lfork\n");
+//	printf("i do lfork\n");
 }

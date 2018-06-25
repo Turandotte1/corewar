@@ -105,8 +105,10 @@ void					players_are_ready(t_vm *vm)
 			;
 	}
 	if ((win = who_is_it(vm, vm->cycle.last_live)))
-		ft_printf("Contestant %i, \"%s\", has won !\n", -win->champ_id, "Zork");
+		ft_printf("Contestant %i, \"%s\", has won !\n", -win->champ_id, win->head.prog_name);
 	else
+	{
 		ft_printf("Contestant %i, \"%s\", has won !\n",
-				-vm->champ->champ_id, "Zork1");
+				-vm->champ->champ_id, win->head.prog_name);
+	}
 }

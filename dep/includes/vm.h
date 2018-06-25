@@ -134,7 +134,7 @@ typedef struct						s_champion
 	int								last_live;
 	int 							cur_live;
 	int								champ_id;
-//	header_t 						head;
+	header_t 						head;
 }									t_champion;
 
 typedef struct						s_vm
