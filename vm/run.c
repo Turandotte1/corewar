@@ -109,6 +109,6 @@ void					players_are_ready(t_vm *vm)
 	else
 	{
 		ft_printf("Contestant %i, \"%s\", has won !\n",
-				-vm->champ->champ_id, win->head.prog_name);
+				-vm->champ->champ_id, vm->champ->head.prog_name);
 	}
 }
