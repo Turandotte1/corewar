@@ -18,7 +18,7 @@ static void					write_b(t_vm *vm, char *dest, char *src,
 		b = &vm->cycle.byte[jump + i];
 		b->op = 50;
 		if ((champ = who_is_it(vm, id)))
-			b->id = champ->champ_id;
+			b->id = champ->id;
 		i++;
 	}
 }
@@ -56,7 +56,7 @@ int							get_value(t_vm *vm, t_oper *p, t_params *args, int idx, int long_op)
 	else if (type & T_DIR)
 		ret = (p->act->dir_short) ? (short)value : value;
 	else if (type & T_REG)
-		read_info(NULL, p->r, value);
+		analyze_info(read_info(vm, p->r, value), (char *)&ret);
 	else if (type & T_IND)
 	{
 		value = (long_op) ? (short)value : ((short)value) % IDX_MOD;
@@ -67,7 +67,7 @@ int							get_value(t_vm *vm, t_oper *p, t_params *args, int idx, int long_op)
 	return (ret);
 }
 
-void						read_through(t_vm *vm, char *dst, char *pc, size_t range)
+void						read_through(t_vm *vm, char *dest, char *pc, size_t range)
 {
 	char					*mem;
 	int						overflow;
@@ -79,19 +79,20 @@ void						read_through(t_vm *vm, char *dst, char *pc, size_t range)
 	if ((overflow = pc + range - (mem + MEM_SIZE)) > 0)
 	{
 		range -= overflow;
-		ft_memcpy((void *)&dst[range], (void *)mem, overflow);
+		ft_memcpy((void *)&dest[range], (void *)mem, overflow);
 	}
-	ft_memcpy((void *)dst, (void *)pc, range);
+	ft_memcpy((void *)dest, (void *)pc, range);
 }
 
 
+//maybe better to handle overflows with vm->arena
 
-char						read_adress_info(char *address)
+char						read_adress_info(t_vm *vm, char *adress)
 {
 	int						overflow;
 
-	if ((overflow = address - (address + MEM_SIZE)) >= 0)
-		return (address[overflow]);
-	return (*address);
+	if ((overflow = adress - (adress + MEM_SIZE)) >= 0)
+		return (adress[overflow]);
+	vm->error = 0;
+	return (*adress);
 }
-

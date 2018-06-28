@@ -18,4 +18,5 @@ void						aff(t_vm *vm, t_oper *p, t_params args[3])
 		else
 			ft_printf("%c", aff);
 	}
+//	ft_printf("%s i do aff\n", vm->champ->head.prog_name);
 }

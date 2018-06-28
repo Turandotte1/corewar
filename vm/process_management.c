@@ -72,12 +72,12 @@ t_oper						*make_process(t_vm *vm, char *pc, t_oper *parent_p)
 	vm->ops = realloc(vm->ops, sizeof(t_oper) * now);
 	new_p = &vm->ops[now - 1];
 	ft_bzero(new_p, sizeof(t_oper));
-	new_p->id = uid++;
-	new_p->waiting = -1;
-	new_p->act = 0;
 	new_p->pc = pc;
 	if (parent_p)
 		ft_memcpy(new_p, &temp, sizeof(t_oper));
+	new_p->id = uid++;
+	new_p->waiting = -1;
+	new_p->act = NULL;
 	return (new_p);
 }
 

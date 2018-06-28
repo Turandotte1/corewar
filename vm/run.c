@@ -52,7 +52,7 @@ static void				showmust_go_on(t_vm *vm)
 		current = &vm->ops[cycles];
 		if (current->waiting < 0)
 		{
-			opcode = read_adress_info(current->pc) - 1;
+			opcode = (int)read_adress_info(vm, current->pc) - 1;
 			if (opcode < OPS && opcode >= 0)
 			{
 				current->act = &g_tab[opcode];
@@ -108,7 +108,6 @@ void					players_are_ready(t_vm *vm)
 		ft_printf("Contestant %i, \"%s\", has won !\n", -win->champ_id, win->head.prog_name);
 	else
 	{
-		ft_printf("Contestant %i, \"%s\", has won !\n",
-				-vm->champ->champ_id, vm->champ->head.prog_name);
+		ft_printf("Contestant %i, \"%s\", has won !\n", -vm->champ->champ_id, vm->champ->head.prog_name);
 	}
 }

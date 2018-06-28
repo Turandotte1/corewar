@@ -29,7 +29,7 @@ t_task				g_tab[OPS + 1] =
 
 static int					check_ocp(t_oper *p, t_params args[3])
 {
-	int							i;
+	int						i;
 
 	i = 0;
 	while (i < p->act->hm_params)
@@ -44,12 +44,12 @@ static int					check_ocp(t_oper *p, t_params args[3])
 int							play(void (*func)(t_vm *, t_oper *, t_params[3]),
 														t_oper *p, t_vm *vm)
 {
-	t_params					args[3];
-	int							jump;
+	t_params				args[3];
+	int						jump;
 
 	p->waiting = -1;
 	vm->error = 0;
-	jump = analyze_param(p, p->act->val, args);
+	jump = analyze_param(vm, p, p->act->val, args);
 	if (func == &zjmp)
 	{
 		func(vm, p, args);

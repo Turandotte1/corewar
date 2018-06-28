@@ -15,7 +15,7 @@ void						and(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (and == 0) ? 1 : 0;
-//	printf("i do and\n");
+//	ft_printf("%s i do and\n", vm->champ->head.prog_name);
 }
 
 void						or(t_vm *vm, t_oper *p, t_params args[3])
@@ -33,7 +33,7 @@ void						or(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (or == 0) ? 1 : 0;
-//	printf("i do or\n");
+//	ft_printf("%s i do or\n", vm->champ->head.prog_name);
 }
 
 void						xor(t_vm *vm, t_oper *p, t_params args[3])
@@ -51,7 +51,7 @@ void						xor(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (xor == 0) ? 1 : 0;
-//	printf("i do xor\n");
+//	ft_printf("%s i do xor\n", vm->champ->head.prog_name);
 }
 
 void						zjmp(t_vm *vm, t_oper *p, t_params args[3])
@@ -60,7 +60,7 @@ void						zjmp(t_vm *vm, t_oper *p, t_params args[3])
 		move_players(vm, p, (short)args[0].value % IDX_MOD);
 	else
 		move_players(vm, p, 3);
-//	printf("i do zjump\n");
+//	ft_printf("%s i do zjump\n", vm->champ->head.prog_name);
 }
 
 void						ldi(t_vm *vm, t_oper *p, t_params args[3])
@@ -77,5 +77,5 @@ void						ldi(t_vm *vm, t_oper *p, t_params args[3])
 	jump = (a + b) % IDX_MOD;
 	if ((dest = read_info(vm, p->r, args[2].value)))
 		read_through(vm, (char *)dest, p->pc + jump, REG_SIZE);
-//	printf("i do ldi\n");
+//	ft_printf("%s i do ldi\n", vm->champ->head.prog_name);
 }

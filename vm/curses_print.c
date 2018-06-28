@@ -25,7 +25,7 @@ static void					*curses_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-static int							curses_vsn(char *str, size_t size,
+static int					curses_vsn(char *str, size_t size,
 									const char *format, va_list *ap)
 {
 	t_data					data;

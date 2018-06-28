@@ -76,6 +76,14 @@ typedef struct						s_act
 	int								t_p;
 }									t_act;
 
+typedef enum						e_vizu
+{
+	PAUSE = 0x0,
+	RUN = 0x1,
+	FINISH = 0x2,
+//	ACCELERATE = 0x4
+}									t_vizu;
+
 typedef struct						s_task
 {
 	const char						*name;
@@ -117,6 +125,7 @@ typedef struct 						s_binary
 
 typedef struct						s_cycle
 {
+	int 							fast;
 	int								to_die;
 	int								check;
 	int								cur;
@@ -134,6 +143,7 @@ typedef struct						s_champion
 	int								last_live;
 	int 							cur_live;
 	int								champ_id;
+	int 							id;
 	header_t 						head;
 }									t_champion;
 
@@ -142,6 +152,7 @@ typedef struct						s_vm
 	t_oper							*ops;
 	t_cycle							cycle;
 	t_champion						*champ;
+	t_vizu 							vizu;
 	int								v;
 	int								dump;
 	int								dump_nb;
@@ -232,7 +243,7 @@ void								war_start(t_vm *vm);
 void								players_are_ready(t_vm *vm);
 int									someone_is_alive(t_vm *vm);
 int									which_operation(t_vm *vm, t_oper *p);
-size_t								analyze_param(t_oper *p, int opcode,
+size_t								analyze_param(t_vm *vm, t_oper *p, int opcode,
 																t_params args[3]);
 int									play(void (*func)(t_vm *, t_oper *,t_params[3]),
 															t_oper *p, t_vm *vm);
@@ -289,7 +300,7 @@ void								convert_endian(char *dest, char *src,
 **----------------------------------Ops handlers---------------------------------
 */
 
-char								read_adress_info(char *address);
+char								read_adress_info(t_vm *vm, char *adress);
 void								read_through(t_vm *vm, char *dst, char *pc, 
 																			size_t range);
 int									get_value(t_vm *vm, t_oper *p, t_params *args, 

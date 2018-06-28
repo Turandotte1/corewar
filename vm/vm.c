@@ -43,6 +43,7 @@ void						war_start(t_vm *vm)
 			champ->champ_id, champ->head.prog_size, champ->head.prog_name, champ->head.comment);
 		make_process(vm, &vm->arena[position], NULL);
 		champ->champ_id = -champ->champ_id;
+		champ->id = i;
 		convert_endian((char*)&vm->ops[i].r[0], (char *)&champ->champ_id, REG_SIZE);
 		i++;
 	}
@@ -88,7 +89,7 @@ int							main(int argc, char **argv)
 		usage();
 	ft_bzero(&vm, sizeof(t_vm));
 	ft_bzero(&flag, sizeof(t_flag));
-	vm.champ = malloc(sizeof(t_champion) * argc);
+	vm.champ = malloc(sizeof(t_champion) * argc - 1);
 	parse_args(&vm, flag, argv);
 	war_start(&vm);
 	free(vm.arena);

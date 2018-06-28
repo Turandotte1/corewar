@@ -8,7 +8,7 @@ NAME1 = corewar
 NAME2 = asm
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3
 
 SRC_NAME1 = vm.c parse_args.c parse_champion.c give1.c give2.c into_vm.c \
 	parsing_f.c parsing_f1.c parsing_f2.c init.c error_helpers.c \

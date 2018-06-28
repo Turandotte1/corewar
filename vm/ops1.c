@@ -24,14 +24,14 @@ void						live(t_vm *vm, t_oper *p, t_params args[3])
 
 void						ld(t_vm *vm, t_oper *p, t_params args[3])
 {
-	int						val;
+	int						ld;
 
-	val = get_value(vm, p, args, 0, 0);
-	store_info(read_info(vm, p->r, args[1].value), (char *)&val);
+	ld = get_value(vm, p, args, 0, 0);
+	store_info(read_info(vm, p->r, args[1].value), (char *)&ld);
 	if (vm->error)
 		return ;
-	p->carry = (val == 0) ? 1 : 0;
-//	printf("i do ld\n");
+	p->carry = (ld == 0) ? 1 : 0;
+//	ft_printf("%s i do ld\n", vm->champ->head.prog_name);
 }
 
 void						st(t_vm *vm, t_oper *p, t_params args[3])
@@ -50,7 +50,7 @@ void						st(t_vm *vm, t_oper *p, t_params args[3])
 		copy_info(read_info(vm, p->r, args[1].value),
 				read_info(vm, p->r, args[0].value));
 	}
-//	printf("i do st\n");
+//	ft_printf("%s i do st\n", vm->champ->head.prog_name);
 }
 
 void						add(t_vm *vm, t_oper *p, t_params args[3])
@@ -68,7 +68,7 @@ void						add(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (sum == 0) ? 1 : 0;
-//	printf("i do add\n");
+//	ft_printf("%s i do add\n", vm->champ->head.prog_name);
 }
 
 void						sub(t_vm *vm, t_oper *p, t_params args[3])
@@ -86,6 +86,6 @@ void						sub(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (sub == 0) ? 1 : 0;
-//	printf("i do sub\n");
+//	ft_printf("%s i do sub\n", vm->champ->head.prog_name);
 }
 

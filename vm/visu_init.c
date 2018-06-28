@@ -1,43 +1,31 @@
 #include "../dep/includes/viz.h"
 #include "../dep/includes/vm.h"
 
-/*static int	get_input(int input, t_panel panels[3])
+static int					user_input(int key, t_windows win[3], t_vm *vm)
 {
-	if (input == 'n' || input == 's')
-		g_corewar.state = STATE_STEP;
-	else if (input == '+')
-		wtimeout(panels[1].win, ++g_corewar.cycle_infos.speed);
-	else if (input == '-')
-		wtimeout(panels[1].win, --g_corewar.cycle_infos.speed);
-	else if (input == ' ')
-		g_corewar.state ^= STATE_RUNNING;
-	else if (input == 'f')
-	{
-		g_corewar.flags ^= FLAG_FULL;
-		panels_resize(panels);
-	}
-	else if (input == 'h')
-	{
-		g_corewar.flags ^= FLAG_HELP;
-		panels_resize(panels);
-	}
-	else if (input == KEY_RESIZE)
-		panels_resize(panels);
-	else if (input == '\n')
-		return (0);
-	return (1);
+//	if (key == 'n' || key == 's')
+//		vm->visu = ACCELERATE;
+	if (key == '+')
+		wtimeout(win[1].window, ++vm->cycle.fast);
+//	else if (input == '-')
+//		wtimeout(panels[1].win, --g_corewar.cycle_infos.speed);
+	else if (key == ' ')
+		vm->vizu ^= RUN;
+//	else if (input == KEY_RESIZE)
+//		panels_resize(panels);
+	return ((key == '\n') ? 0 : 1);
 }
-*/
+
 
 void						start_game(int (*someone_is_alive)(t_vm *), t_vm *vm)
 {
 	t_windows				win[3];
 
 	windows_init(win, vm);
-	sleep(1);
 	someone_is_alive(vm);
-//	while (get_input(wgetch(panels[1].win), panels))
-//	{
+	sleep(1);
+	while (user_input(wgetch(win[1].window), win, vm))
+	{
 //		if (g_corewar.state & (STATE_RUNNING | STATE_STEP))
 //		{
 //			if (cycle_fn(&g_corewar.cycle_infos) <= 0)
@@ -52,7 +40,7 @@ void						start_game(int (*someone_is_alive)(t_vm *), t_vm *vm)
 //			}
 //		}
 //		draw(panels, &g_corewar.cycle_infos);
-//	}
+	}
 //	delete_win(panels[0].win);
 //	delete_win(panels[1].win);
 //	delete_win(panels[2].win);
