@@ -36,7 +36,7 @@ INC = $(addprefix $(DIR_INC)/,$(INC_NAME))
 
 MY_LIB = ./dep/libft/libft.a ./dep/libvec/libvec.a ./dep/libmem/libmem.a ./dep/libft_minh/libft_all.a
 MY_LIB_ASM = ./dep/libft/libft.a ./dep/libft_minh/libft_all.a
-NCURSES	= -lpanel -lncurses -lcdk
+NCURSES	= -lpanel -lncurses
 
 all: makelibs $(NAME1) $(NAME2)
 
