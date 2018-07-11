@@ -71,7 +71,8 @@ int						someone_is_alive(t_vm *vm)
 {
 	if (vm->dump > 0 && vm->hm_cycles >= vm->dump_nb)
 	{
-		print_memory(vm->arena, 4096);
+		print_arena(vm->arena);
+//		print_memory(vm->arena, 4096);
 		exit(EXIT_SUCCESS);
 	}
 	vm->hm_cycles++;

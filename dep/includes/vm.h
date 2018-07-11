@@ -248,6 +248,7 @@ size_t								analyze_param(t_vm *vm, t_oper *p, int opcode,
 int									play(void (*func)(t_vm *, t_oper *,t_params[3]),
 															t_oper *p, t_vm *vm);
 char								*move_players(t_vm *vm, t_oper *p, int offset);
+void								print_arena(char *arena);
 
 /*
 **----------------------------------Operations----------------------------------
