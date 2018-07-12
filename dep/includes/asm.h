@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include "op.h"
 # include "asm_struct.h"
-# include "../libft_minh/libft_all.h"
+# include "../libft/libft_all.h"
 
 typedef void	(*t_tab_instr)(t_instruct*, char*, int*);
 

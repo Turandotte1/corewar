@@ -34,14 +34,13 @@ DIR_INC = ./dep/includes/
 INC_NAME = vm.h asm.h op.h asm_struct.h
 INC = $(addprefix $(DIR_INC)/,$(INC_NAME))
 
-MY_LIB = ./dep/libft/libft.a ./dep/libvec/libvec.a ./dep/libmem/libmem.a ./dep/libft_minh/libft_all.a
-MY_LIB_ASM = ./dep/libft/libft.a ./dep/libft_minh/libft_all.a
+MY_LIB = ./dep/libft/libft_all.a ./dep/libvec/libvec.a ./dep/libmem/libmem.a
+MY_LIB_ASM = ./dep/libft/libft_all.a
 NCURSES	= -lpanel -lncurses
 
 all: makelibs $(NAME1) $(NAME2)
 
 makelibs:
-	@make all -C ./dep/libft_minh
 	@make all -C ./dep/libft
 	@make all -C ./dep/libvec
 	@make all -C ./dep/libmem
@@ -49,13 +48,13 @@ makelibs:
 $(NAME1): $(OBJ1)
 	@printf "$(RED)[$(NAME1)]: $(CYAN)Compiling .o...$(GREEN)[done] $(GREY)\n"
 	@printf "$(RED)[$(NAME1)]: $(CYAN)Object files compilation: $(GREEN)[OK]$(NC)\n"
-	$(CC) $(CFLAGS) $(OBJ1) -o $(NAME1) -I $(DIR_INC) -L $(MY_LIB) $(NCURSES)
+	$(CC) $(CFLAGS) $(OBJ1) -o $(NAME1) -I $(DIR_INC) $(MY_LIB) $(NCURSES)
 	@printf "$(RED)[$(NAME1)]: $(CYAN)Executable compilation: $(GREEN)[OK] $(NC)\n"
 
 $(NAME2): $(OBJ2)
 	@printf "$(RED)[$(NAME2)]: $(CYAN)Compiling .o...$(GREEN)[done] $(GREY)\n"
 	@printf "$(RED)[$(NAME2)]: $(CYAN)Object files compilation: $(GREEN)[OK]$(NC)\n"
-	$(CC) $(CFLAGS) $(OBJ2) -o $(NAME2) -I $(DIR_INC) -L $(MY_LIB_ASM) 
+	$(CC) $(CFLAGS) $(OBJ2) -o $(NAME2) -I $(DIR_INC) $(MY_LIB_ASM)
 	@printf "$(RED)[$(NAME2)]: $(CYAN)Executable compilation: $(GREEN)[OK] $(NC)\n"
 	
 $(OBJ_PATH1)/%.o: $(SRC_PATH1)/%.c
@@ -71,7 +70,6 @@ $(OBJ_PATH2)/%.o: $(SRC_PATH2)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@make clean -C ./dep/libft_minh
 	@make clean -C ./dep/libft
 	@make clean -C ./dep/libvec
 	@make clean -C ./dep/libmem
@@ -79,7 +77,6 @@ clean:
 	@rm -rf $(OBJ_PATH2)
 
 fclean: clean
-	@make fclean -C ./dep/libft_minh
 	@make fclean -C ./dep/libft
 	@make fclean -C ./dep/libvec
 	@make fclean -C ./dep/libmem

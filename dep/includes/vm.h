@@ -6,8 +6,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <ncurses.h>
-# include "../libft/libft.h"
-# include "../libft_minh/libft_all.h"
+# include "../libft/libft_all.h"
 # include "../libvec/inc/vector.h"
 # include "../libmem/inc/libmem.h"
 # include "op.h"
