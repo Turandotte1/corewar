@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:47 by glegendr          #+#    #+#             */
-/*   Updated: 2018/07/14 18:17:22 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/07/14 19:12:24 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void					give_dispo_name(t_flag *flag, int player)
 
 static int					next_nb(char *s)
 {
-	int						dif;
+	int							dif;
 	long long int				i;
 
 	dif = 0;

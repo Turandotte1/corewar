@@ -6,7 +6,7 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 16:38:30 by mipham            #+#    #+#             */
-/*   Updated: 2017/11/15 14:49:15 by mipham           ###   ########.fr       */
+/*   Updated: 2018/07/14 19:11:05 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char			*ft_itoa(int nbr)
 		return (ft_itoa_core(nbr, puissance, 0));
 }
 
-static void	ft_comp_ldtoa(long int nb, char l, char *str)
+static void		ft_comp_ldtoa(long int nb, char l, char *str)
 {
 	if (nb == LLONG_MIN)
 	{
@@ -86,7 +86,7 @@ static void	ft_comp_ldtoa(long int nb, char l, char *str)
 **		convertie un long int en string
 */
 
-char		*ft_ldtoa(long int n)
+char			*ft_ldtoa(long int n)
 {
 	char		l;
 	char		*str;
