@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 18:11:15 by glegendr          #+#    #+#             */
-/*   Updated: 2018/06/20 18:11:59 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/07/14 18:33:36 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char				*vec_to_char(t_vec *map)
 	int				i;
 
 	i = 0;
-	if ((arena = (char *)malloc(sizeof(char) * (v_size(map) + 1))) == NULL)
+	if ((arena = (char *)malloc(sizeof(char) * (v_size(map) * 2 + 1))) == NULL)
 		error("malloc error");
 	while (i < v_size(map))
 	{
