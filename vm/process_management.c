@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   process_management.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/12 18:03:22 by mrychkov          #+#    #+#             */
+/*   Updated: 2018/07/12 18:05:13 by mrychkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../dep/includes/vm.h"
 
 static void					resize(t_oper *new, t_oper *old, size_t old_size)
@@ -62,7 +74,7 @@ t_oper						*make_process(t_vm *vm, char *pc, t_oper *parent_p)
 	static unsigned int		uid;
 	t_oper					*new_p;
 	t_oper					temp;
-	int 					now;
+	int						now;
 
 	uid = 0;
 	if (parent_p)
@@ -85,7 +97,7 @@ t_champion					*who_is_it(t_vm *vm, int id)
 {
 	int						i;
 	t_champion				*champ;
-	
+
 	i = 0;
 	while (i < vm->champs)
 	{

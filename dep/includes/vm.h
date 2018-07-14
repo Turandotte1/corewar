@@ -307,5 +307,5 @@ int									get_value(t_vm *vm, t_oper *p, t_params *args,
 													int idx, int long_op);
 void								store(t_reg r[REG_SIZE], char *val);
 void								binary_write(t_vm *vm, char *src, char *pc, 
-										size_t range, int number);
+										int number);
 #endif

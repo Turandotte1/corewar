@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ops_handler.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/12 17:21:14 by mrychkov          #+#    #+#             */
+/*   Updated: 2018/07/12 17:48:00 by mrychkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../dep/includes/vm.h"
 
 static void					write_b(t_vm *vm, char *dest, char *src, 
@@ -24,11 +36,13 @@ static void					write_b(t_vm *vm, char *dest, char *src,
 }
 
 void						binary_write(t_vm *vm, char *src, char *pc, 
-										size_t range, int number)
+										int number)
 {
 	char					*mem;
 	int						overflow;
+	int 					range;
 
+	range = REG_SIZE;
 	if ((mem = vm->arena) > pc)
 		pc = ((pc - mem) % MEM_SIZE) + mem + MEM_SIZE;
 	else if (pc > mem + MEM_SIZE)
@@ -83,9 +97,6 @@ void						read_through(t_vm *vm, char *dest, char *pc, size_t range)
 	}
 	ft_memcpy((void *)dest, (void *)pc, range);
 }
-
-
-//maybe better to handle overflows with vm->arena
 
 char						read_adress_info(t_vm *vm, char *adress)
 {

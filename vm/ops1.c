@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ops1.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/12 17:17:10 by mrychkov          #+#    #+#             */
+/*   Updated: 2018/07/12 17:18:16 by mrychkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../dep/includes/vm.h"
 
 void						live(t_vm *vm, t_oper *p, t_params args[3])
@@ -5,7 +17,7 @@ void						live(t_vm *vm, t_oper *p, t_params args[3])
 	int						jump;
 	t_cycle					*cycle;
 	t_champion				*champ;
-	
+
 	p->live++;
 	if ((champ = who_is_it(vm, args[0].value)))
 	{
@@ -31,7 +43,6 @@ void						ld(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (ld == 0) ? 1 : 0;
-//	ft_printf("%s i do ld\n", vm->champ->head.prog_name);
 }
 
 void						st(t_vm *vm, t_oper *p, t_params args[3])
@@ -50,7 +61,6 @@ void						st(t_vm *vm, t_oper *p, t_params args[3])
 		copy_info(read_info(vm, p->r, args[1].value),
 				read_info(vm, p->r, args[0].value));
 	}
-//	ft_printf("%s i do st\n", vm->champ->head.prog_name);
 }
 
 void						add(t_vm *vm, t_oper *p, t_params args[3])
@@ -68,7 +78,6 @@ void						add(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (sum == 0) ? 1 : 0;
-//	ft_printf("%s i do add\n", vm->champ->head.prog_name);
 }
 
 void						sub(t_vm *vm, t_oper *p, t_params args[3])
@@ -86,6 +95,4 @@ void						sub(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (sub == 0) ? 1 : 0;
-//	ft_printf("%s i do sub\n", vm->champ->head.prog_name);
 }
-

@@ -6,14 +6,14 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/06/18 20:39:38 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/07/12 18:46:08 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/includes/vm.h"
 
-void						convert_endian(char *dest, char *src, 
-															size_t type_len)
+void						convert_endian(char *dest, char *src,
+														size_t type_len)
 {
 	int						i;
 
@@ -30,7 +30,7 @@ void						war_start(t_vm *vm)
 	int						how_many_players;
 	int						position;
 	int						i;
-	t_champion 				*champ;
+	t_champion				*champ;
 
 	how_many_players = vm->champs;
 	i = 0;
@@ -39,12 +39,14 @@ void						war_start(t_vm *vm)
 	{
 		champ = &vm->champ[i];
 		position = champ->position;
-		ft_printf("* Player %i, weighing %i bytes, \"%s\" (\"%s\") !\n", 
-			champ->champ_id, champ->head.prog_size, champ->head.prog_name, champ->head.comment);
+		ft_printf("* Player %i, weighing %i bytes, \"%s\" (\"%s\") !\n",
+			champ->champ_id, champ->head.prog_size, champ->head.prog_name,
+			champ->head.comment);
 		make_process(vm, &vm->arena[position], NULL);
 		champ->champ_id = -champ->champ_id;
 		champ->id = i;
-		convert_endian((char*)&vm->ops[i].r[0], (char *)&champ->champ_id, REG_SIZE);
+		convert_endian((char*)&vm->ops[i].r[0], (char *)&champ->champ_id,
+				REG_SIZE);
 		i++;
 	}
 	players_are_ready(vm);
@@ -93,5 +95,9 @@ int							main(int argc, char **argv)
 	parse_args(&vm, flag, argv);
 	war_start(&vm);
 	free(vm.arena);
+	free(vm.ops);
+	while (--vm.champs > -1)
+		free(vm.champ[vm.champs + 1].ch);
+	free(vm.champ);
 	return (0);
 }

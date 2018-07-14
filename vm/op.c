@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/12 17:15:45 by mrychkov          #+#    #+#             */
+/*   Updated: 2018/07/12 17:16:15 by mrychkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../dep/includes/vm.h"
 
 t_task				g_tab[OPS + 1] =
@@ -67,5 +79,6 @@ int							which_operation(t_vm *vm, t_oper *p)
 		&or, &xor, &zjmp, &ldi, &sti, &fork_o,
 		&lld, &lldi, &lfork, &aff
 	};
+
 	return (p->act == NULL ? 1 : play(func[p->act->val - 1], p, vm));
 }

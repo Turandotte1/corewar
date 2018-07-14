@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:47 by glegendr          #+#    #+#             */
-/*   Updated: 2018/06/20 18:11:52 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/07/12 17:50:29 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int					*is_a_flag(char **argv, int *i, int argc)
 	if (*i == argc - 1 && (flag == 3 || flag == 1))
 		usage();
 	if ((flag == 3 || flag == 1) && (nb = next_nb(argv[*i + 1])) < 0)
-			error("value is too big or under 0");
+		error("value is too big or under 0");
 	if (flag == 3 || flag == 1)
 		*i += 1;
 	if ((ret = (int *)malloc(sizeof(int) * 2)) == NULL)

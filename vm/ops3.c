@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ops3.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/12 17:19:57 by mrychkov          #+#    #+#             */
+/*   Updated: 2018/07/12 17:20:27 by mrychkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../dep/includes/vm.h"
 
 void						sti(t_vm *vm, t_oper *p, t_params args[3])
@@ -15,7 +27,6 @@ void						sti(t_vm *vm, t_oper *p, t_params args[3])
 	champ_id = 0;
 	analyze_info(read_info(vm, p->r, 1), (char *)&champ_id);
 	write_info(vm, read_info(vm, p->r, args[0].value), p->pc + jump, champ_id);
-//	ft_printf("%s i do sti\n", vm->champ->head.prog_name);
 }
 
 void						fork_o(t_vm *vm, t_oper *p, t_params args[3])
@@ -25,7 +36,6 @@ void						fork_o(t_vm *vm, t_oper *p, t_params args[3])
 	new_p = NULL;
 	new_p = make_process(vm, p->pc, p);
 	move_players(vm, new_p, (short)args[0].value % IDX_MOD);
-//	ft_printf("%s i do fork\n", vm->champ->head.prog_name);
 }
 
 void						lld(t_vm *vm, t_oper *p, t_params args[3])
@@ -37,7 +47,6 @@ void						lld(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (lld == 0) ? 1 : 0;
-//	ft_printf("%s i do lld\n", vm->champ->head.prog_name);
 }
 
 void						lldi(t_vm *vm, t_oper *p, t_params args[3])
@@ -60,7 +69,6 @@ void						lldi(t_vm *vm, t_oper *p, t_params args[3])
 	if (vm->error)
 		return ;
 	p->carry = (lldi == 0) ? 1 : 0;
-//	ft_printf("%s i do lldi\n", vm->champ->head.prog_name);
 }
 
 void						lfork(t_vm *vm, t_oper *p, t_params args[3])
@@ -69,5 +77,4 @@ void						lfork(t_vm *vm, t_oper *p, t_params args[3])
 
 	new_p = make_process(vm, p->pc, p);
 	move_players(vm, new_p, (short)args[0].value);
-//	ft_printf("%s i do lfork\n", vm->champ->head.prog_name);
 }

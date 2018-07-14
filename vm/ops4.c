@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ops4.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/12 17:20:45 by mrychkov          #+#    #+#             */
+/*   Updated: 2018/07/12 17:51:58 by mrychkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../dep/includes/vm.h"
 
 void						aff(t_vm *vm, t_oper *p, t_params args[3])
@@ -18,5 +30,4 @@ void						aff(t_vm *vm, t_oper *p, t_params args[3])
 		else
 			ft_printf("%c", aff);
 	}
-//	ft_printf("%s i do aff\n", vm->champ->head.prog_name);
 }

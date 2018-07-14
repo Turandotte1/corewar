@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/12 18:06:22 by mrychkov          #+#    #+#             */
+/*   Updated: 2018/07/12 18:06:31 by mrychkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../dep/includes/vm.h"
 #include "../dep/includes/viz.h"
 
-static void				count_lives(t_vm *vm, 
+static void				count_lives(t_vm *vm,
 										size_t *hm_live, size_t *hm_die)
 {
 	int					i;
@@ -72,7 +84,6 @@ int						someone_is_alive(t_vm *vm)
 	if (vm->dump > 0 && vm->hm_cycles >= vm->dump_nb)
 	{
 		print_arena(vm->arena);
-//		print_memory(vm->arena, 4096);
 		exit(EXIT_SUCCESS);
 	}
 	vm->hm_cycles++;
@@ -106,9 +117,11 @@ void					players_are_ready(t_vm *vm)
 			;
 	}
 	if ((win = who_is_it(vm, vm->cycle.last_live)))
-		ft_printf("Contestant %i, \"%s\", has won !\n", -win->champ_id, win->head.prog_name);
+		ft_printf("Contestant %i, \"%s\", has won !\n"
+				, -win->champ_id, win->head.prog_name);
 	else
 	{
-		ft_printf("Contestant %i, \"%s\", has won !\n", -vm->champ->champ_id, vm->champ->head.prog_name);
+		ft_printf("Contestant %i, \"%s\", has won !\n"
+				, -vm->champ->champ_id, vm->champ->head.prog_name);
 	}
 }
