@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/07/12 18:46:08 by mrychkov         ###   ########.fr       */
+/*   Updated: 2018/07/14 16:13:04 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int							main(int argc, char **argv)
 	war_start(&vm);
 	free(vm.arena);
 	free(vm.ops);
-	while (--vm.champs > -1)
+	while (--vm.champs >= -1)
 		free(vm.champ[vm.champs + 1].ch);
 	free(vm.champ);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:40 by glegendr          #+#    #+#             */
-/*   Updated: 2018/06/18 20:39:09 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/07/14 16:05:32 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void					filter_vec(t_vec *vec, t_vec *code,
 	ft_memcpy(vm->champ[player].ch, v_raw(&tmp), v_size(&tmp));
 	vm->champ[player].len = v_size(&tmp);
 	v_del(vec);
+	v_del(&tmp);
 }
 
 static t_vec				read_ins(int fd)
