@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm.h                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/14 16:34:59 by glegendr          #+#    #+#             */
+/*   Updated: 2018/07/14 16:35:16 by glegendr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef VM_H
 
 # define VM_H
@@ -80,7 +92,6 @@ typedef enum						e_vizu
 	PAUSE = 0x0,
 	RUN = 0x1,
 	FINISH = 0x2,
-//	ACCELERATE = 0x4
 }									t_vizu;
 
 typedef struct						s_task
@@ -114,7 +125,7 @@ typedef struct						s_params
 	t_arg_type						type;
 }									t_params;
 
-typedef struct 						s_binary
+typedef struct						s_binary
 {
 	char							id;
 	char							live;
@@ -124,12 +135,12 @@ typedef struct 						s_binary
 
 typedef struct						s_cycle
 {
-	int 							fast;
+	int								fast;
 	int								to_die;
 	int								check;
 	int								cur;
 	int								cycle_nb;
-	int 							last_live;
+	int								last_live;
 	t_binary						byte[MEM_SIZE];
 }									t_cycle;
 
@@ -140,10 +151,10 @@ typedef struct						s_champion
 	int								len;
 	int								position;
 	int								last_live;
-	int 							cur_live;
+	int								cur_live;
 	int								champ_id;
-	int 							id;
-	header_t 						head;
+	int								id;
+	header_t						head;
 }									t_champion;
 
 typedef struct						s_vm
@@ -151,7 +162,7 @@ typedef struct						s_vm
 	t_oper							*ops;
 	t_cycle							cycle;
 	t_champion						*champ;
-	t_vizu 							vizu;
+	t_vizu							vizu;
 	int								v;
 	int								dump;
 	int								dump_nb;
@@ -197,9 +208,9 @@ int									error(char *s);
 */
 
 void								parse_args(t_vm *vm, t_flag flags,
-																	char **argv);
-int									flag_or_champ(t_vm *vm, char **argv, t_flag *flags, 
-																t_parsing *parsing);
+														char **argv);
+int									flag_or_champ(t_vm *vm, char **argv,
+										t_flag *flags, t_parsing *parsing);
 int									f_zjmp(t_act *act, t_vec *vec, int i);
 int									f_ldi(t_act *act, t_vec *vec, int i);
 int									f_sti(t_act *act, t_vec *vec, int i);
@@ -207,8 +218,8 @@ int									f_fork(t_act *act, t_vec *vec, int i);
 int									f_aff(t_act *act, t_vec *vec, int i);
 int									f_add(t_act *act, t_vec *vec, int i);
 int									f_sub(t_act *act, t_vec *vec, int i);
-int									f_and_second_part(t_act *act, t_vec *vec, int i, 
-																			int id);
+int									f_and_second_part(t_act *act, t_vec *vec,
+														int i, int id);
 int									f_and(t_act *act, t_vec *vec, int i);
 int									f_st(t_act *act, t_vec *vec, int i);
 int									f_live(t_act *act, t_vec *vec, int i);
@@ -219,12 +230,15 @@ t_norme								concat(t_vec *vec, t_vm *vm, int player);
 **----------------------------------Champion's parsing--------------------------
 */
 
-void								parse_champion(int fd, t_vec *queue, t_vec *names, 
-																			t_norme norme);
+void								parse_champion(int fd, t_vec *queue,
+												t_vec *names, t_norme norme);
 void								give_name(t_flag *f, int name);
-void								give_magic_number(t_vec *vec, header_t *head);
-void								give_size(t_vec *vec, int *i, header_t *head);
-void								give_comment(t_vec *vec, int *i, header_t *head);
+void								give_magic_number(t_vec *vec,
+												header_t *head);
+void								give_size(t_vec *vec, int *i,
+												header_t *head);
+void								give_comment(t_vec *vec, int *i,
+												header_t *head);
 void								give_actions(t_vec *vec, t_vec *queue);
 char								*vec_to_char(t_vec *map);
 
@@ -232,7 +246,7 @@ char								*vec_to_char(t_vec *map);
 **-----------------------------------Load players in memory---------------------
 */
 
-void								into_vm(t_vm *vm, t_flag *flag, t_vec *code);
+void								into_vm(t_vm *vm, t_flag *flg, t_vec *code);
 
 /*
 **-----------------------------------Play---------------------------------------
@@ -242,11 +256,12 @@ void								war_start(t_vm *vm);
 void								players_are_ready(t_vm *vm);
 int									someone_is_alive(t_vm *vm);
 int									which_operation(t_vm *vm, t_oper *p);
-size_t								analyze_param(t_vm *vm, t_oper *p, int opcode,
-																t_params args[3]);
-int									play(void (*func)(t_vm *, t_oper *,t_params[3]),
-															t_oper *p, t_vm *vm);
-char								*move_players(t_vm *vm, t_oper *p, int offset);
+size_t								analyze_param(t_vm *vm, t_oper *p,
+												int opcode, t_params args[3]);
+int									play(void (*func)(t_vm *, t_oper *,
+											t_params[3]), t_oper *p, t_vm *vm);
+char								*move_players(t_vm *vm, t_oper *p,
+																	int offset);
 void								print_arena(char *arena);
 
 /*
@@ -259,7 +274,7 @@ void								add(t_vm *vm, t_oper *p, t_params args[3]);
 void								aff(t_vm *vm, t_oper *p, t_params args[3]);
 void								and(t_vm *vm, t_oper *p, t_params args[3]);
 void								fork_o(t_vm *vm, t_oper *p,
-																t_params args[3]);
+															t_params args[3]);
 void								ld(t_vm *vm, t_oper *p, t_params args[3]);
 void								ldi(t_vm *vm, t_oper *p, t_params args[3]);
 void								lfork(t_vm *vm, t_oper *p,
@@ -286,26 +301,28 @@ t_champion							*who_is_it(t_vm *vm, int id);
 **----------------------------------Memory helpers------------------------------
 */
 
-t_reg								*read_info(t_vm *vm, t_reg r[REG_SIZE], int i);
+t_reg								*read_info(t_vm *vm, t_reg r[REG_SIZE],
+																		int i);
 void								store_info(t_reg r[REG_SIZE], char *val);
 void								analyze_info(t_reg r[REG_SIZE], char *val);
-void								write_info(t_vm *vm, t_reg r[REG_SIZE], char *pc, 
-																	int champ_id);
-void 								copy_info(t_reg dest[REG_SIZE], t_reg src[REG_SIZE]);
+void								write_info(t_vm *vm, t_reg r[REG_SIZE],
+														char *pc, int champ_id);
+void								copy_info(t_reg dest[REG_SIZE],
+														t_reg src[REG_SIZE]);
 void								print_memory(const void *addr, size_t size);
-void								convert_endian(char *dest, char *src, 
+void								convert_endian(char *dest, char *src,
 															size_t type_len);
 
 /*
-**----------------------------------Ops handlers---------------------------------
+**----------------------------------Ops handlers--------------------------------
 */
 
 char								read_adress_info(t_vm *vm, char *adress);
-void								read_through(t_vm *vm, char *dst, char *pc, 
-																			size_t range);
-int									get_value(t_vm *vm, t_oper *p, t_params *args, 
-													int idx, int long_op);
+void								read_through(t_vm *vm, char *dst, char *pc,
+															size_t range);
+int									get_value(t_vm *vm, t_oper *p,
+										t_params *args, int idx, int long_op);
 void								store(t_reg r[REG_SIZE], char *val);
-void								binary_write(t_vm *vm, char *src, char *pc, 
+void								binary_write(t_vm *vm, char *src, char *pc,
 										int number);
 #endif

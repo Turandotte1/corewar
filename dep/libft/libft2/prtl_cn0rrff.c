@@ -1,7 +1,3 @@
-//
-// Created by Minh PHAM on 5/13/18.
-//
-
 #include "includes/ft_prtl.h"
 
 int		prtl_c(t_pm_env *e, int i)

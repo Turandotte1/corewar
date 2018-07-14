@@ -6,7 +6,7 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 20:04:44 by mipham            #+#    #+#             */
-/*   Updated: 2017/11/14 17:47:18 by mipham           ###   ########.fr       */
+/*   Updated: 2018/07/14 16:48:01 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		*ft_memcpy(void *restrict str1, const void *restrict str2, size_t n)
 	return (str1);
 }
 
-void	*ft_memcpy_rev(void *dst, const void *src, size_t n)
+void		*ft_memcpy_rev(void *dst, const void *src, size_t n)
 {
 	size_t			i;
 

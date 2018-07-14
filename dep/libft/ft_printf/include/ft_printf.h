@@ -6,7 +6,7 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 13:19:02 by mipham            #+#    #+#             */
-/*   Updated: 2017/12/18 18:06:32 by mipham           ###   ########.fr       */
+/*   Updated: 2018/07/14 16:36:22 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <wchar.h>
 # include <stdlib.h>
 # include "../../libft2/includes/libft.h"
+
 typedef struct		s_arg
 {
 	int				force_prefix : 1;

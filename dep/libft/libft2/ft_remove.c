@@ -1,7 +1,3 @@
-//
-// Created by Minh PHAM on 5/11/18.
-//
-
 #include "includes/libft.h"
 
 /*
@@ -21,7 +17,7 @@ static char	ft_rm_file(char *path)
 	if (unlink(path) < 0)
 	{
 		return (ft_error_d(2, "RFLssnEn", FI_, FU_, LI_,
-						   "can't delete file : ", path, errno));
+						"can't delete file : ", path, errno));
 	}
 	return (SUCCESS);
 }
@@ -43,7 +39,7 @@ static char	ft_rm_dir(char *path)
 	if (rmdir(path) < 0)
 	{
 		return (ft_error_d(2, "RFLssnEn", FI_, FU_, LI_,
-						   "can't delete directory : ", path, errno));
+						"can't delete directory : ", path, errno));
 	}
 	return (SUCCESS);
 }
@@ -78,8 +74,8 @@ char		ft_rm(char *path)
 	else
 	{
 		return (ft_error_d(2, "RFLssnEn", FI_, FU_, LI_,
-						   "path point to either a File nor a Directory\n path : ",
-						   path, errno));
+						"path point to either a File nor a Directory\n path : ",
+						path, errno));
 	}
 	return (SUCCESS);
 }

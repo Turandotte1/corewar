@@ -6,11 +6,12 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 17:20:57 by mipham            #+#    #+#             */
-/*   Updated: 2017/11/10 15:03:36 by mipham           ###   ########.fr       */
+/*   Updated: 2018/07/14 16:51:15 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
+
 /*
 ** ^ le ou exclusif binaire, qui renvoie 1 que si un seul des deux est vrai
 ** 1 ^ 1 = 0 , 0 ^ 0 = 0, 1 ^ 0 = 1

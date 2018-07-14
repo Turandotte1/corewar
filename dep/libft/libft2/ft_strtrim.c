@@ -6,7 +6,7 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 16:54:45 by mipham            #+#    #+#             */
-/*   Updated: 2017/11/14 16:30:59 by mipham           ###   ########.fr       */
+/*   Updated: 2018/07/14 16:52:55 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char		*ft_strtrim_front(char *s)
 		return (s + i);
 	}
 	return (ft_error_n(2, "RFLsn", FI_, FU_, LI_,
-					   "input string should not be NULL..."));
+					"input string should not be NULL..."));
 }
 
 /*
@@ -80,7 +80,7 @@ char		*ft_strtrim_back(char *s)
 		return (s);
 	}
 	return (ft_error_n(2, "RFLsn", FI_, FU_, LI_,
-					   "input string should not be NULL..."));
+					"input string should not be NULL..."));
 }
 
 /*

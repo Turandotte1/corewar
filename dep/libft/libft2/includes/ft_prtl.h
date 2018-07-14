@@ -1,7 +1,3 @@
-//
-// Created by Minh PHAM on 5/10/18.
-//
-
 #ifndef FT_PRTL_H
 # define FT_PRTL_H
 

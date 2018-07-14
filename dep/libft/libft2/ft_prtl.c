@@ -1,9 +1,4 @@
-//
-// Created by Minh PHAM on 5/10/18.
-//
-
 #include "includes/ft_prtl.h"
-
 
 int		ft_pars_argm(t_pm_env *e, int i, const char *s)
 {

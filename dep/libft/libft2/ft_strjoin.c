@@ -6,7 +6,7 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 19:35:31 by mipham            #+#    #+#             */
-/*   Updated: 2017/11/14 16:06:51 by mipham           ###   ########.fr       */
+/*   Updated: 2018/07/14 16:52:08 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	return (0);
 }
 
-char	*ft_strjoin_np(char *s1, char *s2)
+char		*ft_strjoin_np(char *s1, char *s2)
 {
 	int		l;
 	int		i;
