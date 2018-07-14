@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:47 by glegendr          #+#    #+#             */
-/*   Updated: 2018/07/12 17:50:29 by mrychkov         ###   ########.fr       */
+/*   Updated: 2018/07/14 18:17:22 by glegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void					give_dispo_name(t_flag *flag, int player)
 static int					next_nb(char *s)
 {
 	int						dif;
-	int						i;
+	long long int				i;
 
 	dif = 0;
 	i = 0;
@@ -49,7 +49,10 @@ static int					next_nb(char *s)
 		dif += ft_isdigit(s[i++]);
 	if (dif != i)
 		usage();
-	return (ft_atoi(s));
+	i = ft_atoll(s);
+	if (i > 2147483647 || i < 0)
+		usage();
+	return (i);
 }
 
 static int					*is_a_flag(char **argv, int *i, int argc)
