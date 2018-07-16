@@ -61,7 +61,10 @@ int				ft_inner_printf(const char *format, va_list *args, size_t chrs)
 	{
 		ft_bzero(&sarg, sizeof(sarg));
 		if ((handler_len = handle_arg((char**)&format, args, &sarg)) == -1)
+		{
+			free(next_arg);
 			return (-1);
+		}
 		else
 			return (ft_inner_printf(format, args, chrs + handler_len));
 	}
