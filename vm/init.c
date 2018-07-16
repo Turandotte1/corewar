@@ -21,7 +21,7 @@ void				init_flag(t_flag *flag, t_vec *code, t_vec *queue,
 	flag->n = v_new(sizeof(int));
 	*code = v_new(sizeof(t_vec));
 	*queue = v_new(sizeof(t_vec));
-	*names = v_new(sizeof(header_t));
+	*names = v_new(sizeof(t_header));
 }
 
 t_act				init_struct(void)

@@ -45,7 +45,7 @@ void					give_name(t_flag *f, int name)
 	v_push_int(&f->n, name);
 }
 
-void					give_magic_number(t_vec *vec, header_t *head)
+void					give_magic_number(t_vec *vec, t_header *head)
 {
 	if (v_size(vec) < 7)
 		error("Bad Header");
@@ -58,7 +58,7 @@ void					give_magic_number(t_vec *vec, header_t *head)
 	head->magic = 0xea83f3;
 }
 
-void					give_size(t_vec *vec, int *i, header_t *head)
+void					give_size(t_vec *vec, int *i, t_header *head)
 {
 	while (*(int *)v_get(vec, *i) == 0 && *i < v_size(vec))
 		*i += 1;
@@ -74,7 +74,7 @@ void					give_size(t_vec *vec, int *i, header_t *head)
 		error("Champion is too big");
 }
 
-void					give_comment(t_vec *vec, int *i, header_t *head)
+void					give_comment(t_vec *vec, int *i, t_header *head)
 {
 	int y;
 

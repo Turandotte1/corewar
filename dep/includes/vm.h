@@ -53,7 +53,7 @@
 **    En gros, l'index 0 de queue c'est le 1er champ :D
 **
 ** t_vec *names:
-**             C'est un vecteur de header_t (du op.h), avec le nom du champ,
+**             C'est un vecteur de t_header (du op.h), avec le nom du champ,
 **    et son comment. Pareil qu'avant, index 0 = 1er champ
 **
 ** t_flag *flag:
@@ -154,7 +154,7 @@ typedef struct						s_champion
 	int								cur_live;
 	int								champ_id;
 	int								id;
-	header_t						head;
+	t_header						head;
 }									t_champion;
 
 typedef struct						s_vm
@@ -234,11 +234,11 @@ void								parse_champion(int fd, t_vec *queue,
 												t_vec *names, t_norme norme);
 void								give_name(t_flag *f, int name);
 void								give_magic_number(t_vec *vec,
-												header_t *head);
+												t_header *head);
 void								give_size(t_vec *vec, int *i,
-												header_t *head);
+												t_header *head);
 void								give_comment(t_vec *vec, int *i,
-												header_t *head);
+												t_header *head);
 void								give_actions(t_vec *vec, t_vec *queue);
 char								*vec_to_char(t_vec *map);
 

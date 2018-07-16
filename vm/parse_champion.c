@@ -78,7 +78,7 @@ void						parse_champion(int fd, t_vec *queue, t_vec *names,
 {
 	int						i;
 	t_vec					vec;
-	header_t				head;
+	t_header				head;
 
 	vec = read_ins(fd);
 	give_magic_number(&vec, &head);
