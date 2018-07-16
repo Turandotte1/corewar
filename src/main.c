@@ -23,7 +23,7 @@ int		main(int ac, char **argv)
 		return (ft_error_d(2, "RFLsn", FFL, E_MLC));
 	if (ac == 2 && (ft_strcmp(&argv[1][ft_strlen(argv[1]) - 2], ".s") == 0))
 	{
-		content = ft_check_file(argv[1], &len);
+		content = ft_check_file("/Users/mipham/Documents/Github/Corewar/testasm/toto.s", &len);
 		if (!content)
 			close_asm(champ, "Exiting: can't read file\n");
 		parse_file(content, champ);

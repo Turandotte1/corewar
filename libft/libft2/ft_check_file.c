@@ -39,7 +39,10 @@ char	*ft_check_file(char *s, int *len)
 	if ((fd = open(s, O_RDONLY)) < 0)
 		return (ft_error_n(2, "RFLsnEn", FFL, "open error :", errno));
 	if ((ret = read(fd, buf, fstat.st_size)) <= 0)
+	{
+		free(buf);
 		return (ft_error_n(2, "RFLsnEn", FFL, "read error :", errno));
+	}
 	*len = ret;
 	buf[ret] = '\0';
 	close(fd);
