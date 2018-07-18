@@ -6,7 +6,7 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:06:42 by mipham            #+#    #+#             */
-/*   Updated: 2017/12/13 16:53:27 by mipham           ###   ########.fr       */
+/*   Updated: 2018/07/18 15:01:46 by mipham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_list				*fd_select(t_list **list, int fd);
 
 void				*ft_memcpy(void *restrict s1, const void *restrict s2,
 		size_t n);
-void *ft_memcpy_rev(void *dst, const void *src, size_t n);
+void				*ft_memcpy_rev(void *dst, const void *src, size_t n);
 void				*ft_memccpy(void *restrict d, const void *restrict s,
 		int c, size_t n);
 void				ft_bzero(void *s, size_t n);
@@ -134,7 +134,8 @@ void				ft_putbuf_fd_loop_char_np(int fd_n_x, char c,
 void				ft_strrev(char *s);
 void				ft_sort_integer_table(int *tab, int size);
 void				ft_putstr_color(char const *s, const char *color);
-void				ft_putstr_color_fd(char const *s, const char *color, int fd);
+void				ft_putstr_color_fd(char const *s, const char *color,
+		int fd);
 void				ft_color_switch_fd(const char *color, int fd);
 void				ft_color_reset_fd(int fd);
 
@@ -181,7 +182,6 @@ char				ft_rm(char *path);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_atoi(const char *str);
 int					ft_atoi_base(char *str, char *base);
-
 
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);

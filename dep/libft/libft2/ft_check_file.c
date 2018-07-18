@@ -25,7 +25,6 @@ char	*ft_check_file(char *s, int *len)
 	errno = 0;
 	if (stat(s, &fstat) < 0)
 		return (ft_error_n(2, "RFLssnEn", FFL, "stat error on : ", s, errno));
-	errno = 0;
 	if (!(buf = (char*)malloc(fstat.st_size + 1)))
 		return (ft_error_n(2, "RFLsnEn", FFL, "malloc error :", errno));
 	errno = 0;
