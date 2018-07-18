@@ -6,7 +6,7 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 13:16:45 by mipham            #+#    #+#             */
-/*   Updated: 2017/12/19 14:36:11 by mipham           ###   ########.fr       */
+/*   Updated: 2018/07/18 15:38:58 by mipham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ t_handler	ft_get_handler(char c)
 	{
 		handlers = ft_memalloc(sizeof(*handlers) * 256);
 		if (handlers != NULL)
+		{
 			setup_arr(handlers);
+			free(handlers);
+		}
 	}
 	return (handlers[(int)c]);
 }
