@@ -6,7 +6,7 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 17:07:10 by mipham            #+#    #+#             */
-/*   Updated: 2018/06/19 17:53:26 by mipham           ###   ########.fr       */
+/*   Updated: 2018/07/18 14:47:54 by mipham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int			get_instruct(t_champ *champ, char *line, int nb_bytes)
 	i = 0;
 	has_opc = 0;
 	line = ft_skip_whitespace(save_label_name(champ, line, nb_bytes));
-	while (line[i] && !ft_strchr(" \t-", line[i])
-	&& line[i] != DIRECT_CHAR && line[i] != LABEL_CHAR && !ft_isdigit(line[i]))
+	while (line[i] && !ft_strchr(" \t-", line[i]) && line[i] != DIRECT_CHAR
+			&& line[i] != LABEL_CHAR && !ft_isdigit(line[i]))
 		i++;
 	if (line[i] != '\0' && line[i] != '\n')
 	{

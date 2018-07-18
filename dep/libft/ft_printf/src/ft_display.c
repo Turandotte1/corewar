@@ -6,7 +6,7 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 14:14:06 by mipham            #+#    #+#             */
-/*   Updated: 2017/12/18 18:01:09 by mipham           ###   ########.fr       */
+/*   Updated: 2018/07/18 14:51:27 by mipham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ int				ft_inner_printf(const char *format, va_list *args, size_t chrs)
 	{
 		ft_bzero(&sarg, sizeof(sarg));
 		if ((handler_len = handle_arg((char**)&format, args, &sarg)) == -1)
-		{
-			free(next_arg);
 			return (-1);
-		}
 		else
 			return (ft_inner_printf(format, args, chrs + handler_len));
 	}
