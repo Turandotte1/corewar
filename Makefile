@@ -14,7 +14,7 @@ SRC_NAME1 = vm.c parse_args.c parse_champion.c give1.c give2.c into_vm.c \
 	parsing_f.c parsing_f1.c parsing_f2.c init.c error_helpers.c \
 	run.c op.c ops1.c ops2.c ops3.c ops4.c params_analyser.c \
 	memory_helpers.c process_management.c ops_handler.c dump.c \
-	visu_init.c visu_windows.c visu_draw_win.c\
+	visu_init.c visu_windows.c visu_draw_win.c visu_arena_print.c visu_info_print.c \
 
 SRC_NAME2 = convert.c error.c get_instruct.c get_label.c get_param_value.c main.c method.c op.c parse1.c parse2.c \
 

@@ -23,7 +23,6 @@ void						start_game(int (*someone_is_alive)(t_vm *), t_vm *vm)
 
 	windows_init(win, vm);
 	someone_is_alive(vm);
-	sleep(1);
 	while (user_input(wgetch(win[1].window), win, vm))
 	{
 //		if (g_corewar.state & (STATE_RUNNING | STATE_STEP))

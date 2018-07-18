@@ -92,6 +92,7 @@ typedef enum						e_vizu
 	PAUSE = 0x0,
 	RUN = 0x1,
 	FINISH = 0x2,
+	NEXT = 0x03
 }									t_vizu;
 
 typedef struct						s_task
