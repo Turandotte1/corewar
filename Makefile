@@ -14,7 +14,9 @@ SRC_NAME1 = vm.c parse_args.c parse_champion.c give1.c give2.c into_vm.c \
 	parsing_f.c parsing_f1.c parsing_f2.c init.c error_helpers.c \
 	run.c op.c ops1.c ops2.c ops3.c ops4.c params_analyser.c \
 	memory_helpers.c process_management.c ops_handler.c dump.c \
-	visu_init.c visu_windows.c visu_draw_win.c visu_arena_print.c visu_info_print.c \
+	visu_init.c visu_windows.c visu_draw_win.c vizu_arena_print.c\
+
+#	visu_arena_print.c visu_info_print.c
 
 SRC_NAME2 = convert.c error.c get_instruct.c get_label.c get_param_value.c main.c method.c op.c parse1.c parse2.c \
 
@@ -41,11 +43,11 @@ NCURSES	= -lpanel -lncurses
 all: makelibs $(NAME1) $(NAME2)
 
 makelibs:
-	@make all -C ./dep/libft
-	@make all -C ./dep/libvec
-	@make all -C ./dep/libmem
+	make all -C ./dep/libft
+	make all -C ./dep/libvec
+	make all -C ./dep/libmem
 
-$(NAME1): $(OBJ1)
+$(NAME1):  $(OBJ1)
 	@printf "$(RED)[$(NAME1)]: $(CYAN)Compiling .o...$(GREEN)[done] $(GREY)\n"
 	@printf "$(RED)[$(NAME1)]: $(CYAN)Object files compilation: $(GREEN)[OK]$(NC)\n"
 	$(CC) $(CFLAGS) $(OBJ1) -o $(NAME1) -I $(DIR_INC) $(MY_LIB) $(NCURSES)

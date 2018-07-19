@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   into_vm.c                                          :+:      :+:    :+:   */
+/*   into_g_vm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 18:11:15 by glegendr          #+#    #+#             */
-/*   Updated: 2018/07/14 18:33:36 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:16:23 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/includes/vm.h"
+
+t_vm							g_vm;
 
 char				*vec_to_char(t_vec *map)
 {
@@ -29,15 +31,15 @@ char				*vec_to_char(t_vec *map)
 	return (arena);
 }
 
-static void			complete_vm(t_vm *vm, t_vec *map, t_flag *flag, t_vec *code)
+static void			complete_vm(t_vec *map, t_flag *flag, t_vec *code)
 {
 	int				i;
 
 	i = 0;
-	vm->arena = vec_to_char(map);
-	vm->v = flag->v;
-	vm->dump = flag->dump;
-	vm->dump_nb = flag->dump_nb;
+	g_vm.arena = vec_to_char(map);
+	g_vm.v = flag->v;
+	g_vm.dump = flag->dump;
+	g_vm.dump_nb = flag->dump_nb;
 	v_del(&flag->n);
 	v_del(map);
 	while (i < v_size(code))
@@ -53,7 +55,7 @@ static int			get_next_position(int player, int ci)
 	return (MEM_SIZE / player * ci);
 }
 
-void				into_vm(t_vm *vm, t_flag *flag, t_vec *code)
+void				into_vm(t_flag *flag, t_vec *code)
 {
 	int				i;
 	int				y;
@@ -64,8 +66,8 @@ void				into_vm(t_vm *vm, t_flag *flag, t_vec *code)
 	i = 0;
 	while (i < v_size(code))
 	{
-		vm->champ[i].position = get_next_position(v_size(code), i);
-		vm->champ[i].champ_id = *(int *)v_get(&flag->n, i);
+		g_vm.champ[i].position = get_next_position(v_size(code), i);
+		g_vm.champ[i].champ_id = *(int *)v_get(&flag->n, i);
 		tmp = *(t_vec *)v_get(code, i++);
 		y = 0;
 		while (y < v_size(&tmp))
@@ -76,5 +78,5 @@ void				into_vm(t_vm *vm, t_flag *flag, t_vec *code)
 		while (v_size(&map) < get_next_position(v_size(code), i))
 			v_push_int(&map, (char)0);
 	}
-	complete_vm(vm, &map, flag, code);
+	complete_vm(&map, flag, code);
 }

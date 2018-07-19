@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:47 by glegendr          #+#    #+#             */
-/*   Updated: 2018/07/14 19:12:24 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/07/18 16:28:22 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static void					into_struct(int *tab, t_flag *flag)
 		give_name(flag, nb);
 }
 
-int							flag_or_champ(t_vm *vm, char **argv,
+int							flag_or_champ(char **argv,
 		t_flag *flags, t_parsing *parsing)
 {
 	int					i;
@@ -127,7 +127,7 @@ int							flag_or_champ(t_vm *vm, char **argv,
 		else
 		{
 			parse_champion(fd, &parsing->queue, &parsing->names,
-					concat(&parsing->code, vm, player));
+					concat(&parsing->code, player));
 			give_dispo_name(flags, ++player);
 		}
 		++i;

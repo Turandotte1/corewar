@@ -1,42 +1,42 @@
 #include "../dep/includes/viz.h"
 #include "../dep/includes/vm.h"
 
-static void			binary_align(t_vm *vm)
+static void				note_binary(t_cycle *cw)
 {
-	t_binary		*b;
-	char			*pc;
-	int				i;
-
+	int					i;
+	t_binary			*b;
+	char				*pc;
+	
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		b = &vm->cycle.byte[i];
+		b = &cw->byte[i];
 		b->pc = 0;
-		if (vm->vizu & (RUN | NEXT))
+		if (g_vm.vizu & (RUN | NEXT))
 		{
 			b->live -= (b->live > 0) ? 1 : 0;
 			b->op -= (b->op > 0) ? 1 : 0;
 		}
 		i++;
 	}
-	i = vm->hm_process;
+	i = g_vm.hm_process;
 	while (--i >= 0)
 	{
-		pc =vm->ops[i].pc;
-		if (pc >= vm->arena + MEM_SIZE)
-			vm->cycle.byte[0].pc |= 1;
+		pc = g_vm.ops[i].pc;
+		if (pc >= g_vm.arena + MEM_SIZE)
+			cw->byte[0].pc |= 1;
 		else
-			vm->cycle.byte[pc - vm->arena].pc |= 1;
+			cw->byte[pc - g_vm.arena].pc |= 1;
 	}
 }
 
-void				draw_win(t_windows win[3], t_vm *vm)
+void				draw_win(t_windows win[2])
 {
-	binary_align(vm);
-	arena_print(&win[0], vm);
+	note_binary(&g_vm.cycle);
+	arena_print(&win[0]);
 	wrefresh(win[0].window);
-	info_print(&win[1], vm);
-	wrefresh(win[1].window);
-	if (!(vm->vizu & RUN))
-		vm->vizu = PAUSE;
+//	info_print(&panels[1]);
+//	wrefresh(win[1].window);
+	if (!(g_vm.vizu & RUN))
+		g_vm.vizu = PAUSE;
 }

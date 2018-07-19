@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 17:03:40 by glegendr          #+#    #+#             */
-/*   Updated: 2018/07/14 17:10:19 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/07/18 16:58:12 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static t_vec				v_to_hexa(t_vec *vec)
 }
 
 static void					filter_vec(t_vec *vec, t_vec *code,
-		t_vm *vm, int player)
+		int player)
 {
 	t_vec	tmp;
 	int		i;
@@ -48,9 +48,9 @@ static void					filter_vec(t_vec *vec, t_vec *code,
 		++i;
 	}
 	v_push(code, &tmp);
-	vm->champ[player].ch = (char *)malloc(sizeof(char) * (v_size(&tmp) + 1));
-	ft_memcpy(vm->champ[player].ch, v_raw(&tmp), v_size(&tmp));
-	vm->champ[player].len = v_size(&tmp);
+	g_vm.champ[player].ch = (char *)malloc(sizeof(char) * (v_size(&tmp) + 1));
+	ft_memcpy(g_vm.champ[player].ch, v_raw(&tmp), v_size(&tmp));
+	g_vm.champ[player].len = v_size(&tmp);
 	v_del(vec);
 }
 
@@ -99,6 +99,6 @@ void						parse_champion(int fd, t_vec *queue, t_vec *names,
 		error("size is too big");
 	give_actions(&vec, queue);
 	v_push(names, &head);
-	norme.vm->champ[norme.player].head = head;
-	filter_vec(&vec, norme.code, norme.vm, norme.player);
+	g_vm.champ[norme.player].head = head;
+	filter_vec(&vec, norme.code, norme.player);
 }

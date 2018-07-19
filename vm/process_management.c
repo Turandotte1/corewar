@@ -6,7 +6,7 @@
 /*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 18:03:22 by mrychkov          #+#    #+#             */
-/*   Updated: 2018/07/12 18:05:13 by mrychkov         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:21:18 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void					resize(t_oper *new, t_oper *old, size_t old_size)
 		ft_memcpy(&new[idx], &old[from], sizeof(t_oper) * (i - from));
 }
 
-char						*move_players(t_vm *vm, t_oper *p, int offset)
+char						*move_players(t_oper *p, int offset)
 {
 	char					*pc;
 	char					*mem;
@@ -49,27 +49,29 @@ char						*move_players(t_vm *vm, t_oper *p, int offset)
 	p->act = NULL;
 	p->waiting = -1;
 	pc = p->pc + offset;
-	if ((mem = vm->arena) > pc)
+	if ((mem = g_vm.arena) > pc)
 		pc = ((pc - mem) % MEM_SIZE) + mem + MEM_SIZE;
-	else if (pc > mem + MEM_SIZE)
+	else if (mem + MEM_SIZE < pc)
 		pc = mem + (pc - (mem + MEM_SIZE)) % MEM_SIZE;
 	p->pc = pc;
+	while (p->pc < mem)
+		p->pc += MEM_SIZE;
 	return (pc);
 }
 
-void						kill_process(t_vm *vm, size_t count)
+void						kill_process(size_t count)
 {
 	t_oper					*old;
 
-	old = vm->ops;
-	if (!(vm->ops = (t_oper *)malloc(sizeof(t_oper) * count)))
+	old = g_vm.ops;
+	if (!(g_vm.ops = (t_oper *)malloc(sizeof(t_oper) * count)))
 		error("malloc error");
-	resize(vm->ops, old, vm->hm_process);
-	vm->hm_process = count;
+	resize(g_vm.ops, old, g_vm.hm_process);
+	g_vm.hm_process = count;
 	free(old);
 }
 
-t_oper						*make_process(t_vm *vm, char *pc, t_oper *parent_p)
+t_oper						*make_process(char *pc, t_oper *parent_p)
 {
 	static unsigned int		uid;
 	t_oper					*new_p;
@@ -79,10 +81,10 @@ t_oper						*make_process(t_vm *vm, char *pc, t_oper *parent_p)
 	uid = 0;
 	if (parent_p)
 		ft_memcpy(&temp, parent_p, sizeof(t_oper));
-	vm->hm_process++;
-	now = vm->hm_process;
-	vm->ops = realloc(vm->ops, sizeof(t_oper) * now);
-	new_p = &vm->ops[now - 1];
+	g_vm.hm_process++;
+	now = g_vm.hm_process;
+	g_vm.ops = realloc(g_vm.ops, sizeof(t_oper) * now);
+	new_p = &g_vm.ops[now - 1];
 	ft_bzero(new_p, sizeof(t_oper));
 	new_p->pc = pc;
 	if (parent_p)
@@ -93,15 +95,15 @@ t_oper						*make_process(t_vm *vm, char *pc, t_oper *parent_p)
 	return (new_p);
 }
 
-t_champion					*who_is_it(t_vm *vm, int id)
+t_champion					*who_is_it(int id)
 {
 	int						i;
 	t_champion				*champ;
 
 	i = 0;
-	while (i < vm->champs)
+	while (i < g_vm.champs)
 	{
-		champ = &vm->champ[i];
+		champ = &g_vm.champ[i];
 		if (champ->champ_id == id)
 			return (champ);
 		i++;

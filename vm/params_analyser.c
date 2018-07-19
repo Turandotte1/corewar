@@ -6,7 +6,7 @@
 /*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 17:48:45 by mrychkov          #+#    #+#             */
-/*   Updated: 2018/07/12 17:50:23 by mrychkov         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:19:43 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ static size_t					check_param(t_params args[3], char ocp
 	return (2);
 }
 
-static void						get_param(t_vm *vm, char *pc
-								, t_params args[3], int param_count)
+static void						get_param(char *pc, t_params args[3],
+															int param_count)
 {
 	char						*value_ptr;
 	int							jump;
@@ -81,7 +81,7 @@ static void						get_param(t_vm *vm, char *pc
 		value_ptr = (char *)&args[i].value;
 		while (j < size)
 		{
-			value_ptr[size - (j + 1)] = read_adress_info(vm, pc + jump + j);
+			value_ptr[size - (j + 1)] = read_adress_info(pc + jump + j);
 			j++;
 		}
 		jump += args[i].size;
@@ -89,7 +89,7 @@ static void						get_param(t_vm *vm, char *pc
 	}
 }
 
-size_t							analyze_param(t_vm *vm, t_oper *p, int opcode
+size_t							analyze_param(t_oper *p, int opcode
 											, t_params args[3])
 {
 	size_t						jump;
@@ -98,10 +98,10 @@ size_t							analyze_param(t_vm *vm, t_oper *p, int opcode
 
 	ft_bzero(args, sizeof(t_params) * 3);
 	param_count = g_tab[opcode - 1].hm_params;
-	jump = check_param(args, read_adress_info(vm, p->pc + 1)
-			, opcode - 1, param_count);
+	jump = check_param(args, read_adress_info(p->pc + 1),
+		opcode - 1, param_count);
 	param_len = args[0].size + args[1].size + args[2].size;
 	if (param_len > 0)
-		get_param(vm, (char *)&p->pc[jump], args, param_count);
+		get_param((char *)&p->pc[jump], args, param_count);
 	return (jump + param_len);
 }

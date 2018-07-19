@@ -6,7 +6,7 @@
 /*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 17:15:45 by mrychkov          #+#    #+#             */
-/*   Updated: 2018/07/12 17:16:15 by mrychkov         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:17:29 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,32 +53,32 @@ static int					check_ocp(t_oper *p, t_params args[3])
 	return (1);
 }
 
-int							play(void (*func)(t_vm *, t_oper *, t_params[3]),
-														t_oper *p, t_vm *vm)
+int							play(void (func)(t_oper *, t_params[3]),
+														t_oper *p)
 {
 	t_params				args[3];
 	int						jump;
 
 	p->waiting = -1;
-	vm->error = 0;
-	jump = analyze_param(vm, p, p->act->val, args);
+	g_vm.error = 0;
+	jump = analyze_param(p, p->act->val, args);
 	if (func == &zjmp)
 	{
-		func(vm, p, args);
+		func(p, args);
 		return (0);
 	}
 	if (!p->act->ocp || check_ocp(p, args))
-		func(vm, p, args);
+		func(p, args);
 	return (jump);
 }
 
-int							which_operation(t_vm *vm, t_oper *p)
+int							which_operation(t_oper *p)
 {
-	static void	(*func[OPS])(t_vm *, t_oper *, t_params[3]) = {
+	static void	(*func[OPS])(t_oper *, t_params[3]) = {
 		&live, &ld, &st, &add, &sub, &and,
 		&or, &xor, &zjmp, &ldi, &sti, &fork_o,
 		&lld, &lldi, &lfork, &aff
 	};
 
-	return (p->act == NULL ? 1 : play(func[p->act->val - 1], p, vm));
+	return (p->act == NULL ? 1 : play(func[p->act->val - 1], p));
 }

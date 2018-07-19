@@ -1,6 +1,0 @@
-Norme: ./init.c
-Error: 42 header not at top of the file
-Error: file must end with a single empty line
-Error (line 12): comment not well formatted
-Error (line 37, col 0): no newline after block
-rror (line 71, col 0): no newline after block

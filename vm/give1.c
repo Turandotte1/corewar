@@ -6,18 +6,17 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 16:57:03 by glegendr          #+#    #+#             */
-/*   Updated: 2018/06/20 18:02:47 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/07/18 16:56:42 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../dep/includes/vm.h"
 
-t_norme					concat(t_vec *vec, t_vm *vm, int player)
+t_norme					concat(t_vec *vec, int player)
 {
 	t_norme tmp;
 
 	tmp.code = vec;
-	tmp.vm = vm;
 	tmp.player = player;
 	return (tmp);
 }

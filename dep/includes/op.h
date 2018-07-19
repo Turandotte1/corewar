@@ -6,7 +6,7 @@
 /*   By: mipham <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 13:29:17 by mipham            #+#    #+#             */
-/*   Updated: 2018/07/16 18:12:39 by mipham           ###   ########.fr       */
+/*   Updated: 2018/07/19 16:30:35 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct		s_op
 	int		has_opc;
 	int		dir_two_bytes;
 }					t_op;
+
 typedef struct		s_header
 {
 	unsigned int		magic;

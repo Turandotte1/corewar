@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 16:34:59 by glegendr          #+#    #+#             */
-/*   Updated: 2018/07/14 16:35:16 by glegendr         ###   ########.fr       */
+/*   Updated: 2018/07/18 16:52:01 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef enum						e_vizu
 	PAUSE = 0x0,
 	RUN = 0x1,
 	FINISH = 0x2,
-	NEXT = 0x03
+	NEXT = 0x3
 }									t_vizu;
 
 typedef struct						s_task
@@ -176,12 +176,12 @@ typedef struct						s_vm
 
 typedef struct						s_norme
 {
-	t_vm							*vm;
 	t_vec							*code;
 	int								player;
 }									t_norme;
 
 extern t_task						g_tab[OPS + 1];
+extern t_vm							g_vm;
 
 /*
 **----------------------------------Init functions------------------------------
@@ -208,9 +208,9 @@ int									error(char *s);
 **----------------------------------Args parsing--------------------------------
 */
 
-void								parse_args(t_vm *vm, t_flag flags,
+void								parse_args(t_flag flags,
 														char **argv);
-int									flag_or_champ(t_vm *vm, char **argv,
+int									flag_or_champ(char **argv,
 										t_flag *flags, t_parsing *parsing);
 int									f_zjmp(t_act *act, t_vec *vec, int i);
 int									f_ldi(t_act *act, t_vec *vec, int i);
@@ -225,7 +225,7 @@ int									f_and(t_act *act, t_vec *vec, int i);
 int									f_st(t_act *act, t_vec *vec, int i);
 int									f_live(t_act *act, t_vec *vec, int i);
 int									f_ld(t_act *act, t_vec *vec, int i);
-t_norme								concat(t_vec *vec, t_vm *vm, int player);
+t_norme								concat(t_vec *vec, int player);
 
 /*
 **----------------------------------Champion's parsing--------------------------
@@ -247,21 +247,21 @@ char								*vec_to_char(t_vec *map);
 **-----------------------------------Load players in memory---------------------
 */
 
-void								into_vm(t_vm *vm, t_flag *flg, t_vec *code);
+void								into_vm(t_flag *flg, t_vec *code);
 
 /*
 **-----------------------------------Play---------------------------------------
 */
 
-void								war_start(t_vm *vm);
-void								players_are_ready(t_vm *vm);
-int									someone_is_alive(t_vm *vm);
-int									which_operation(t_vm *vm, t_oper *p);
-size_t								analyze_param(t_vm *vm, t_oper *p,
+void								war_start(void);
+void								players_are_ready(void);
+int									someone_is_alive(void);
+int									which_operation(t_oper *p);
+size_t								analyze_param(t_oper *p,
 												int opcode, t_params args[3]);
-int									play(void (*func)(t_vm *, t_oper *,
-											t_params[3]), t_oper *p, t_vm *vm);
-char								*move_players(t_vm *vm, t_oper *p,
+int									play(void (*func)(t_oper *,
+											t_params[3]), t_oper *p);
+char								*move_players(t_oper *p,
 																	int offset);
 void								print_arena(char *arena);
 
@@ -269,44 +269,43 @@ void								print_arena(char *arena);
 **----------------------------------Operations----------------------------------
 */
 
-void								live(t_vm *vm, t_oper *p, t_params args[3]);
+void								live(t_oper *p, t_params args[3]);
 
-void								add(t_vm *vm, t_oper *p, t_params args[3]);
-void								aff(t_vm *vm, t_oper *p, t_params args[3]);
-void								and(t_vm *vm, t_oper *p, t_params args[3]);
-void								fork_o(t_vm *vm, t_oper *p,
+void								add(t_oper *p, t_params args[3]);
+void								aff(t_oper *p, t_params args[3]);
+void								and(t_oper *p, t_params args[3]);
+void								fork_o(t_oper *p,
 															t_params args[3]);
-void								ld(t_vm *vm, t_oper *p, t_params args[3]);
-void								ldi(t_vm *vm, t_oper *p, t_params args[3]);
-void								lfork(t_vm *vm, t_oper *p,
+void								ld(t_oper *p, t_params args[3]);
+void								ldi(t_oper *p, t_params args[3]);
+void								lfork(t_oper *p,
 															t_params args[3]);
-void								lld(t_vm *vm, t_oper *p, t_params args[3]);
-void								lldi(t_vm *vm, t_oper *p, t_params args[3]);
-void								or(t_vm *vm, t_oper *p, t_params args[3]);
-void								st(t_vm *vm, t_oper *p, t_params args[3]);
-void								sti(t_vm *vm, t_oper *p, t_params args[3]);
-void								sub(t_vm *vm, t_oper *p, t_params args[3]);
-void								xor(t_vm *vm, t_oper *p, t_params args[3]);
-void								zjmp(t_vm *vm, t_oper *p, t_params args[3]);
+void								lld(t_oper *p, t_params args[3]);
+void								lldi(t_oper *p, t_params args[3]);
+void								or(t_oper *p, t_params args[3]);
+void								st(t_oper *p, t_params args[3]);
+void								sti(t_oper *p, t_params args[3]);
+void								sub(t_oper *p, t_params args[3]);
+void								xor(t_oper *p, t_params args[3]);
+void								zjmp(t_oper *p, t_params args[3]);
 
 /*
 **----------------------------------Process handlers----------------------------
 */
 
-t_oper								*make_process(t_vm *vm,
-													char *pc, t_oper *parent_t);
-void								kill_process(t_vm *vm, size_t count);
-t_champion							*who_is_it(t_vm *vm, int id);
+t_oper								*make_process(char *pc, t_oper *parent_t);
+void								kill_process(size_t count);
+t_champion							*who_is_it(int id);
 
 /*
 **----------------------------------Memory helpers------------------------------
 */
 
-t_reg								*read_info(t_vm *vm, t_reg r[REG_SIZE],
+t_reg								*read_info(t_reg r[REG_SIZE],
 																		int i);
 void								store_info(t_reg r[REG_SIZE], char *val);
 void								analyze_info(t_reg r[REG_SIZE], char *val);
-void								write_info(t_vm *vm, t_reg r[REG_SIZE],
+void								write_info(t_reg r[REG_SIZE],
 														char *pc, int champ_id);
 void								copy_info(t_reg dest[REG_SIZE],
 														t_reg src[REG_SIZE]);
@@ -318,12 +317,12 @@ void								convert_endian(char *dest, char *src,
 **----------------------------------Ops handlers--------------------------------
 */
 
-char								read_adress_info(t_vm *vm, char *adress);
-void								read_through(t_vm *vm, char *dst, char *pc,
+char								read_adress_info(char *adress);
+void								read_through(char *dst, char *pc,
 															size_t range);
-int									get_value(t_vm *vm, t_oper *p,
+int									get_value(t_oper *p,
 										t_params *args, int idx, int long_op);
 void								store(t_reg r[REG_SIZE], char *val);
-void								binary_write(t_vm *vm, char *src, char *pc,
+void								binary_write(char *src, char *pc,
 										int number);
 #endif
