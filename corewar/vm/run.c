@@ -6,7 +6,7 @@
 /*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 18:06:22 by mrychkov          #+#    #+#             */
-/*   Updated: 2018/07/18 16:42:50 by allauren         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:22:14 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ static void				showmust_go_on(void)
 			{
 				current->act = &g_tab[opcode];
 				current->waiting = g_tab[opcode].cycles;
-				//ft_printf("cycle %d, operation %s\n", g_vm.hm_cycles + current->waiting, g_tab[opcode].name);
-				//print_memory((void *)current->pc, 4);
 			}
 		}
 		if (--current->waiting <= 0)
@@ -103,7 +101,7 @@ int						someone_is_alive(void)
 	return (g_vm.hm_process <= 0 || g_vm.cycle.to_die <= 0) ? 0 : 1;
 }
 
-void					players_are_ready()
+void					players_are_ready(void)
 {
 	t_champion			*win;
 
@@ -118,11 +116,11 @@ void					players_are_ready()
 			;
 	}
 	if ((win = who_is_it(g_vm.cycle.last_live)))
-		ft_printf("Contestant %i, \"%s\", has won !\n", win->champ_id, 
+		ft_printf("Contestant %i, \"%s\", has won !\n", win->champ_id,
 			win->head.prog_name);
 	else
 	{
-		ft_printf("Contestant %i, \"%s\", has won !\n", g_vm.champ->champ_id, 
+		ft_printf("Contestant %i, \"%s\", has won !\n", g_vm.champ->champ_id,
 			g_vm.champ->head.prog_name);
 	}
 }

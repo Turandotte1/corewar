@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 16:14:56 by glegendr          #+#    #+#             */
-/*   Updated: 2018/07/18 16:49:01 by allauren         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:22:35 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void						war_start(void)
 			champ->head.comment);
 		make_process(&g_vm.arena[position], NULL);
 		champ->champ_id = -champ->champ_id;
-//		champ->id = i;
 		convert_endian((char*)&g_vm.ops[i].r[0], (char *)&champ->champ_id,
 				REG_SIZE);
 		i++;

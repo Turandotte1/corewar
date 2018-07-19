@@ -6,7 +6,7 @@
 /*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 17:48:45 by mrychkov          #+#    #+#             */
-/*   Updated: 2018/07/12 17:50:23 by mrychkov         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:19:43 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static size_t					check_param(t_params args[3], char ocp
 	return (2);
 }
 
-static void						get_param(char *pc, t_params args[3], 
+static void						get_param(char *pc, t_params args[3],
 															int param_count)
 {
 	char						*value_ptr;
@@ -98,7 +98,7 @@ size_t							analyze_param(t_oper *p, int opcode
 
 	ft_bzero(args, sizeof(t_params) * 3);
 	param_count = g_tab[opcode - 1].hm_params;
-	jump = check_param(args, read_adress_info(p->pc + 1), 
+	jump = check_param(args, read_adress_info(p->pc + 1),
 		opcode - 1, param_count);
 	param_len = args[0].size + args[1].size + args[2].size;
 	if (param_len > 0)

@@ -6,7 +6,7 @@
 /*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 17:19:57 by mrychkov          #+#    #+#             */
-/*   Updated: 2018/07/12 17:20:27 by mrychkov         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:19:16 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void						sti(t_oper *p, t_params args[3])
 	jump = ((a + b) % IDX_MOD);
 	champ_id = 0;
 	analyze_info(read_info(p->r, 1), (char *)&champ_id);
-//	printf("CHAMP ID = %d\n", args[0].value);
 	write_info(read_info(p->r, args[0].value), p->pc + jump, champ_id);
 }
 

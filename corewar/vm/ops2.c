@@ -6,7 +6,7 @@
 /*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 17:19:03 by mrychkov          #+#    #+#             */
-/*   Updated: 2018/07/18 16:35:04 by allauren         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:23:26 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,10 @@ void						xor(t_oper *p, t_params args[3])
 
 void						zjmp(t_oper *p, t_params args[3])
 {
-//	ft_printf("I JUMP FOR %d\n", (short)args[0].value % IDX_MOD);
-//	ft_printf("I am %ld\n", p->pc - g_vm.arena);
 	if (p->carry == 1)
 		move_players(p, (short)args[0].value % IDX_MOD);
 	else
 		move_players(p, 3);
-	//ft_printf("I become %ld\n", p->pc - g_vm.arena);
-	ft_putstr("je suis cycle ");
-	ft_putnbr(g_vm.hm_cycles);
-	ft_putstr(" ");
-	print_memory((void*)p->pc, 8);
-	ft_printf(" et la difference d adresse est de %d \n", p->pc - g_vm.arena);
 }
 
 void						ldi(t_oper *p, t_params args[3])

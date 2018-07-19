@@ -6,7 +6,7 @@
 /*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 18:03:22 by mrychkov          #+#    #+#             */
-/*   Updated: 2018/07/18 16:44:22 by allauren         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:21:18 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ char						*move_players(t_oper *p, int offset)
 	p->act = NULL;
 	p->waiting = -1;
 	pc = p->pc + offset;
-//	ft_printf("je suis le pc avant %ld\n", p->pc - g_vm.arena);
 	if ((mem = g_vm.arena) > pc)
 		pc = ((pc - mem) % MEM_SIZE) + mem + MEM_SIZE;
 	else if (mem + MEM_SIZE < pc)
@@ -57,8 +56,6 @@ char						*move_players(t_oper *p, int offset)
 	p->pc = pc;
 	while (p->pc < mem)
 		p->pc += MEM_SIZE;
-//	ft_printf("je suis le pc %ld\n", (((pc - mem) % MEM_SIZE) + MEM_SIZE) % MEM_SIZE);
-	//printf("%d\n", ft_atoi_base(pc, "F"));
 	return (pc);
 }
 

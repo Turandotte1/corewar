@@ -6,7 +6,7 @@
 /*   By: glegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 18:11:21 by glegendr          #+#    #+#             */
-/*   Updated: 2018/07/12 17:54:10 by mrychkov         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:15:37 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_reg					*read_info(t_reg r[REG_SIZE], int i)
 		g_vm.error = 1;
 		return (NULL);
 	}
-	//ft_printf("je suis le registe %d\n", r[0]);
 	return (&r[i - 1]);
 }
 
@@ -35,7 +34,7 @@ void					analyze_info(t_reg r[REG_SIZE], char *val)
 		convert_endian(val, (char *)r, REG_SIZE);
 }
 
-void					write_info(t_reg r[REG_SIZE], char *pc, 
+void					write_info(t_reg r[REG_SIZE], char *pc,
 											int champ_id)
 {
 	if (r)

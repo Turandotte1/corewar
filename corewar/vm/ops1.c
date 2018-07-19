@@ -6,7 +6,7 @@
 /*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 17:17:10 by mrychkov          #+#    #+#             */
-/*   Updated: 2018/07/18 16:35:05 by allauren         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:16:55 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ void						live(t_oper *p, t_params args[3])
 	t_champion				*champ;
 
 	p->live++;
-	//ft_printf("#%d# \n", args[0].value);
 	if ((champ = who_is_it(args[0].value)))
 	{
-		//ft_printf("et moi je suis le champion %d\n", champ->champ_id);
 		cycle = &g_vm.cycle;
 		jump = p->pc - g_vm.arena;
 		if (jump >= 0 && jump < MEM_SIZE)
@@ -30,10 +28,6 @@ void						live(t_oper *p, t_params args[3])
 		cycle->last_live = champ->champ_id;
 		champ->last_live = g_vm.hm_cycles;
 		champ->cur_live++;
-	//	ft_printf("je suis passe juste la\n");
-	//	if (!(g_vm.v))
-	//		ft_printf("Player %d (%s) is said to be alive\n",
-	//							-champ->champ_id, champ->head.prog_name);
 	}
 }
 
@@ -52,10 +46,8 @@ void						st(t_oper *p, t_params args[3])
 {
 	int						champ_id;
 
-	//ft_printf("je suis rentre la!\n");
 	if (args[1].type == T_IND)
 	{
-	//	ft_printf("%s %d \n", "je fais l autre chose", g_vm.hm_cycles);
 		champ_id = 0;
 		analyze_info(read_info(p->r, 1), (char *)&champ_id);
 		write_info(read_info(p->r, args[0].value),
@@ -63,7 +55,6 @@ void						st(t_oper *p, t_params args[3])
 	}
 	if (args[1].type == T_REG)
 	{
-	//	ft_printf("%s %d \n", "je fais la chose", g_vm.hm_cycles);
 		copy_info(read_info(p->r, args[1].value),
 				read_info(p->r, args[0].value));
 	}

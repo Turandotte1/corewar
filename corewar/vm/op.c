@@ -6,7 +6,7 @@
 /*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 17:15:45 by mrychkov          #+#    #+#             */
-/*   Updated: 2018/07/18 16:44:01 by allauren         ###   ########.fr       */
+/*   Updated: 2018/07/19 16:17:29 by mrychkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int							play(void (func)(t_oper *, t_params[3]),
 
 int							which_operation(t_oper *p)
 {
-	static void	(*func[OPS])( t_oper *, t_params[3]) = {
+	static void	(*func[OPS])(t_oper *, t_params[3]) = {
 		&live, &ld, &st, &add, &sub, &and,
 		&or, &xor, &zjmp, &ldi, &sti, &fork_o,
 		&lld, &lldi, &lfork, &aff
