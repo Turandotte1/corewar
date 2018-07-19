@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visu_draw_win.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/19 18:34:39 by mrychkov          #+#    #+#             */
+/*   Updated: 2018/07/19 18:36:26 by mrychkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../dep/includes/viz.h"
 #include "../dep/includes/vm.h"
 
@@ -6,7 +18,7 @@ static void				note_binary(t_cycle *cw)
 	int					i;
 	t_binary			*b;
 	char				*pc;
-	
+
 	i = 0;
 	while (i < MEM_SIZE)
 	{
@@ -30,13 +42,11 @@ static void				note_binary(t_cycle *cw)
 	}
 }
 
-void				draw_win(t_windows win[2])
+void					draw_win(t_windows win[2])
 {
 	note_binary(&g_vm.cycle);
 	arena_print(&win[0]);
 	wrefresh(win[0].window);
-//	info_print(&panels[1]);
-//	wrefresh(win[1].window);
 	if (!(g_vm.vizu & RUN))
 		g_vm.vizu = PAUSE;
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visu_windows.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mrychkov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/19 18:37:53 by mrychkov          #+#    #+#             */
+/*   Updated: 2018/07/19 18:38:08 by mrychkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../dep/includes/viz.h"
 #include "../dep/includes/vm.h"
 
@@ -41,7 +53,5 @@ void				windows_init(t_windows win[3])
 	getmaxyx(stdscr, len.y, len.x);
 	arena_win_create(&win[0], len);
 	info_win_create(&win[1], len);
-//	help_win_create(&win[2], len);
-//	refresh();
 	draw_win(win);
 }
